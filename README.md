@@ -53,4 +53,4 @@ Los datos no se suben al repo. Los notebooks 01 y 02 los descargan automáticame
 
 ## Documentación
 
-[Ver PDF completo](docs/Prediccion_Rinde_Soja_NoBsAs_Musanti.pdf)
+[Ver PDF completo](docs/Prediccion_Rinde_Soja_Musanti.pdf)
