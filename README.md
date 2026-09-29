@@ -1,4 +1,4 @@
-# Predicción de Rendimiento de Soja
+# Estimación temprana del rendimiento de soja
 
 Proyecto personal de Data Science aplicado al agro argentino.
 
@@ -23,14 +23,14 @@ Estimar si la campaña de soja viene buena o mala **antes de la cosecha**, usand
 | Modelo | Para qué | Resultado |
 |---|---|---|
 | **Regresión Lineal** | Baseline simple | Sobreajusta con muchas variables, R² negativo |
-| **Random Forest** | Modelo principal | Mejor desempeño: MAE 2,68 qq/ha, R² 0,679 |
+| **Random Forest** | Modelo principal | Mejor desempeño: MAE 3,27 qq/ha, R² 0,54 con datos a enero (~19% menos error que el promedio histórico) |
 | **Gradient Boosting** | Alternativa | Similar a RF pero levemente inferior |
 
 **¿Por qué Random Forest?** Captura relaciones no lineales, es robusto con datasets chicos (125 obs) y no requiere mucho tuning. Regresión Lineal no alcanza; redes neuronales necesitan más datos.
 
 ## Resultado clave
 
-Con datos disponibles hasta **enero** (3 meses antes de cosecha), el modelo ya alcanza su mejor desempeño. Después de enero, agregar febrero y marzo no mejora la predicción. Enero es el punto donde se puede decidir.
+El error baja de forma gradual a medida que avanza la campaña. Con datos hasta **fines de enero** (3 meses antes de cosecha), el modelo ya logra más del 80% de su mejora total. Sirve para anticipar la dirección de la campaña, no un valor exacto.
 
 ## Validación
 
@@ -53,7 +53,7 @@ Los datos no se suben al repo. Los notebooks 01 y 02 los descargan automáticame
 
 ## Documentación
 
-[Ver PDF completo](docs/Prediccion_Rinde_Soja_Musanti.pdf)
+[Ver PDF completo](docs/Prediccion_Rinde_Soja_Musanti_v2.pdf)
 
 ## Errores encontrados y cómo se resolvieron
 
