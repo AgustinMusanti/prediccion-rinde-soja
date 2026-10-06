@@ -1,4 +1,4 @@
-# Ayuda memoria — Predicción de rendimiento de soja
+# Ayuda memoria — Estimación de rendimiento de soja
 
 Referencia rápida de los conceptos, métricas y decisiones del proyecto.
 
