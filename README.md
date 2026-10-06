@@ -8,6 +8,8 @@ Un sistema que estima el rendimiento de soja a nivel de partido (departamento) t
 
 El modelo cubre cinco partidos del noroeste de Buenos Aires: General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto, para las campañas 2000/01 a 2024/25 (125 observaciones).
 
+📄 La documentación completa del proyecto está disponible en [`docs/Prediccion_Rinde_Soja_Musanti_v3.pdf`](https://github.com/AgustinMusanti/prediccion-rinde-soja/blob/main/docs/Prediccion_Rinde_Soja_Musanti_v3.pdf).
+
 ## Fuentes de datos
 
 | Fuente | Qué aporta | Resolución |
