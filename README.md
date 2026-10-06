@@ -48,26 +48,27 @@ La estimación para la zona fue de **33,4 qq/ha** (promedio de los cinco partido
 Se evaluó filtrar la señal NDVI para restringirla a los píxeles clasificados como soja, usando el Mapa Nacional de Cultivos del INTA (campañas 2019/20 a 2023/24). El NDVI filtrado mostró curvas más coherentes, pero al alimentarlo al modelo entrenado con NDVI sin filtrar, el error aumentó (MAE 3,08 → 3,80). Para aprovecharlo sería necesario reentrenar el modelo íntegramente con la señal filtrada, lo cual requiere una serie más larga que las cinco campañas hoy disponibles.
 
 ## Estructura del repositorio
-
+ 
 ```
 prediccion-rinde-soja/
-├── data/
-│   ├── raw/                  # Datos descargados (MAGyP, NDVI, clima)
-│   └── processed/            # Dataset de modelado (125 obs × 39 features)
-├── notebooks/
-│   ├── 01_descarga_rendimientos.ipynb
-│   ├── 02_extraccion_ndvi.ipynb
-│   ├── 03_feature_engineering.ipynb
-│   ├── 04_eda.ipynb
-│   ├── 05_modelado.ipynb
-│   ├── 06_walk_forward.ipynb
-│   ├── 07_anticipacion.ipynb
-│   ├── 08_prediccion_2025_26.ipynb
-│   ├── 09_ndvi_filtrado_soja.ipynb
-│   └── 10_test_ndvi_filtrado.ipynb
+├── docs/                     # Documentación del proyecto
+├── notebooks/                # Pipeline completo (01 a 10)
+│   ├── 01_descarga_datos
+│   ├── 02_descarga_ndvi
+│   ├── 03_feature_engineering
+│   ├── 04_modelado
+│   ├── 05_prediccion
+│   ├── 06_figuras_documentacion
+│   ├── 07_experimentos_ml
+│   ├── 08_exploracion_mascara_cultivos
+│   ├── 09_ndvi_filtrado_soja
+│   └── 10_test_ndvi_filtrado
 ├── outputs/                  # Figuras y reportes generados
+├── src/                      # Código fuente auxiliar
 └── README.md
 ```
+ 
+Los datos (CSVs de MAGyP, NDVI y clima) no se incluyen en el repositorio. Los notebooks descargan o generan los datos necesarios al ejecutarse.
 
 ## Requisitos
 
