@@ -62,14 +62,6 @@ Mide la fuerza y dirección de la relación lineal entre dos variables. Va de -1
 - r = 0 → no hay relación lineal
 - r = -1 → correlación lineal negativa perfecta (cuando una sube, la otra baja)
 
-**Regla práctica:**
-| |r| | Fuerza |
-|------|--------|
-| 0,0 – 0,3 | Débil |
-| 0,3 – 0,6 | Moderada |
-| 0,6 – 0,8 | Fuerte |
-| 0,8 – 1,0 | Muy fuerte |
-
 **En el proyecto (ventana oct_ene, sección 5.1):** de las 39 variables, 35 tienen correlación significativa (p < 0,05) con el rendimiento. Las más fuertes:
 
 | Variable | r |
