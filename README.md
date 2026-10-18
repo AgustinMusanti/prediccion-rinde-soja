@@ -28,6 +28,14 @@ El modelo cubre cinco partidos del noroeste de Buenos Aires: General Arenales, J
 
 **Ventana óptima.** Oct-ene (datos hasta fines de enero) captura más del 80% de la mejora total sobre el baseline y permite emitir la estimación unos tres meses antes de la cosecha.
 
+## Aplicación práctica
+
+En el noroeste bonaerense, cooperativas y plantas de acopio planifican logística, capacidad de almacenamiento y comercialización meses antes de la cosecha, muchas veces basándose en promedios históricos o en la percepción de cómo viene el año.
+
+Este modelo no busca reemplazar la estimación final de cosecha. Su valor está en anticipar tendencias: detectar con 3-5 meses de anticipación si una campaña viene por encima o por debajo de lo normal. Con 71% de precisión direccional (p=0.003), el modelo acierta la dirección del desvío en 7 de cada 10 campañas, y su mayor ventaja aparece en los años extremos — cuando más importa anticipar. En la sequía de 2022, el modelo detectó la caída con un error de 5.5 qq/ha contra 15.5 del promedio histórico.
+
+Una cooperativa con esa señal temprana puede ajustar su plan de acopio, dimensionar fletes y secado, o anticipar decisiones de venta en mercados de futuros. De ahí se desprenden aplicaciones en seguros agrícolas, crédito rural y cobertura de precios.
+
 ## Resultados principales
 
 | Métrica | Valor |
