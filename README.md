@@ -43,7 +43,7 @@ Cada estimación se compara contra el rinde final de la campaña. Por eso, el er
   - a fin de noviembre el modelo ya anticipaba una caída del 43%;
   - a fin de enero su error fue de 3,8 qq/ha por partido, contra 15,5 qq/ha del promedio histórico.
 
-> **Por qué la ventana de noviembre tiene menos error que las posteriores.** Cada ventana suma variables nuevas (de 16 a 80) y solo hay 125 observaciones. Con tantas variables, el Random Forest diluye la señal. La versión 2 hizo muy informativa la ventana temprana, y las siguientes no logran aprovechar los datos adicionales. Seleccionar variables en las ventanas tardías es uno de los próximos pasos.
+> **Sobre la ventana de noviembre.** Que fin de noviembre tenga menos error que los cortes posteriores no se explica por exceso de variables: usar solo las variables de cada corte empeoró el resultado (ver "Estructura de variables y algoritmo"). Lo más probable es que combine una señal temprana fuerte (la anomalía de NDVI) con la variabilidad propia de tener solo 9 campañas de test.
 
 ### ¿Acierta cómo viene cada campaña?
 
@@ -95,6 +95,19 @@ En el notebook 11 se probaron, con el mismo criterio, otras variables con sentid
 | Condiciones del último mes de cada ventana | Sin efecto consistente |
 | Tendencia tecnológica (quitar la tendencia lineal del rinde) | Empeora mucho: proyectaba subas que no ocurrieron |
 | Grados-día (GDD) | No se probó: con ventanas de calendario fijas equivale a la temperatura media, que el modelo ya tiene |
+
+### Estructura de variables y algoritmo
+
+Como última prueba (notebook 11, parte 5), se compararon cuatro combinaciones, todas con las variables de la versión 2. Se fijó una regla antes de ver los resultados: cambiar el modelo solo si una opción mejoraba de forma concluyente en al menos 2 cortes y no empeoraba en ninguno.
+
+| Opción | Resultado |
+|---|---|
+| **Random Forest, variables acumuladas (actual)** | Referencia |
+| Random Forest, solo las variables de cada corte | Empeora en diciembre y enero: las variables de cortes anteriores aportan la trayectoria de la campaña |
+| **Gradient Boosting, variables acumuladas** | Menor error en los 5 cortes (−0,07 a −0,60 qq/ha), concluyente solo en febrero |
+| Gradient Boosting, solo las variables de cada corte | Empeora |
+
+**Decisión.** Se mantiene el Random Forest. Gradient Boosting queda documentado como alternativa candidata, y la campaña 2025/26, que ninguno de los dos vio, servirá para desempatar cuando MAGyP publique los datos.
 
 ### El Niño / La Niña
 
@@ -154,7 +167,7 @@ Promedio de la zona. Promedio histórico 2000–2024: 31,1 qq/ha.
 
 **Modelo.** Random Forest (100 árboles, profundidad máxima 5), un modelo por ventana.
 
-- Se compararon también Regresión Lineal y Gradient Boosting. En la versión 2, Gradient Boosting obtuvo un MAE algo menor (2,32–2,73 según la ventana) con una sola semilla. Queda pendiente validarlo con varias semillas antes de cambiar de modelo.
+- Se compararon también Regresión Lineal y Gradient Boosting. Gradient Boosting obtuvo menos error en todos los cortes, pero la mejora fue concluyente en uno solo, así que no cumplió la regla de cambio (ver "Estructura de variables y algoritmo").
 - En el notebook 07 se probaron Ridge, Lasso, ElasticNet, XGBoost, SVR y KNN, sin mejora sobre el Random Forest.
 
 **Validación.** Walk-forward temporal estricto:
@@ -234,6 +247,11 @@ Los datos crudos (MAGyP, NASA POWER, NDVI) no se incluyen en el repositorio. Los
 - **Variables que faltan.** No incorpora manejo (cultivar, fecha de siembra, fertilización), suelo, plagas ni granizo.
 - **Eventos posteriores al corte.** Lo que pasa después de la fecha de corte no se ve, como ocurrió con la sequía tardía de 2017/18.
 - **Pocas campañas de test.** Con 9 campañas, las diferencias chicas entre variantes no son concluyentes.
+
+## Próximos pasos
+
+- **Validar con la campaña 2025/26** cuando MAGyP publique los rindes por departamento, comparando Random Forest y Gradient Boosting.
+- **Ampliar los datos.** Con más partidos de la zona núcleo o más campañas, se podrían revisar Gradient Boosting y el NDVI filtrado a soja con más respaldo estadístico.
 
 ## Autor
 
