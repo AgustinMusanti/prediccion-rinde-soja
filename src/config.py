@@ -80,3 +80,28 @@ PROJECT_ROOT = Path(__file__).parent.parent
 DATA_RAW = PROJECT_ROOT / "data" / "raw"
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
 OUTPUTS = PROJECT_ROOT / "outputs"
+
+# ============================================================================
+# EXPERIMENTO DE AMPLIACIÓN (rama experimento/ampliacion-partidos)
+# ============================================================================
+# 12 partidos nuevos, además de los 5 de PARTIDOS. No afecta al modelo de los 5 core.
+# lat/lon = centroide del polígono FAO GAUL 2015 nivel 2 (ADM0=Argentina,
+# ADM1=Buenos Aires), calculado UNA vez en GEE y redondeado a 2 decimales.
+# NO se recalcula en cada corrida: son valores fijos para reproducibilidad.
+# "gaul" = ADM2_NAME exacto en GAUL (sin tildes).
+PARTIDOS_AMPLIACION = {
+    "Pergamino":        {"gaul": "Pergamino",        "lat": -33.84, "lon": -60.54},
+    "Colón":            {"gaul": "Colon",            "lat": -33.89, "lon": -61.06},
+    "Rojas":            {"gaul": "Rojas",            "lat": -34.19, "lon": -60.79},
+    "Salto":            {"gaul": "Salto",            "lat": -34.27, "lon": -60.31},
+    "Chacabuco":        {"gaul": "Chacabuco",        "lat": -34.62, "lon": -60.35},
+    "Bragado":          {"gaul": "Bragado",          "lat": -35.06, "lon": -60.60},
+    "9 de Julio":       {"gaul": "9 de Julio",       "lat": -35.48, "lon": -60.98},
+    "General Viamonte": {"gaul": "General Viamonte", "lat": -35.00, "lon": -61.05},
+    "General Villegas": {"gaul": "General Villegas", "lat": -34.77, "lon": -62.95},
+    "Pehuajó":          {"gaul": "Pehuajo",          "lat": -35.88, "lon": -61.93},
+    "Carlos Tejedor":   {"gaul": "Carlos Tejedor",   "lat": -35.38, "lon": -62.43},
+    "Trenque Lauquen":  {"gaul": "Trenque Lauquen",  "lat": -36.06, "lon": -62.63},
+}
+
+DATA_RAW_AMPLIACION = DATA_RAW / "ampliacion"
