@@ -1,1 +1,51 @@
-All Rights Reserved: Copyright (c) 2026 Agustín Musanti. All rights reserved. No part of this software may be used, copied, modified or distributed without prior written permission from the author.
+Copyright (c) 2026 Agustín Musanti. All rights reserved.
+
+PROPRIETARY LICENSE
+===================
+
+This repository (source code, notebooks, documentation, figures, dashboard
+and any other material contained in it, together the "Work") is the
+intellectual property of Agustín Musanti (the "Author"). The Work is made
+publicly visible for portfolio and informational purposes only.
+
+
+1. PERMITTED
+------------
+- Viewing the Work and reading the code.
+- Forking and viewing the repository on GitHub, as allowed by the GitHub
+  Terms of Service.
+- Quoting short excerpts, figures or results with clear attribution to the
+  Author and a link to this repository.
+
+
+2. NOT PERMITTED without prior written permission from the Author
+-----------------------------------------------------------------
+- Using the Work, or any part of it, for commercial purposes.
+- Copying, modifying, adapting or redistributing the Work, in whole or in
+  part, in any form.
+- Incorporating the Work into other projects, products or services.
+- Presenting the Work, its methodology implementation, results or dashboard
+  as your own.
+- Training machine-learning models on the Work for commercial purposes.
+
+
+3. THIRD-PARTY DATA
+-------------------
+This license applies only to the Author's original work. Source data
+(MAGyP agricultural estimates, NASA POWER, MODIS MOD13Q1) belongs to its
+respective providers and remains subject to their own terms of use.
+
+
+4. NO WARRANTY
+--------------
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. Yield estimates are statistical approximations at district level
+and must not be used as the sole basis for financial, commercial or
+agronomic decisions. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THE WORK.
+
+
+5. PERMISSIONS
+--------------
+For any use not covered above, contact the Author through the GitHub
+profile: https://github.com/AgustinMusanti
