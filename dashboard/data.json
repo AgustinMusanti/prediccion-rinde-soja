@@ -1,0 +1,2674 @@
+{
+  "meta": {
+    "ultima_actualizacion": "2026-11-09",
+    "modelo": "Random Forest",
+    "partidos": [
+      "General Arenales",
+      "Junín",
+      "Leandro N. Alem",
+      "Lincoln",
+      "General Pinto"
+    ],
+    "promedio_historico_zona": 31.1,
+    "promedios_historicos": {
+      "General Arenales": 33.8,
+      "Junín": 32.4,
+      "Leandro N. Alem": 30.9,
+      "Lincoln": 29.0,
+      "General Pinto": 29.4
+    },
+    "rangos_historicos": {
+      "General Arenales": {
+        "min": 14.5,
+        "p25": 31.8,
+        "p75": 38.7,
+        "max": 45.7
+      },
+      "Junín": {
+        "min": 13.7,
+        "p25": 30.4,
+        "p75": 37.4,
+        "max": 44.5
+      },
+      "Leandro N. Alem": {
+        "min": 15.3,
+        "p25": 29.4,
+        "p75": 34.9,
+        "max": 37.9
+      },
+      "Lincoln": {
+        "min": 16.2,
+        "p25": 27.1,
+        "p75": 31.6,
+        "max": 35.2
+      },
+      "General Pinto": {
+        "min": 12.7,
+        "p25": 27.5,
+        "p75": 32.3,
+        "max": 36.0
+      }
+    },
+    "serie_historica_zona": {
+      "2000": 24.9,
+      "2001": 28.9,
+      "2002": 31.5,
+      "2003": 27.7,
+      "2004": 33.6,
+      "2005": 32.5,
+      "2006": 35.9,
+      "2007": 37.0,
+      "2008": 16.3,
+      "2009": 33.8,
+      "2010": 32.4,
+      "2011": 27.8,
+      "2012": 33.8,
+      "2013": 35.6,
+      "2014": 38.7,
+      "2015": 37.2,
+      "2016": 36.0,
+      "2017": 28.8,
+      "2018": 34.0,
+      "2019": 33.3,
+      "2020": 29.5,
+      "2021": 29.7,
+      "2022": 16.3,
+      "2023": 31.1,
+      "2024": 31.6
+    },
+    "repo": "https://github.com/AgustinMusanti/prediccion-rinde-soja",
+    "autor": "Agustín Musanti",
+    "detalle_partidos": {
+      "General Arenales": {
+        "serie": {
+          "2000": 26.5,
+          "2001": 31.9,
+          "2002": 31.8,
+          "2003": 27.8,
+          "2004": 35.3,
+          "2005": 33.1,
+          "2006": 37.7,
+          "2007": 41.0,
+          "2008": 21.3,
+          "2009": 34.8,
+          "2010": 38.7,
+          "2011": 32.8,
+          "2012": 41.8,
+          "2013": 41.1,
+          "2014": 45.7,
+          "2015": 40.5,
+          "2016": 42.7,
+          "2017": 32.2,
+          "2018": 32.6,
+          "2019": 36.8,
+          "2020": 30.3,
+          "2021": 29.4,
+          "2022": 14.5,
+          "2023": 32.6,
+          "2024": 33.5
+        },
+        "sup_sembrada_ha": {
+          "2000": 69800,
+          "2001": 54000,
+          "2002": 65500,
+          "2003": 68000,
+          "2004": 77758,
+          "2005": 81000,
+          "2006": 85000,
+          "2007": 81500,
+          "2008": 110699,
+          "2009": 90500,
+          "2010": 104500,
+          "2011": 110500,
+          "2012": 118000,
+          "2013": 123800,
+          "2014": 110500,
+          "2015": 89491,
+          "2016": 76540,
+          "2017": 77000,
+          "2018": 80000,
+          "2019": 77000,
+          "2020": 83500,
+          "2021": 87000,
+          "2022": 80000,
+          "2023": 84000,
+          "2024": 90500
+        },
+        "sup_cosechada_ha": {
+          "2000": 59300,
+          "2001": 53500,
+          "2002": 64800,
+          "2003": 68000,
+          "2004": 77758,
+          "2005": 81000,
+          "2006": 85000,
+          "2007": 81500,
+          "2008": 109699,
+          "2009": 90500,
+          "2010": 104500,
+          "2011": 110500,
+          "2012": 118000,
+          "2013": 122300,
+          "2014": 109500,
+          "2015": 89491,
+          "2016": 67490,
+          "2017": 75200,
+          "2018": 77400,
+          "2019": 76220,
+          "2020": 83500,
+          "2021": 86000,
+          "2022": 74000,
+          "2023": 84000,
+          "2024": 90500
+        },
+        "validacion": {
+          "ventana": "Fin de noviembre",
+          "error_tipico": 3.5,
+          "aciertos_tendencia": 5,
+          "campanas": 9
+        }
+      },
+      "Junín": {
+        "serie": {
+          "2000": 25.1,
+          "2001": 28.4,
+          "2002": 30.4,
+          "2003": 25.3,
+          "2004": 32.1,
+          "2005": 30.9,
+          "2006": 35.0,
+          "2007": 37.8,
+          "2008": 13.7,
+          "2009": 33.7,
+          "2010": 36.0,
+          "2011": 29.7,
+          "2012": 35.4,
+          "2013": 38.1,
+          "2014": 44.5,
+          "2015": 38.7,
+          "2016": 41.7,
+          "2017": 34.3,
+          "2018": 39.1,
+          "2019": 37.4,
+          "2020": 31.3,
+          "2021": 31.0,
+          "2022": 15.6,
+          "2023": 31.2,
+          "2024": 33.2
+        },
+        "sup_sembrada_ha": {
+          "2000": 80000,
+          "2001": 67000,
+          "2002": 80000,
+          "2003": 86500,
+          "2004": 101994,
+          "2005": 106000,
+          "2006": 107900,
+          "2007": 106400,
+          "2008": 152380,
+          "2009": 123600,
+          "2010": 146700,
+          "2011": 147000,
+          "2012": 151000,
+          "2013": 157000,
+          "2014": 134498,
+          "2015": 126772,
+          "2016": 100060,
+          "2017": 104000,
+          "2018": 102000,
+          "2019": 101000,
+          "2020": 106000,
+          "2021": 108000,
+          "2022": 98000,
+          "2023": 99000,
+          "2024": 100000
+        },
+        "sup_cosechada_ha": {
+          "2000": 76600,
+          "2001": 66400,
+          "2002": 79800,
+          "2003": 86000,
+          "2004": 101994,
+          "2005": 106000,
+          "2006": 107900,
+          "2007": 106400,
+          "2008": 151380,
+          "2009": 123600,
+          "2010": 146700,
+          "2011": 147000,
+          "2012": 151000,
+          "2013": 154000,
+          "2014": 132498,
+          "2015": 126772,
+          "2016": 92450,
+          "2017": 101300,
+          "2018": 101650,
+          "2019": 100350,
+          "2020": 106000,
+          "2021": 107700,
+          "2022": 92000,
+          "2023": 99000,
+          "2024": 100000
+        },
+        "validacion": {
+          "ventana": "Fin de noviembre",
+          "error_tipico": 3.1,
+          "aciertos_tendencia": 7,
+          "campanas": 9
+        }
+      },
+      "Leandro N. Alem": {
+        "serie": {
+          "2000": 24.3,
+          "2001": 28.4,
+          "2002": 32.2,
+          "2003": 29.4,
+          "2004": 34.6,
+          "2005": 32.7,
+          "2006": 37.2,
+          "2007": 37.9,
+          "2008": 17.8,
+          "2009": 34.9,
+          "2010": 32.8,
+          "2011": 27.9,
+          "2012": 33.0,
+          "2013": 36.0,
+          "2014": 35.8,
+          "2015": 37.5,
+          "2016": 35.4,
+          "2017": 25.7,
+          "2018": 34.0,
+          "2019": 31.5,
+          "2020": 29.8,
+          "2021": 29.8,
+          "2022": 15.3,
+          "2023": 29.6,
+          "2024": 29.9
+        },
+        "sup_sembrada_ha": {
+          "2000": 32000,
+          "2001": 32000,
+          "2002": 61500,
+          "2003": 59000,
+          "2004": 61600,
+          "2005": 85000,
+          "2006": 85750,
+          "2007": 105000,
+          "2008": 133500,
+          "2009": 116300,
+          "2010": 126400,
+          "2011": 124200,
+          "2012": 71900,
+          "2013": 86500,
+          "2014": 83050,
+          "2015": 82790,
+          "2016": 75300,
+          "2017": 80970,
+          "2018": 77000,
+          "2019": 71000,
+          "2020": 71000,
+          "2021": 62000,
+          "2022": 63000,
+          "2023": 60000,
+          "2024": 60000
+        },
+        "sup_cosechada_ha": {
+          "2000": 29500,
+          "2001": 30380,
+          "2002": 58000,
+          "2003": 59000,
+          "2004": 61600,
+          "2005": 85000,
+          "2006": 85750,
+          "2007": 103500,
+          "2008": 127395,
+          "2009": 114500,
+          "2010": 124600,
+          "2011": 122400,
+          "2012": 68600,
+          "2013": 80700,
+          "2014": 80650,
+          "2015": 80890,
+          "2016": 69371,
+          "2017": 71730,
+          "2018": 75375,
+          "2019": 70645,
+          "2020": 70200,
+          "2021": 61200,
+          "2022": 58620,
+          "2023": 59200,
+          "2024": 59200
+        },
+        "validacion": {
+          "ventana": "Fin de noviembre",
+          "error_tipico": 2.1,
+          "aciertos_tendencia": 7,
+          "campanas": 9
+        }
+      },
+      "Lincoln": {
+        "serie": {
+          "2000": 23.9,
+          "2001": 26.8,
+          "2002": 30.9,
+          "2003": 28.3,
+          "2004": 31.6,
+          "2005": 30.5,
+          "2006": 33.6,
+          "2007": 34.9,
+          "2008": 16.2,
+          "2009": 33.1,
+          "2010": 27.1,
+          "2011": 24.8,
+          "2012": 28.5,
+          "2013": 30.8,
+          "2014": 32.8,
+          "2015": 35.2,
+          "2016": 30.8,
+          "2017": 24.9,
+          "2018": 32.5,
+          "2019": 30.6,
+          "2020": 28.8,
+          "2021": 30.3,
+          "2022": 17.2,
+          "2023": 31.2,
+          "2024": 30.1
+        },
+        "sup_sembrada_ha": {
+          "2000": 64000,
+          "2001": 59000,
+          "2002": 55000,
+          "2003": 63900,
+          "2004": 93915,
+          "2005": 105000,
+          "2006": 106500,
+          "2007": 119950,
+          "2008": 154450,
+          "2009": 132800,
+          "2010": 168400,
+          "2011": 163000,
+          "2012": 196400,
+          "2013": 213900,
+          "2014": 193700,
+          "2015": 215282,
+          "2016": 198500,
+          "2017": 180350,
+          "2018": 182000,
+          "2019": 155000,
+          "2020": 156000,
+          "2021": 146000,
+          "2022": 155000,
+          "2023": 150000,
+          "2024": 164000
+        },
+        "sup_cosechada_ha": {
+          "2000": 60000,
+          "2001": 56700,
+          "2002": 53800,
+          "2003": 63720,
+          "2004": 93915,
+          "2005": 105000,
+          "2006": 106500,
+          "2007": 114450,
+          "2008": 141650,
+          "2009": 129300,
+          "2010": 164900,
+          "2011": 159500,
+          "2012": 192100,
+          "2013": 203900,
+          "2014": 188700,
+          "2015": 211482,
+          "2016": 188354,
+          "2017": 163090,
+          "2018": 178334,
+          "2019": 154225,
+          "2020": 153500,
+          "2021": 143500,
+          "2022": 143330,
+          "2023": 146800,
+          "2024": 160800
+        },
+        "validacion": {
+          "ventana": "Fin de noviembre",
+          "error_tipico": 1.7,
+          "aciertos_tendencia": 7,
+          "campanas": 9
+        }
+      },
+      "General Pinto": {
+        "serie": {
+          "2000": 24.9,
+          "2001": 29.1,
+          "2002": 32.0,
+          "2003": 28.0,
+          "2004": 34.5,
+          "2005": 35.3,
+          "2006": 36.0,
+          "2007": 33.4,
+          "2008": 12.7,
+          "2009": 32.3,
+          "2010": 27.5,
+          "2011": 23.9,
+          "2012": 30.5,
+          "2013": 31.9,
+          "2014": 34.9,
+          "2015": 34.2,
+          "2016": 29.4,
+          "2017": 26.8,
+          "2018": 31.6,
+          "2019": 30.3,
+          "2020": 27.4,
+          "2021": 28.0,
+          "2022": 18.9,
+          "2023": 30.7,
+          "2024": 31.1
+        },
+        "sup_sembrada_ha": {
+          "2000": 39000,
+          "2001": 38000,
+          "2002": 35000,
+          "2003": 36680,
+          "2004": 42413,
+          "2005": 49800,
+          "2006": 50290,
+          "2007": 75600,
+          "2008": 106600,
+          "2009": 82700,
+          "2010": 96900,
+          "2011": 93900,
+          "2012": 85300,
+          "2013": 89100,
+          "2014": 87100,
+          "2015": 110600,
+          "2016": 90700,
+          "2017": 87860,
+          "2018": 91000,
+          "2019": 89000,
+          "2020": 92000,
+          "2021": 85000,
+          "2022": 81000,
+          "2023": 78000,
+          "2024": 84000
+        },
+        "sup_cosechada_ha": {
+          "2000": 35550,
+          "2001": 33400,
+          "2002": 34050,
+          "2003": 36300,
+          "2004": 40394,
+          "2005": 49800,
+          "2006": 50290,
+          "2007": 74600,
+          "2008": 96422,
+          "2009": 80700,
+          "2010": 94900,
+          "2011": 91900,
+          "2012": 82800,
+          "2013": 80600,
+          "2014": 83840,
+          "2015": 108400,
+          "2016": 86114,
+          "2017": 77880,
+          "2018": 88390,
+          "2019": 88555,
+          "2020": 90000,
+          "2021": 83000,
+          "2022": 73740,
+          "2023": 75000,
+          "2024": 81000
+        },
+        "validacion": {
+          "ventana": "Fin de noviembre",
+          "error_tipico": 1.8,
+          "aciertos_tendencia": 5,
+          "campanas": 9
+        }
+      }
+    }
+  },
+  "campanas": [
+    {
+      "id": "2016/17",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 36.0,
+        "partidos": {
+          "General Arenales": 42.7,
+          "Junín": 41.7,
+          "Leandro N. Alem": 35.4,
+          "Lincoln": 30.8,
+          "General Pinto": 29.4
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2016-11-30",
+          "zona": {
+            "estimacion": 32.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 34.2,
+            "Junín": 33.9,
+            "Leandro N. Alem": 33.6,
+            "Lincoln": 32.1,
+            "General Pinto": 30.5
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.4,
+              37.4
+            ],
+            "Junín": [
+              30.1,
+              37.1
+            ],
+            "Leandro N. Alem": [
+              29.8,
+              36.8
+            ],
+            "Lincoln": [
+              28.3,
+              35.3
+            ],
+            "General Pinto": [
+              26.7,
+              33.7
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2016-12-31",
+          "zona": {
+            "estimacion": 33.5,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.1,
+            "Junín": 33.8,
+            "Leandro N. Alem": 33.5,
+            "Lincoln": 33.1,
+            "General Pinto": 31.7
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.5,
+              37.8
+            ],
+            "Junín": [
+              29.2,
+              36.5
+            ],
+            "Leandro N. Alem": [
+              28.9,
+              36.2
+            ],
+            "Lincoln": [
+              28.5,
+              35.8
+            ],
+            "General Pinto": [
+              27.1,
+              34.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2017-01-31",
+          "zona": {
+            "estimacion": 32.3,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.8,
+            "Junín": 32.6,
+            "Leandro N. Alem": 32.2,
+            "Lincoln": 32.7,
+            "General Pinto": 31.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.3,
+              36.1
+            ],
+            "Junín": [
+              27.1,
+              35.9
+            ],
+            "Leandro N. Alem": [
+              26.7,
+              35.5
+            ],
+            "Lincoln": [
+              27.2,
+              35.9
+            ],
+            "General Pinto": [
+              25.8,
+              34.6
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2017-02-28",
+          "zona": {
+            "estimacion": 32.1,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.6,
+            "Junín": 32.0,
+            "Leandro N. Alem": 31.3,
+            "Lincoln": 33.5,
+            "General Pinto": 31.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.6,
+              35.7
+            ],
+            "Junín": [
+              27.0,
+              35.1
+            ],
+            "Leandro N. Alem": [
+              26.3,
+              34.4
+            ],
+            "Lincoln": [
+              28.5,
+              36.6
+            ],
+            "General Pinto": [
+              26.0,
+              34.1
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2017-03-31",
+          "zona": {
+            "estimacion": 32.2,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.4,
+            "Junín": 32.2,
+            "Leandro N. Alem": 31.8,
+            "Lincoln": 33.4,
+            "General Pinto": 31.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.5,
+              35.8
+            ],
+            "Junín": [
+              26.3,
+              35.6
+            ],
+            "Leandro N. Alem": [
+              25.9,
+              35.2
+            ],
+            "Lincoln": [
+              27.5,
+              36.8
+            ],
+            "General Pinto": [
+              25.3,
+              34.6
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2017/18",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 28.8,
+        "partidos": {
+          "General Arenales": 32.2,
+          "Junín": 34.3,
+          "Leandro N. Alem": 25.7,
+          "Lincoln": 24.9,
+          "General Pinto": 26.8
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2017-11-30",
+          "zona": {
+            "estimacion": 31.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 38.7,
+            "Junín": 31.5,
+            "Leandro N. Alem": 30.3,
+            "Lincoln": 28.8,
+            "General Pinto": 30.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              34.9,
+              41.9
+            ],
+            "Junín": [
+              27.6,
+              34.6
+            ],
+            "Leandro N. Alem": [
+              26.5,
+              33.5
+            ],
+            "Lincoln": [
+              25.0,
+              32.0
+            ],
+            "General Pinto": [
+              26.4,
+              33.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2017-12-31",
+          "zona": {
+            "estimacion": 33.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 39.0,
+            "Junín": 33.3,
+            "Leandro N. Alem": 32.3,
+            "Lincoln": 29.6,
+            "General Pinto": 32.7
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              34.4,
+              41.7
+            ],
+            "Junín": [
+              28.7,
+              36.0
+            ],
+            "Leandro N. Alem": [
+              27.7,
+              35.0
+            ],
+            "Lincoln": [
+              25.0,
+              32.3
+            ],
+            "General Pinto": [
+              28.1,
+              35.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2018-01-31",
+          "zona": {
+            "estimacion": 32.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 38.1,
+            "Junín": 33.9,
+            "Leandro N. Alem": 32.8,
+            "Lincoln": 28.7,
+            "General Pinto": 31.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.5,
+              41.3
+            ],
+            "Junín": [
+              28.4,
+              37.2
+            ],
+            "Leandro N. Alem": [
+              27.3,
+              36.1
+            ],
+            "Lincoln": [
+              23.1,
+              31.9
+            ],
+            "General Pinto": [
+              25.7,
+              34.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2018-02-28",
+          "zona": {
+            "estimacion": 32.2,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 38.0,
+            "Junín": 33.0,
+            "Leandro N. Alem": 32.7,
+            "Lincoln": 27.4,
+            "General Pinto": 29.9
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              33.0,
+              41.1
+            ],
+            "Junín": [
+              28.0,
+              36.1
+            ],
+            "Leandro N. Alem": [
+              27.6,
+              35.8
+            ],
+            "Lincoln": [
+              22.4,
+              30.5
+            ],
+            "General Pinto": [
+              24.9,
+              33.0
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2018-03-31",
+          "zona": {
+            "estimacion": 31.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 38.3,
+            "Junín": 32.8,
+            "Leandro N. Alem": 32.2,
+            "Lincoln": 26.8,
+            "General Pinto": 29.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.4,
+              41.7
+            ],
+            "Junín": [
+              26.9,
+              36.3
+            ],
+            "Leandro N. Alem": [
+              26.3,
+              35.7
+            ],
+            "Lincoln": [
+              20.9,
+              30.2
+            ],
+            "General Pinto": [
+              23.5,
+              32.8
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2018/19",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 34.0,
+        "partidos": {
+          "General Arenales": 32.6,
+          "Junín": 39.1,
+          "Leandro N. Alem": 34.0,
+          "Lincoln": 32.5,
+          "General Pinto": 31.6
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2018-11-30",
+          "zona": {
+            "estimacion": 32.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 33.1,
+            "Junín": 32.9,
+            "Leandro N. Alem": 33.4,
+            "Lincoln": 31.7,
+            "General Pinto": 33.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.2,
+              36.2
+            ],
+            "Junín": [
+              29.0,
+              36.1
+            ],
+            "Leandro N. Alem": [
+              29.6,
+              36.6
+            ],
+            "Lincoln": [
+              27.9,
+              34.9
+            ],
+            "General Pinto": [
+              29.5,
+              36.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2018-12-31",
+          "zona": {
+            "estimacion": 33.0,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 33.4,
+            "Junín": 32.9,
+            "Leandro N. Alem": 33.2,
+            "Lincoln": 32.6,
+            "General Pinto": 32.9
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              28.8,
+              36.1
+            ],
+            "Junín": [
+              28.3,
+              35.6
+            ],
+            "Leandro N. Alem": [
+              28.6,
+              35.9
+            ],
+            "Lincoln": [
+              28.0,
+              35.3
+            ],
+            "General Pinto": [
+              28.2,
+              35.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2019-01-31",
+          "zona": {
+            "estimacion": 34.0,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 34.4,
+            "Junín": 33.5,
+            "Leandro N. Alem": 34.3,
+            "Lincoln": 33.9,
+            "General Pinto": 33.9
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              28.9,
+              37.7
+            ],
+            "Junín": [
+              27.9,
+              36.7
+            ],
+            "Leandro N. Alem": [
+              28.8,
+              37.6
+            ],
+            "Lincoln": [
+              28.4,
+              37.1
+            ],
+            "General Pinto": [
+              28.4,
+              37.2
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2019-02-28",
+          "zona": {
+            "estimacion": 33.7,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.1,
+            "Junín": 33.9,
+            "Leandro N. Alem": 34.6,
+            "Lincoln": 31.8,
+            "General Pinto": 33.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.1,
+              38.2
+            ],
+            "Junín": [
+              28.9,
+              37.0
+            ],
+            "Leandro N. Alem": [
+              29.5,
+              37.7
+            ],
+            "Lincoln": [
+              26.8,
+              34.9
+            ],
+            "General Pinto": [
+              28.3,
+              36.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2019-03-31",
+          "zona": {
+            "estimacion": 33.6,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.1,
+            "Junín": 33.2,
+            "Leandro N. Alem": 34.4,
+            "Lincoln": 31.8,
+            "General Pinto": 33.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.2,
+              38.5
+            ],
+            "Junín": [
+              27.3,
+              36.7
+            ],
+            "Leandro N. Alem": [
+              28.5,
+              37.8
+            ],
+            "Lincoln": [
+              25.9,
+              35.2
+            ],
+            "General Pinto": [
+              27.3,
+              36.7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2019/20",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 33.3,
+        "partidos": {
+          "General Arenales": 36.8,
+          "Junín": 37.4,
+          "Leandro N. Alem": 31.5,
+          "Lincoln": 30.6,
+          "General Pinto": 30.3
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2019-11-30",
+          "zona": {
+            "estimacion": 32.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 34.2,
+            "Junín": 33.6,
+            "Leandro N. Alem": 33.6,
+            "Lincoln": 30.5,
+            "General Pinto": 30.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.4,
+              37.4
+            ],
+            "Junín": [
+              29.8,
+              36.8
+            ],
+            "Leandro N. Alem": [
+              29.8,
+              36.8
+            ],
+            "Lincoln": [
+              26.7,
+              33.7
+            ],
+            "General Pinto": [
+              26.1,
+              33.2
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2019-12-31",
+          "zona": {
+            "estimacion": 33.6,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 34.9,
+            "Junín": 33.8,
+            "Leandro N. Alem": 34.3,
+            "Lincoln": 32.3,
+            "General Pinto": 32.7
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.3,
+              37.6
+            ],
+            "Junín": [
+              29.1,
+              36.4
+            ],
+            "Leandro N. Alem": [
+              29.6,
+              36.9
+            ],
+            "Lincoln": [
+              27.7,
+              35.0
+            ],
+            "General Pinto": [
+              28.0,
+              35.3
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2020-01-31",
+          "zona": {
+            "estimacion": 34.3,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.1,
+            "Junín": 34.1,
+            "Leandro N. Alem": 34.7,
+            "Lincoln": 34.1,
+            "General Pinto": 33.8
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.6,
+              38.4
+            ],
+            "Junín": [
+              28.6,
+              37.3
+            ],
+            "Leandro N. Alem": [
+              29.2,
+              37.9
+            ],
+            "Lincoln": [
+              28.6,
+              37.4
+            ],
+            "General Pinto": [
+              28.2,
+              37.0
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2020-02-29",
+          "zona": {
+            "estimacion": 34.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.4,
+            "Junín": 34.6,
+            "Leandro N. Alem": 34.8,
+            "Lincoln": 33.7,
+            "General Pinto": 33.6
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              30.4,
+              38.5
+            ],
+            "Junín": [
+              29.5,
+              37.6
+            ],
+            "Leandro N. Alem": [
+              29.8,
+              37.9
+            ],
+            "Lincoln": [
+              28.7,
+              36.8
+            ],
+            "General Pinto": [
+              28.5,
+              36.6
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2020-03-31",
+          "zona": {
+            "estimacion": 34.6,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 35.6,
+            "Junín": 34.8,
+            "Leandro N. Alem": 34.9,
+            "Lincoln": 34.1,
+            "General Pinto": 33.5
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.7,
+              39.0
+            ],
+            "Junín": [
+              28.9,
+              38.2
+            ],
+            "Leandro N. Alem": [
+              29.0,
+              38.3
+            ],
+            "Lincoln": [
+              28.2,
+              37.5
+            ],
+            "General Pinto": [
+              27.6,
+              36.9
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2020/21",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 29.5,
+        "partidos": {
+          "General Arenales": 30.3,
+          "Junín": 31.3,
+          "Leandro N. Alem": 29.8,
+          "Lincoln": 28.8,
+          "General Pinto": 27.4
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2020-11-30",
+          "zona": {
+            "estimacion": 32.2,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 33.2,
+            "Junín": 33.3,
+            "Leandro N. Alem": 31.3,
+            "Lincoln": 32.2,
+            "General Pinto": 31.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.4,
+              36.4
+            ],
+            "Junín": [
+              29.5,
+              36.5
+            ],
+            "Leandro N. Alem": [
+              27.5,
+              34.5
+            ],
+            "Lincoln": [
+              28.3,
+              35.3
+            ],
+            "General Pinto": [
+              27.2,
+              34.2
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2020-12-31",
+          "zona": {
+            "estimacion": 31.2,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 33.8,
+            "Junín": 32.8,
+            "Leandro N. Alem": 32.1,
+            "Lincoln": 27.8,
+            "General Pinto": 29.7
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.2,
+              36.5
+            ],
+            "Junín": [
+              28.1,
+              35.4
+            ],
+            "Leandro N. Alem": [
+              27.4,
+              34.7
+            ],
+            "Lincoln": [
+              23.2,
+              30.5
+            ],
+            "General Pinto": [
+              25.1,
+              32.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2021-01-31",
+          "zona": {
+            "estimacion": 29.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.0,
+            "Junín": 29.1,
+            "Leandro N. Alem": 30.4,
+            "Lincoln": 26.4,
+            "General Pinto": 29.1
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.5,
+              35.3
+            ],
+            "Junín": [
+              23.6,
+              32.4
+            ],
+            "Leandro N. Alem": [
+              24.9,
+              33.7
+            ],
+            "Lincoln": [
+              20.9,
+              29.7
+            ],
+            "General Pinto": [
+              23.6,
+              32.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2021-02-28",
+          "zona": {
+            "estimacion": 28.8,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 31.8,
+            "Junín": 28.6,
+            "Leandro N. Alem": 30.2,
+            "Lincoln": 25.5,
+            "General Pinto": 28.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.7,
+              34.8
+            ],
+            "Junín": [
+              23.6,
+              31.7
+            ],
+            "Leandro N. Alem": [
+              25.1,
+              33.3
+            ],
+            "Lincoln": [
+              20.5,
+              28.6
+            ],
+            "General Pinto": [
+              23.2,
+              31.3
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2021-03-31",
+          "zona": {
+            "estimacion": 28.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 31.2,
+            "Junín": 28.0,
+            "Leandro N. Alem": 29.2,
+            "Lincoln": 25.2,
+            "General Pinto": 28.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              25.3,
+              34.6
+            ],
+            "Junín": [
+              22.1,
+              31.5
+            ],
+            "Leandro N. Alem": [
+              23.3,
+              32.6
+            ],
+            "Lincoln": [
+              19.3,
+              28.6
+            ],
+            "General Pinto": [
+              22.4,
+              31.7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2021/22",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 29.7,
+        "partidos": {
+          "General Arenales": 29.4,
+          "Junín": 31.0,
+          "Leandro N. Alem": 29.8,
+          "Lincoln": 30.3,
+          "General Pinto": 28.0
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2021-11-30",
+          "zona": {
+            "estimacion": 29.7,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 30.8,
+            "Junín": 29.6,
+            "Leandro N. Alem": 29.5,
+            "Lincoln": 29.2,
+            "General Pinto": 29.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.0,
+              34.0
+            ],
+            "Junín": [
+              25.7,
+              32.7
+            ],
+            "Leandro N. Alem": [
+              25.6,
+              32.7
+            ],
+            "Lincoln": [
+              25.4,
+              32.4
+            ],
+            "General Pinto": [
+              25.6,
+              32.6
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2021-12-31",
+          "zona": {
+            "estimacion": 29.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 29.4,
+            "Junín": 28.6,
+            "Leandro N. Alem": 29.1,
+            "Lincoln": 31.1,
+            "General Pinto": 31.1
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              24.8,
+              32.1
+            ],
+            "Junín": [
+              24.0,
+              31.3
+            ],
+            "Leandro N. Alem": [
+              24.5,
+              31.8
+            ],
+            "Lincoln": [
+              26.5,
+              33.8
+            ],
+            "General Pinto": [
+              26.5,
+              33.8
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2022-01-31",
+          "zona": {
+            "estimacion": 31.1,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.4,
+            "Junín": 29.7,
+            "Leandro N. Alem": 32.1,
+            "Lincoln": 30.3,
+            "General Pinto": 31.1
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.8,
+              35.6
+            ],
+            "Junín": [
+              24.1,
+              32.9
+            ],
+            "Leandro N. Alem": [
+              26.6,
+              35.4
+            ],
+            "Lincoln": [
+              24.8,
+              33.6
+            ],
+            "General Pinto": [
+              25.6,
+              34.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2022-02-28",
+          "zona": {
+            "estimacion": 30.8,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.0,
+            "Junín": 28.2,
+            "Leandro N. Alem": 31.4,
+            "Lincoln": 30.3,
+            "General Pinto": 32.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.0,
+              35.1
+            ],
+            "Junín": [
+              23.2,
+              31.3
+            ],
+            "Leandro N. Alem": [
+              26.4,
+              34.5
+            ],
+            "Lincoln": [
+              25.2,
+              33.4
+            ],
+            "General Pinto": [
+              27.3,
+              35.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2022-03-31",
+          "zona": {
+            "estimacion": 30.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.6,
+            "Junín": 28.6,
+            "Leandro N. Alem": 31.5,
+            "Lincoln": 30.1,
+            "General Pinto": 32.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.7,
+              36.1
+            ],
+            "Junín": [
+              22.7,
+              32.0
+            ],
+            "Leandro N. Alem": [
+              25.6,
+              34.9
+            ],
+            "Lincoln": [
+              24.2,
+              33.5
+            ],
+            "General Pinto": [
+              26.1,
+              35.4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2022/23",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 16.3,
+        "partidos": {
+          "General Arenales": 14.5,
+          "Junín": 15.6,
+          "Leandro N. Alem": 15.3,
+          "Lincoln": 17.2,
+          "General Pinto": 18.9
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2022-11-30",
+          "zona": {
+            "estimacion": 17.4,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 16.0,
+            "Junín": 16.3,
+            "Leandro N. Alem": 16.0,
+            "Lincoln": 20.9,
+            "General Pinto": 17.9
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              12.1,
+              19.2
+            ],
+            "Junín": [
+              12.4,
+              19.4
+            ],
+            "Leandro N. Alem": [
+              12.1,
+              19.1
+            ],
+            "Lincoln": [
+              17.1,
+              24.1
+            ],
+            "General Pinto": [
+              14.1,
+              21.1
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2022-12-31",
+          "zona": {
+            "estimacion": 18.0,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 17.3,
+            "Junín": 17.6,
+            "Leandro N. Alem": 17.1,
+            "Lincoln": 19.9,
+            "General Pinto": 18.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              12.7,
+              20.0
+            ],
+            "Junín": [
+              13.0,
+              20.3
+            ],
+            "Leandro N. Alem": [
+              12.4,
+              19.7
+            ],
+            "Lincoln": [
+              15.3,
+              22.6
+            ],
+            "General Pinto": [
+              13.7,
+              21.0
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2023-01-31",
+          "zona": {
+            "estimacion": 19.8,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 20.1,
+            "Junín": 20.9,
+            "Leandro N. Alem": 21.0,
+            "Lincoln": 18.6,
+            "General Pinto": 18.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              14.6,
+              23.4
+            ],
+            "Junín": [
+              15.4,
+              24.2
+            ],
+            "Leandro N. Alem": [
+              15.5,
+              24.2
+            ],
+            "Lincoln": [
+              13.1,
+              21.9
+            ],
+            "General Pinto": [
+              12.7,
+              21.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2023-02-28",
+          "zona": {
+            "estimacion": 19.2,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 19.8,
+            "Junín": 19.8,
+            "Leandro N. Alem": 20.4,
+            "Lincoln": 17.9,
+            "General Pinto": 18.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              14.8,
+              22.9
+            ],
+            "Junín": [
+              14.8,
+              22.9
+            ],
+            "Leandro N. Alem": [
+              15.4,
+              23.5
+            ],
+            "Lincoln": [
+              12.8,
+              21.0
+            ],
+            "General Pinto": [
+              13.2,
+              21.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2023-03-31",
+          "zona": {
+            "estimacion": 20.0,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 21.1,
+            "Junín": 20.7,
+            "Leandro N. Alem": 21.7,
+            "Lincoln": 17.6,
+            "General Pinto": 19.1
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              15.2,
+              24.5
+            ],
+            "Junín": [
+              14.8,
+              24.1
+            ],
+            "Leandro N. Alem": [
+              15.8,
+              25.1
+            ],
+            "Lincoln": [
+              11.7,
+              21.0
+            ],
+            "General Pinto": [
+              13.2,
+              22.5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2023/24",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 31.1,
+        "partidos": {
+          "General Arenales": 32.6,
+          "Junín": 31.2,
+          "Leandro N. Alem": 29.6,
+          "Lincoln": 31.2,
+          "General Pinto": 30.7
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2023-11-30",
+          "zona": {
+            "estimacion": 33.3,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 37.2,
+            "Junín": 31.2,
+            "Leandro N. Alem": 35.7,
+            "Lincoln": 31.2,
+            "General Pinto": 31.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              33.3,
+              40.4
+            ],
+            "Junín": [
+              27.4,
+              34.4
+            ],
+            "Leandro N. Alem": [
+              31.9,
+              38.9
+            ],
+            "Lincoln": [
+              27.4,
+              34.4
+            ],
+            "General Pinto": [
+              27.6,
+              34.6
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2023-12-31",
+          "zona": {
+            "estimacion": 33.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 37.1,
+            "Junín": 32.6,
+            "Leandro N. Alem": 35.2,
+            "Lincoln": 32.4,
+            "General Pinto": 32.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.4,
+              39.7
+            ],
+            "Junín": [
+              28.0,
+              35.3
+            ],
+            "Leandro N. Alem": [
+              30.5,
+              37.8
+            ],
+            "Lincoln": [
+              27.8,
+              35.1
+            ],
+            "General Pinto": [
+              27.7,
+              35.0
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2024-01-31",
+          "zona": {
+            "estimacion": 34.5,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 37.7,
+            "Junín": 33.5,
+            "Leandro N. Alem": 35.5,
+            "Lincoln": 32.8,
+            "General Pinto": 32.8
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.2,
+              40.9
+            ],
+            "Junín": [
+              27.9,
+              36.7
+            ],
+            "Leandro N. Alem": [
+              30.0,
+              38.8
+            ],
+            "Lincoln": [
+              27.3,
+              36.1
+            ],
+            "General Pinto": [
+              27.3,
+              36.1
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2024-02-29",
+          "zona": {
+            "estimacion": 34.7,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 37.4,
+            "Junín": 34.0,
+            "Leandro N. Alem": 35.3,
+            "Lincoln": 33.2,
+            "General Pinto": 33.4
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.4,
+              40.5
+            ],
+            "Junín": [
+              29.0,
+              37.1
+            ],
+            "Leandro N. Alem": [
+              30.3,
+              38.4
+            ],
+            "Lincoln": [
+              28.2,
+              36.3
+            ],
+            "General Pinto": [
+              28.4,
+              36.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2024-03-31",
+          "zona": {
+            "estimacion": 35.0,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 38.2,
+            "Junín": 34.0,
+            "Leandro N. Alem": 35.9,
+            "Lincoln": 33.2,
+            "General Pinto": 33.6
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              32.3,
+              41.6
+            ],
+            "Junín": [
+              28.1,
+              37.4
+            ],
+            "Leandro N. Alem": [
+              30.0,
+              39.3
+            ],
+            "Lincoln": [
+              27.3,
+              36.6
+            ],
+            "General Pinto": [
+              27.7,
+              37.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2024/25",
+      "estado": "finalizada",
+      "origen": "validacion",
+      "resultado_real": {
+        "zona": 31.6,
+        "partidos": {
+          "General Arenales": 33.5,
+          "Junín": 33.2,
+          "Leandro N. Alem": 29.9,
+          "Lincoln": 30.1,
+          "General Pinto": 31.1
+        }
+      },
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2024-11-30",
+          "zona": {
+            "estimacion": 29.8,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 30.9,
+            "Junín": 29.8,
+            "Leandro N. Alem": 29.2,
+            "Lincoln": 30.9,
+            "General Pinto": 28.3
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.1,
+              34.1
+            ],
+            "Junín": [
+              26.0,
+              33.0
+            ],
+            "Leandro N. Alem": [
+              25.4,
+              32.4
+            ],
+            "Lincoln": [
+              27.0,
+              34.1
+            ],
+            "General Pinto": [
+              24.4,
+              31.5
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2024-12-31",
+          "zona": {
+            "estimacion": 30.7,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.3,
+            "Junín": 30.3,
+            "Leandro N. Alem": 30.4,
+            "Lincoln": 31.6,
+            "General Pinto": 29.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.6,
+              34.9
+            ],
+            "Junín": [
+              25.7,
+              33.0
+            ],
+            "Leandro N. Alem": [
+              25.8,
+              33.1
+            ],
+            "Lincoln": [
+              26.9,
+              34.2
+            ],
+            "General Pinto": [
+              24.4,
+              31.7
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2025-01-31",
+          "zona": {
+            "estimacion": 30.3,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.4,
+            "Junín": 29.8,
+            "Leandro N. Alem": 30.2,
+            "Lincoln": 29.8,
+            "General Pinto": 29.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.8,
+              35.6
+            ],
+            "Junín": [
+              24.3,
+              33.1
+            ],
+            "Leandro N. Alem": [
+              24.6,
+              33.4
+            ],
+            "Lincoln": [
+              24.3,
+              33.1
+            ],
+            "General Pinto": [
+              23.7,
+              32.4
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2025-02-28",
+          "zona": {
+            "estimacion": 30.6,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.6,
+            "Junín": 30.8,
+            "Leandro N. Alem": 30.2,
+            "Lincoln": 30.0,
+            "General Pinto": 29.2
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              27.6,
+              35.7
+            ],
+            "Junín": [
+              25.8,
+              33.9
+            ],
+            "Leandro N. Alem": [
+              25.2,
+              33.3
+            ],
+            "Lincoln": [
+              25.0,
+              33.1
+            ],
+            "General Pinto": [
+              24.2,
+              32.3
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2025-03-31",
+          "zona": {
+            "estimacion": 30.9,
+            "intervalo": null
+          },
+          "partidos": {
+            "General Arenales": 32.4,
+            "Junín": 31.0,
+            "Leandro N. Alem": 30.7,
+            "Lincoln": 30.3,
+            "General Pinto": 30.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              26.5,
+              35.8
+            ],
+            "Junín": [
+              25.1,
+              34.4
+            ],
+            "Leandro N. Alem": [
+              24.8,
+              34.1
+            ],
+            "Lincoln": [
+              24.4,
+              33.7
+            ],
+            "General Pinto": [
+              24.1,
+              33.4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2025/26",
+      "estado": "finalizada",
+      "origen": "modelo_actual",
+      "resultado_real": null,
+      "cortes": [
+        {
+          "ventana": "oct_nov",
+          "label": "Fin de noviembre",
+          "meses_antes": 5,
+          "fecha_datos": "2025-11-30",
+          "zona": {
+            "estimacion": 31.7,
+            "intervalo": [
+              28.9,
+              33.7
+            ]
+          },
+          "partidos": {
+            "General Arenales": 32.6,
+            "Junín": 32.6,
+            "Leandro N. Alem": 31.3,
+            "Lincoln": 29.2,
+            "General Pinto": 32.5
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              28.8,
+              35.8
+            ],
+            "Junín": [
+              28.8,
+              35.8
+            ],
+            "Leandro N. Alem": [
+              27.5,
+              34.5
+            ],
+            "Lincoln": [
+              25.4,
+              32.4
+            ],
+            "General Pinto": [
+              28.6,
+              35.7
+            ]
+          }
+        },
+        {
+          "ventana": "oct_dic",
+          "label": "Fin de diciembre",
+          "meses_antes": 4,
+          "fecha_datos": "2025-12-31",
+          "zona": {
+            "estimacion": 33.3,
+            "intervalo": [
+              30.1,
+              34.6
+            ]
+          },
+          "partidos": {
+            "General Arenales": 33.9,
+            "Junín": 34.2,
+            "Leandro N. Alem": 33.5,
+            "Lincoln": 31.5,
+            "General Pinto": 33.6
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.3,
+              36.6
+            ],
+            "Junín": [
+              29.6,
+              36.9
+            ],
+            "Leandro N. Alem": [
+              28.8,
+              36.1
+            ],
+            "Lincoln": [
+              26.8,
+              34.1
+            ],
+            "General Pinto": [
+              28.9,
+              36.2
+            ]
+          }
+        },
+        {
+          "ventana": "oct_ene",
+          "label": "Fin de enero",
+          "meses_antes": 3,
+          "fecha_datos": "2026-01-31",
+          "zona": {
+            "estimacion": 33.9,
+            "intervalo": [
+              30.3,
+              35.6
+            ]
+          },
+          "partidos": {
+            "General Arenales": 34.9,
+            "Junín": 34.3,
+            "Leandro N. Alem": 34.5,
+            "Lincoln": 32.0,
+            "General Pinto": 33.7
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.4,
+              38.2
+            ],
+            "Junín": [
+              28.8,
+              37.6
+            ],
+            "Leandro N. Alem": [
+              28.9,
+              37.7
+            ],
+            "Lincoln": [
+              26.5,
+              35.3
+            ],
+            "General Pinto": [
+              28.2,
+              36.9
+            ]
+          }
+        },
+        {
+          "ventana": "oct_feb",
+          "label": "Fin de febrero",
+          "meses_antes": 2,
+          "fecha_datos": "2026-02-28",
+          "zona": {
+            "estimacion": 33.6,
+            "intervalo": [
+              30.2,
+              35.2
+            ]
+          },
+          "partidos": {
+            "General Arenales": 34.9,
+            "Junín": 33.6,
+            "Leandro N. Alem": 34.5,
+            "Lincoln": 32.1,
+            "General Pinto": 33.0
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.9,
+              38.0
+            ],
+            "Junín": [
+              28.6,
+              36.7
+            ],
+            "Leandro N. Alem": [
+              29.5,
+              37.6
+            ],
+            "Lincoln": [
+              27.1,
+              35.2
+            ],
+            "General Pinto": [
+              28.0,
+              36.1
+            ]
+          }
+        },
+        {
+          "ventana": "oct_mar",
+          "label": "Fin de marzo",
+          "meses_antes": 1,
+          "fecha_datos": "2026-03-31",
+          "zona": {
+            "estimacion": 34.1,
+            "intervalo": [
+              30.3,
+              35.8
+            ]
+          },
+          "partidos": {
+            "General Arenales": 35.8,
+            "Junín": 34.5,
+            "Leandro N. Alem": 35.1,
+            "Lincoln": 32.5,
+            "General Pinto": 32.6
+          },
+          "partidos_rango": {
+            "General Arenales": [
+              29.9,
+              39.3
+            ],
+            "Junín": [
+              28.6,
+              37.9
+            ],
+            "Leandro N. Alem": [
+              29.3,
+              38.6
+            ],
+            "Lincoln": [
+              26.6,
+              35.9
+            ],
+            "General Pinto": [
+              26.7,
+              36.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026/27",
+      "estado": "en_curso",
+      "origen": "tiempo_real",
+      "resultado_real": null,
+      "cortes": []
+    }
+  ],
+  "validacion": {
+    "mae_mejor": "2,42 qq/ha",
+    "ventana_mejor": "Fin de noviembre",
+    "r2_mejor": 0.72,
+    "acierto_direccional": "69%",
+    "p_valor": 0.008,
+    "campanas_test": 9,
+    "predicciones_total": 45,
+    "mejora_vs_baseline": "40%"
+  }
+}

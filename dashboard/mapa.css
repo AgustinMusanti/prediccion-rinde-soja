@@ -1,0 +1,331 @@
+/* ============================================================
+   Dashboard v2 · mapa interactivo y panel de partido
+   Usa los mismos tokens de color que index.html (:root).
+   ============================================================ */
+
+/* ---------- Ajustes de layout de la versión 2 ---------- */
+/* Presentación compacta: que el mapa asome en la primera pantalla */
+.intro{padding:16px 0 0;gap:16px;grid-template-columns:1.5fr 1fr}
+.intro h1{font-size:clamp(26px,3vw,34px);margin:6px 0 10px;max-width:620px}
+.intro .lead{font-size:15px;max-width:600px}
+.intro .chips{margin-top:14px;gap:6px}
+.intro .chip{padding:5px 11px;font-size:12.5px}
+.intro .cta{margin-top:16px}
+.intro .btn{padding:9px 16px}
+.plant-stage{max-width:250px;max-height:250px}
+.intro.wrap{padding-left:16px;padding-right:16px}
+@media (max-width:860px){
+  .intro{grid-template-columns:1fr;padding-top:6px;gap:0}
+  .plant-stage{max-width:130px;margin-bottom:-4px}
+  .intro .lead{font-size:14.5px}
+}
+@media (max-width:560px){
+  .intro .chips{display:none} /* los mismos datos están en "Precisión validada" */
+  .intro .cta{gap:8px;margin-top:14px}
+  .intro .btn{padding:9px 13px;font-size:13.5px}
+  .mz-row .rn{white-space:normal}
+  .mz-row .re small{display:none}
+  .mz-panel{padding:18px 16px}
+}
+.hero{padding-top:20px;scroll-margin-top:0}
+section.block{padding-top:40px}
+
+.mz-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:980px){.mz-grid{grid-template-columns:1fr}}
+
+/* Franja: actualizaciones + precisión validada */
+.hero-strip{margin-top:16px}
+.hero-strip .hero-side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:14px 32px;align-items:start;padding:20px 22px}
+.hero-strip .hero-side h3{margin-bottom:12px!important}
+.step-note{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.step-note .info{margin-left:2px}
+.hero-strip .trust{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+/* Valor arriba y etiqueta abajo: los cuatro números quedan alineados aunque la etiqueta ocupe dos renglones */
+.hero-strip .trust .t{position:relative;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:3px;padding:12px 14px;min-height:76px}
+.hero-strip .trust .t strong{margin:0;font-size:21px;line-height:1.15;white-space:nowrap}
+.hero-strip .trust .t span{display:block;font-size:12px;line-height:1.35;padding-right:2px}
+.hero-strip .trust .t span{padding-right:20px}
+.hero-strip .trust .t .info{position:absolute;bottom:10px;right:10px}
+@media (max-width:980px){.hero-strip .hero-side{grid-template-columns:1fr;gap:18px}}
+@media (max-width:560px){
+  .hero-strip .hero-side{padding:18px}
+  .hero-strip .trust{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- Tarjeta del mapa ---------- */
+.mz-map{padding:16px 16px 12px;scroll-margin-top:112px}
+@media (min-width:981px){.mz-map{position:sticky;top:72px}}
+.mz-head h3{font-size:16px;font-weight:600}
+.mz-head .desc{color:var(--muted);font-size:13px;margin-top:3px}
+.mz-stage{position:relative;margin-top:10px;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--surface-2);border:1px solid var(--border)}
+/* En escritorio el mapa se adapta al alto de la ventana: mapa y panel entran en una pantalla */
+@media (min-width:981px){.mz-stage{aspect-ratio:auto;height:clamp(300px,calc(100vh - 262px),540px)}}
+@media (max-width:980px) and (min-width:621px){.mz-stage{aspect-ratio:4/3}}
+.mz-stage .skeleton{position:absolute;inset:0;height:auto;margin:0;border-radius:0}
+.mz-stage .empty{position:absolute;inset:16px;margin:0;display:grid;place-items:center}
+.mz-svg{display:block;width:100%;height:100%;--u:1;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.mz-bg{fill:var(--surface-2)}
+.mz-vec path{fill:none;stroke:var(--border);stroke-width:1;vector-effect:non-scaling-stroke}
+.mz-vec text{font-family:inherit;font-size:calc(10.5px*var(--u));fill:var(--muted);text-anchor:middle;letter-spacing:.02em;opacity:.85;pointer-events:none;transition:opacity .3s}
+.mz-svg.zoomed .mz-vec text{opacity:0}
+.mz-p{cursor:pointer;outline:none}
+.mz-p path{stroke:var(--surface);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:opacity .45s,filter .2s}
+.mz-p:hover path,.mz-p.hl path{filter:brightness(1.06) saturate(1.15)}
+.mz-p:focus-visible path{stroke:var(--text);stroke-width:2.5}
+.mz-svg.zoomed .mz-p:not(.sel) path{opacity:.38}
+.mz-svg.zoomed .mz-p:not(.sel):hover path{opacity:.7}
+.mz-svg.zoomed .mz-p.sel{cursor:default}
+.mz-ring{fill:none;stroke:var(--text);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none;opacity:0;transition:opacity .4s}
+.mz-svg.zoomed .mz-ring{opacity:.85}
+.mz-lbl{font-family:inherit;text-anchor:middle;pointer-events:none;fill:var(--text);transition:opacity .35s}
+.mz-lbl .n{font-size:calc(12.5px*var(--u));font-weight:600}
+.mz-lbl .v{font-size:calc(11.5px*var(--u));font-weight:600;fill:var(--text-2);font-variant-numeric:tabular-nums}
+.mz-svg.zoomed .mz-lbl{opacity:.55}
+.mz-svg.zoomed .mz-lbl.sel{opacity:0}
+
+/* Localidades (solo contexto geográfico) */
+.mz-locs{opacity:0;transition:opacity .25s}
+.mz-svg.zoomed .mz-locs{opacity:1;transition:opacity .45s .5s}
+.mz-loc circle.d{fill:var(--text);stroke:var(--surface);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.mz-loc.t-localidad circle.d{fill:var(--text-2)}
+.mz-loc.t-paraje circle.d{fill:var(--muted);stroke-width:1}
+.mz-loc circle.h{fill:transparent}
+.mz-loc text{font-family:inherit;font-size:calc(11px*var(--u));fill:var(--text);paint-order:stroke;stroke:var(--surface);stroke-width:calc(3px*var(--u));stroke-linejoin:round;stroke-opacity:.8;pointer-events:none}
+.mz-loc.t-cabecera text{font-size:calc(13px*var(--u));font-weight:700}
+.mz-loc.t-paraje text{font-size:calc(10px*var(--u));fill:var(--text-2)}
+
+/* Botón volver + mini mapa */
+.mz-back{position:absolute;top:10px;left:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:var(--shadow);transition:background .2s,transform .15s}
+.mz-back:hover{background:var(--surface-2)}
+.mz-back:active{transform:scale(.97)}
+.mz-back[hidden]{display:none}
+.mz-back svg{width:14px;height:14px}
+.mz-mini{position:absolute;right:10px;bottom:10px;width:78px;padding:5px 5px 3px;border-radius:10px;background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--border);pointer-events:none;text-align:center;font-size:9.5px;line-height:1.3;color:var(--muted)}
+.mz-mini svg{display:block;width:100%;height:auto}
+.mz-mini .prov{fill:var(--surface-2);stroke:var(--neutral);stroke-width:.8;stroke-linejoin:round}
+.mz-mini .zona{fill:var(--primary)}
+
+.mz-lbl.off{opacity:0!important}
+.mz-foot{display:flex;justify-content:space-between;align-items:center;gap:4px 16px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--muted)}
+.mz-legend{display:flex;align-items:center;gap:8px}
+.mz-legend .chips5{display:inline-flex;gap:2px}
+.mz-legend .chips5 i{width:18px;height:10px;display:block}
+.mz-legend .chips5 i:first-child{border-radius:4px 0 0 4px}
+.mz-legend .chips5 i:last-child{border-radius:0 4px 4px 0}
+
+/* ---------- Panel ---------- */
+.mz-panel{padding:18px 22px;min-width:0}
+.mz-panel .hero-main{padding:0;overflow:visible}
+.mz-panel .hero-main::after{display:none}
+.mz-panel h1{margin:0 0 2px}
+.mz-panel .big{margin:2px 0}
+.mz-panel .big .val{font-size:clamp(42px,4.2vw,52px)}
+.mz-panel [hidden]{display:none!important}
+/* Resumen de la zona, compacto: número y diferencia en la misma línea */
+#mzZona .big{display:inline-flex;vertical-align:middle;margin-right:12px}
+#mzZona .big + div{display:inline-flex!important;vertical-align:middle;margin:4px 0}
+#mzZona .hero-sub{margin-top:6px;font-size:13.5px}
+#mzZona .vrange{margin-top:10px;padding:10px 14px 6px}
+#mzZona .hero-meta{margin-top:12px;padding-top:10px;gap:4px 22px}
+#mzZona .hero-meta div{font-size:12px}
+#mzZona .hero-meta strong{display:inline;font-size:13px;margin:0 0 0 5px}
+#mzZona .hero-meta div:nth-child(3){display:none} /* la fecha de actualización ya está en el pie */
+#mzZona .waiting{margin-top:10px}
+#mzZona .prev-note{margin-top:14px;padding:12px 14px;font-size:13.5px}
+.mz-list-h{font-size:13px;font-weight:600;color:var(--text-2);margin:12px 0 4px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.mz-list{display:flex;flex-direction:column;gap:1px;margin:0 -8px}
+.mz-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto 16px;align-items:center;gap:10px;width:100%;padding:6px 8px;border:0;border-radius:10px;background:none;font:inherit;color:var(--text);text-align:left;cursor:pointer;transition:background .15s}
+.mz-row:hover,.mz-row.hl{background:var(--surface-2)}
+.mz-row .rn{font-weight:600;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mz-row .rn small{font-weight:500;font-size:11.5px;color:var(--muted);margin-left:8px}
+@media (max-width:420px){.mz-row .rn small{display:block;margin-left:0}}
+.mz-row .re{font-weight:700;font-size:16px;letter-spacing:-.02em;white-space:nowrap}
+.mz-row .re small{font-size:11px;font-weight:500;color:var(--muted);margin-left:3px;letter-spacing:0}
+.mz-row .badge{font-size:12px;padding:3px 8px}
+.mz-row .chv{color:var(--muted);width:16px;height:16px}
+.mz-hint{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+.mz-det{animation:mzin .35s ease}
+@keyframes mzin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.mz-det{animation:none}.mz-p path,.mz-locs,.mz-lbl,.mz-ring{transition:none!important}}
+.mz-det-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mz-name{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-top:2px}
+.mz-close{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.mz-close:hover{background:var(--surface-2);color:var(--text)}
+.mz-close svg{width:13px;height:13px}
+.mz-name{line-height:1.15}
+.mz-det .big{margin-top:6px}
+.mz-det .hero-sub{font-size:13.5px}
+.mz-det .vrange{margin-top:10px;padding:10px 14px 8px}
+.mz-det .vr-bar{margin-top:2px}
+.mz-det .vr-head{font-size:13.5px}
+.vr-avg{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap}
+.vr-avg i{width:2px;height:12px;border-radius:2px;background:var(--ref)}
+.vr-avg b{color:var(--text-2);font-weight:600}
+.mz-det .big .info{align-self:center}
+.mz-bw{display:flex;gap:4px 16px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:var(--text-2)}
+.mz-bw span{display:inline-flex;align-items:center;gap:6px}
+.mz-bw i{width:9px;height:9px;border-radius:2px}
+.mz-bw b{color:var(--text);font-weight:600}
+.mz-tabs{display:flex;gap:2px;margin-top:14px;padding:3px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border)}
+.mz-tabs button{flex:1;border:0;background:none;padding:7px 4px;border-radius:9px;font:inherit;font-size:13px;font-weight:500;color:var(--text-2);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.mz-tabs button:hover{color:var(--text)}
+.mz-tabs button[aria-selected="true"]{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.mz-tabpanel{margin-top:12px;min-height:215px}
+.mz-tabpanel .desc{font-size:13px;color:var(--text-2)}
+.mz-tabpanel .chart{margin-top:10px}
+.mz-tabpanel .legend{margin-top:8px;font-size:12px}
+.mz-tabpanel .legend span{display:inline-flex;gap:6px;align-items:center}
+.mz-kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mz-kpis .t{padding:9px 12px;border-radius:12px;background:var(--surface-2);min-width:0}
+.mz-kpis .t span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.mz-kpis .t strong{display:block;font-size:19px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
+.mz-kpis .t strong small{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:3px}
+.mz-kpis .t em{display:block;font-style:normal;font-size:11.5px;color:var(--muted);margin-top:1px}
+.mz-note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.mz-bars rect.b{transition:opacity .15s}
+.mz-bars .hitc{fill:transparent}
+.mz-bars text.mk{fill:var(--text);font-weight:600}
+
+/* Celular: presentación más corta para llegar antes al mapa */
+@media (max-width:560px){
+  .plant-stage{max-width:112px}
+  .intro h1{margin-bottom:8px}
+}
+
+/* ---------- Planta: nombre científico y contexto ---------- */
+.plant-fig{margin:0;justify-self:center;width:100%;max-width:300px;text-align:center}
+.plant-fig .plant-stage{margin:0 auto}
+.plant-fig figcaption{margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--text-2)}
+.plant-fig figcaption strong{display:block;font-size:13.5px;font-weight:600;color:var(--text)}
+.plant-fig figcaption strong i{font-weight:500;color:var(--text-2)}
+.plant-fig figcaption span{display:block;margin-top:2px}
+.plant-fig figcaption small{display:block;margin-top:5px;font-size:11.5px;color:var(--muted)}
+@media (max-width:860px){
+  .plant-fig{order:-1;display:flex;align-items:center;gap:12px;max-width:none;text-align:left;margin-bottom:6px}
+  .plant-fig .plant-stage{flex:none;width:104px;max-width:104px;margin:0;order:0}
+  .plant-fig figcaption{margin:0}
+  .plant-fig figcaption small{display:none}
+}
+
+/* ---------- Alcance del selector de campaña ---------- */
+.scope-note{font-size:12.5px;color:var(--muted);margin:-8px 0 14px}
+.scope-note b{color:var(--text-2);font-weight:600}
+.lnk{border:0;background:none;padding:0;font:inherit;font-size:12.5px;font-weight:600;color:var(--primary);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.lnk:hover{color:var(--primary-strong)}
+.spark-wrap .lnk{margin-top:8px}
+
+/* ============================================================
+   Versión 3 · primera pantalla con foco en producto
+   ============================================================ */
+.intro{align-items:center}
+.scope-line{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:13.5px;color:var(--text-2);max-width:600px}
+.scope-line svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--accent)}
+.scope-line b{color:var(--text);font-weight:600}
+.foot-note{margin-top:12px;font-size:11.5px;color:var(--muted);max-width:560px}
+.intro-side{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}
+.intro-side .plant-stage{max-width:210px;max-height:210px}
+
+/* Vista previa: la estimación real más reciente */
+.pv{display:flex;flex-direction:column;gap:5px;width:100%;max-width:320px;padding:14px 16px;text-decoration:none;color:var(--text);transition:transform .2s,border-color .2s}
+.pv:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
+.pv[hidden]{display:none}
+.pv-k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.pv-main{display:flex;align-items:center;gap:10px}
+.pv-main strong{font-size:38px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.pv-main span{font-size:12.5px;line-height:1.3;color:var(--text-2)}
+.pv-s{font-size:12px;line-height:1.5;color:var(--muted)}
+.pv-go{font-size:12.5px;font-weight:600;color:var(--primary)}
+@media (max-width:860px){
+  .intro-side{order:-1;align-items:stretch}
+  .pv{display:none} /* en celular el mapa y el número están enseguida */
+  .scope-line{font-size:13px}
+}
+@media (max-width:560px){.foot-note{display:none}}
+
+/* Columna derecha compacta: planta + ficha a la par, y debajo la vista previa */
+@media (min-width:861px){
+  .intro-side{align-items:stretch;gap:10px}
+  .intro-side .plant-fig{display:flex;align-items:center;gap:6px;max-width:none;text-align:left}
+  .intro-side .plant-stage{flex:none;width:190px;max-width:190px;max-height:190px;margin:0}
+  .intro-side .plant-fig figcaption{margin:0}
+  .pv{max-width:none}
+}
+
+/* ---------- v3 · retoques: banner de espera, panel sin "tarjeta dentro de tarjeta", lista sin % ---------- */
+.status-row{margin-bottom:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.status-row .demo-pill{margin-left:0}
+.wait-banner{flex:1 1 420px;display:flex;gap:10px;align-items:flex-start;padding:9px 14px;border-radius:12px;background:var(--accent-soft);color:var(--text-2);font-size:13.5px;line-height:1.45;border:1px solid color-mix(in srgb,var(--accent) 28%,transparent)}
+.wait-banner svg{flex:none;width:17px;height:17px;margin-top:1px;color:var(--accent)}
+.wait-banner b{color:var(--text);font-weight:600}
+#mzZona .vrange{background:none;padding:0;margin-top:12px;border-radius:0}
+#mzZona .vr-bar .est{border-color:var(--surface)}
+.mz-row{grid-template-columns:minmax(0,1fr) auto auto 16px}
+.mz-row .rn{display:flex;align-items:center;gap:9px}
+.rdot{flex:none;width:11px;height:11px;border-radius:3px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 14%,transparent)}
+.mz-row .rp{font-size:12px;color:var(--muted);white-space:nowrap}
+.mz-row .re{min-width:86px;text-align:right}
+@media (max-width:560px){.mz-row .re{min-width:0}}
+
+/* Sin tarjeta de vista previa (repetía el número del panel): la planta vuelve a ocupar la columna */
+@media (min-width:861px){
+  .intro-side .plant-fig{flex-direction:column;text-align:center;gap:2px;max-width:320px;margin:0 auto}
+  .intro-side .plant-stage{width:230px;max-width:230px;max-height:230px}
+}
+
+/* ---------- v3 · lista de partidos como barras comparativas ---------- */
+.mz-leg{display:flex;gap:4px 16px;flex-wrap:wrap;margin:0 0 4px;font-size:12px;color:var(--muted)}
+.mz-leg span{display:inline-flex;align-items:center;gap:6px}
+.lg-bar{width:18px;height:7px;border-radius:4px;background:linear-gradient(90deg,color-mix(in srgb,var(--primary) 30%,var(--surface-2)) 62%,var(--up) 62%)}
+.lg-tick{width:2px;height:13px;border-radius:2px;background:var(--ref)}
+.mz-row{grid-template-columns:minmax(0,1fr) auto 16px;grid-template-rows:auto auto;column-gap:12px;row-gap:5px;padding:7px 8px}
+.mz-row .rn{display:block;grid-column:1;grid-row:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mz-row .re{grid-column:2;grid-row:1;min-width:0;text-align:right}
+.mz-row .re small{display:inline!important}
+.mz-row .rb{grid-column:1;grid-row:2;position:relative;height:8px;border-radius:5px;background:var(--surface-2)}
+.mz-row:hover .rb,.mz-row.hl .rb{background:var(--border)}
+.mz-row .rb i{position:absolute;top:0;height:100%;display:block}
+.mz-row .rb .b0{left:0;border-radius:5px 0 0 5px;background:color-mix(in srgb,var(--primary) 30%,var(--surface-2))}
+.mz-row .rb .b1{border-radius:0 5px 5px 0}
+.mz-row .rb .b1.up{background:var(--up)}
+.mz-row .rb .b1.flat{background:color-mix(in srgb,var(--primary) 30%,var(--surface-2))}
+.mz-row .rb .b1.down{background:repeating-linear-gradient(135deg,var(--down) 0 3px,color-mix(in srgb,var(--down) 35%,transparent) 3px 6px)}
+.mz-row .rb .bt{top:-4px;height:16px;width:2px;margin-left:-1px;border-radius:2px;background:var(--ref)}
+.mz-row .rp{grid-column:2;grid-row:2;font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1}
+.mz-row .chv{grid-column:3;grid-row:1 / 3;align-self:center}
+
+/* Ajuste: en vez de barras desde cero, línea (histórico) + punto (estimación) en una sola fila */
+.lg-dot{width:10px;height:10px;border-radius:50%;background:var(--up)}
+.mz-row{grid-template-columns:128px minmax(0,1fr) auto 16px;grid-template-rows:auto auto;column-gap:12px;row-gap:1px;padding:5px 8px}
+.mz-row .rn{grid-column:1;grid-row:1 / 3;align-self:center;white-space:normal;line-height:1.25}
+.mz-row .rb{grid-column:2;grid-row:1 / 3;align-self:center;height:4px;border-radius:999px;background:var(--border)}
+.mz-row:hover .rb,.mz-row.hl .rb{background:var(--border)}
+.mz-row .rb .b1{top:-2px;height:8px;border-radius:999px}
+.mz-row .rb .b1.up{background:color-mix(in srgb,var(--up) 45%,transparent)}
+.mz-row .rb .b1.down{background:color-mix(in srgb,var(--down) 45%,transparent)}
+.mz-row .rb .b1.flat{background:color-mix(in srgb,var(--neutral) 45%,transparent)}
+.mz-row .rb .bt{top:-6px;height:16px}
+.mz-row .rb .bd{top:-5px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--surface);box-sizing:border-box}
+.mz-row .rb .bd.up{background:var(--up)} .mz-row .rb .bd.down{background:var(--down)} .mz-row .rb .bd.flat{background:var(--neutral)}
+.mz-row:hover .rb .bd,.mz-row.hl .rb .bd{border-color:var(--surface-2)}
+.mz-row .re{grid-column:3;grid-row:1;line-height:1.2}
+.mz-row .rp{grid-column:3;grid-row:2;line-height:1.2}
+.mz-row .chv{grid-column:4;grid-row:1 / 3}
+@media (max-width:560px){.mz-row{grid-template-columns:96px minmax(0,1fr) auto 16px;column-gap:10px}.mz-row .rn{font-size:13px}}
+
+.lg-dot{background:var(--text-2)} /* neutro: el punto real toma verde, gris o naranja según el partido */
+
+/* ---------- v3 · lista de partidos en dos renglones de texto: estimado / histórico + diferencia ---------- */
+.mz-row{grid-template-columns:minmax(0,1fr) auto 16px;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;padding:7px 8px}
+.mz-row + .mz-row{border-top:1px solid var(--border);border-radius:0}
+.mz-row .rn{grid-column:1;grid-row:1;align-self:baseline;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mz-row .re{grid-column:2;grid-row:1;align-self:baseline;text-align:right;font-size:16px;line-height:1.3;min-width:0}
+.mz-row .re small{display:inline!important;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin:0 0 0 4px}
+.mz-row .re small:first-child{margin:0 6px 0 0}
+.mz-row .rp{grid-column:1;grid-row:2;align-self:center;text-align:left;font-size:12.5px;color:var(--muted);line-height:1.3}
+.mz-row .badge{grid-column:2;grid-row:2;justify-self:end;font-size:12px;padding:2px 8px}
+.mz-row .chv{grid-column:3;grid-row:1 / 3;align-self:center}
+@media (max-width:560px){.mz-row{grid-template-columns:minmax(0,1fr) auto 16px;column-gap:8px}.mz-row .rn{font-size:14px}}
+
+.mz-row{padding:5px 8px;row-gap:0}
+.mz-row .badge{padding:1px 8px}

@@ -1,0 +1,1309 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estimación de rinde de soja · Noroeste bonaerense</title>
+<meta name="description" content="Estimación mensual del rinde de soja para cinco partidos del noroeste bonaerense: una referencia temprana para anticipar acopio, logística y comercialización.">
+<meta property="og:title" content="Estimación de rinde de soja · Noroeste bonaerense">
+<meta property="og:description" content="Conocé cómo puede venir la campaña de soja desde noviembre: estimación mensual por partido para el noroeste bonaerense.">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:image" content="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f6f2; --surface:#ffffff; --surface-2:#f0f0ea; --border:#e2e1d8; --grid:#ebeae3;
+  --text:#14201a; --text-2:#4a5650; --muted:#78817b;
+  --primary:#2f6b3f; --primary-strong:#24552f; --primary-soft:#e4eee5;
+  --accent:#a8702c; --accent-soft:#f5ead9; --gold:#c99a2e; --on-primary:#ffffff; --tip-bg:#ffffff;
+  --up:#2e7d4f; --up-soft:#e2f0e6; --down:#b4532a; --down-soft:#f7e6dc; --neutral:#8a8f88;
+  --band:rgba(47,107,63,.13); --ref:#a8702c;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --shadow:0 1px 2px rgba(20,32,26,.05),0 4px 16px rgba(20,32,26,.05);
+  --radius:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#171d1a; --surface:#1f2723; --surface-2:#28312c; --border:#37423c; --grid:#2e3832;
+    --text:#e4e9e5; --text-2:#b9c3bd; --muted:#929d96;
+    --primary:#7cc393; --primary-strong:#98d6ab; --primary-soft:#273b2f;
+    --accent:#dba865; --accent-soft:#3b3122; --gold:#d9a94a; --on-primary:#121a15; --tip-bg:#2b352f;
+    --up:#6cc490; --up-soft:#223a2b; --down:#e39068; --down-soft:#422a20; --neutral:#869089;
+    --band:rgba(114,192,138,.16); --ref:#d9a35c;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --shadow:0 1px 2px rgba(0,0,0,.18),0 6px 18px rgba(0,0,0,.16);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#171d1a; --surface:#1f2723; --surface-2:#28312c; --border:#37423c; --grid:#2e3832;
+  --text:#e4e9e5; --text-2:#b9c3bd; --muted:#929d96;
+  --primary:#7cc393; --primary-strong:#98d6ab; --primary-soft:#273b2f;
+  --accent:#dba865; --accent-soft:#3b3122; --gold:#d9a94a; --on-primary:#121a15; --tip-bg:#2b352f;
+  --up:#6cc490; --up-soft:#223a2b; --down:#e39068; --down-soft:#422a20; --neutral:#869089;
+  --band:rgba(114,192,138,.16); --ref:#d9a35c;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --shadow:0 1px 2px rgba(0,0,0,.18),0 6px 18px rgba(0,0,0,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:var(--primary)}
+h1,h2,h3{margin:0;letter-spacing:-.02em;line-height:1.2}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* ---------- Header / nav ---------- */
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--border)}
+.top-inner{display:flex;align-items:center;gap:12px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text);text-decoration:none;white-space:nowrap}
+.brand-logo{width:34px;height:34px;flex:none;object-fit:contain}
+
+/* ---------- Intro + planta 3D ---------- */
+.intro{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:24px;padding:36px 0 8px}
+.intro h1{font-size:clamp(30px,4.6vw,48px);font-weight:700;letter-spacing:-.035em;line-height:1.08;margin:10px 0 16px}
+.intro h1 em{font-style:normal;color:var(--primary)}
+.intro .lead{font-size:16.5px;color:var(--text-2);max-width:520px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text-2)}
+.chip b{color:var(--text);font-weight:700}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--primary);color:var(--on-primary)}
+.btn.primary:hover{background:var(--primary-strong);box-shadow:0 6px 18px color-mix(in srgb,var(--primary) 30%,transparent)}
+.btn.ghost{color:var(--text);border:1px solid var(--border);background:var(--surface)}
+.btn.ghost:hover{background:var(--surface-2)}
+.plant-stage{position:relative;width:100%;aspect-ratio:1/1;max-height:480px;justify-self:center;max-width:480px}
+.plant-stage::before{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--gold) 22%,transparent),color-mix(in srgb,var(--primary) 10%,transparent) 45%,transparent 70%);filter:blur(8px)}
+.plant-stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important;touch-action:pan-y;cursor:grab}
+.plant-stage canvas:active{cursor:grabbing}
+.plant-stage .fallback{position:absolute;inset:18%;width:64%;height:64%;object-fit:contain;opacity:.95}
+.plant-stage.ready .fallback{display:none}
+.plant-hint{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);font-size:11.5px;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .6s}
+.plant-stage.ready .plant-hint{opacity:1}
+@media (max-width:860px){
+  .intro{grid-template-columns:1fr;padding-top:24px;gap:4px}
+  .plant-stage{max-width:300px;order:-1;margin-bottom:-6px}
+  .plant-hint{display:none}
+}
+.brand small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);letter-spacing:0}
+nav.tabs{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{padding:7px 12px;border-radius:999px;color:var(--text-2);text-decoration:none;font-size:13.5px;font-weight:500;white-space:nowrap;transition:background .2s,color .2s}
+nav.tabs a:hover{background:var(--surface-2);color:var(--text)}
+nav.tabs a.active{background:var(--primary-soft);color:var(--primary-strong)}
+.icon-btn{flex:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .15s}
+.icon-btn:hover{background:var(--surface-2);color:var(--text)}
+.icon-btn:active{transform:scale(.95)}
+.icon-btn svg{width:18px;height:18px}
+.theme-sun{display:none}
+:root[data-theme="dark"] .theme-sun{display:block}
+:root[data-theme="dark"] .theme-moon{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-sun{display:block}
+  :root:not([data-theme="light"]) .theme-moon{display:none}
+}
+@media (max-width:760px){
+  .top-inner{height:auto;flex-wrap:wrap;padding:10px 0 0;gap:10px}
+  .brand{flex:1}
+  nav.tabs{order:3;width:calc(100% + 32px);margin:0 -16px;padding:0 12px 8px}
+}
+
+/* ---------- Sections ---------- */
+section.block{padding:48px 0 8px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.sec-head h2{font-size:24px}
+.sec-head p{color:var(--text-2);margin-top:6px;max-width:620px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- Hero ---------- */
+.hero{padding-top:32px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero-main{padding:28px;position:relative;overflow:hidden}
+.hero-main::after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--primary-soft),transparent 70%);pointer-events:none}
+.hero-main>*{position:relative;z-index:1}
+.status{display:inline-flex;align-items:center;gap:8px;padding:5px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:var(--primary-soft);color:var(--primary-strong)}
+.status .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.status.live .dot{animation:pulse 2s infinite}
+.status.wait{background:var(--accent-soft);color:var(--accent)}
+.status.done{background:var(--surface-2);color:var(--text-2)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 50%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.demo-pill{display:inline-flex;margin-left:6px;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:600;border:1px dashed var(--accent);color:var(--accent)}
+.hero h1{font-size:15px;font-weight:600;color:var(--text-2);margin:18px 0 4px;letter-spacing:0}
+.hero h1 strong{color:var(--text)}
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 4px}
+.big .val{font-size:clamp(48px,11vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.big .unit{font-size:18px;font-weight:600;color:var(--text-2)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-weight:600;font-size:13px;white-space:nowrap}
+.badge svg{width:13px;height:13px}
+.badge.up{background:var(--up-soft);color:var(--up)}
+.badge.down{background:var(--down-soft);color:var(--down)}
+.badge.flat{background:var(--surface-2);color:var(--text-2)}
+.hero-sub{color:var(--text-2);margin-top:12px;font-size:14px}
+.hero-sub b{color:var(--text);font-weight:600}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--border)}
+.hero-meta div{font-size:12.5px;color:var(--muted)}
+.hero-meta strong{display:block;color:var(--text);font-size:15px;font-weight:600;margin-top:2px}
+.waiting{display:flex;gap:16px;align-items:flex-start;margin-top:18px}
+.waiting .ico{flex:none;width:52px;height:52px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.waiting h3{font-size:22px;margin-bottom:6px}
+.waiting p{color:var(--text-2)}
+.prev-note{margin-top:20px;padding:14px 16px;border-radius:12px;background:var(--surface-2);font-size:14px;color:var(--text-2)}
+.prev-note b{color:var(--text)}
+
+.hero-side{padding:24px;display:flex;flex-direction:column;gap:18px}
+.hero-side h3{font-size:14px;font-weight:600;color:var(--text-2)}
+.stepper{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.step{display:flex;flex-direction:column;gap:7px;font-size:11.5px;color:var(--muted);text-align:center}
+.step .bar{height:6px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border)}
+.step.done .bar{background:var(--primary);border-color:var(--primary)}
+.step.best .bar{box-shadow:0 0 0 3px var(--primary-soft)}
+.step.done{color:var(--text-2);font-weight:500}
+.step .star{color:var(--accent);font-weight:700}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.trust .t{padding:12px 14px;border-radius:12px;background:var(--surface-2)}
+.trust .t span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.trust .t strong{display:block;font-size:20px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
+.info{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:0;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border);color:var(--muted);font-size:10.5px;font-weight:700;font-style:italic;font-family:Georgia,serif;cursor:help;padding:0;line-height:1;vertical-align:middle;transition:background .15s,color .15s}
+.info:hover,.info:focus-visible{background:var(--primary-soft);color:var(--primary);box-shadow:inset 0 0 0 1px var(--primary);outline:none}
+
+/* ---------- Partido cards ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
+.pcard{padding:18px;transition:transform .2s,box-shadow .2s,border-color .2s;cursor:default}
+.pcard:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 35%,var(--border))}
+.pcard .name{font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.pcard .est{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:10px 0 0;line-height:1}
+.pcard .est small{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:4px}
+.pcard .avg{font-size:12.5px;color:var(--muted);margin-top:6px}
+.range{position:relative;height:28px;margin-top:14px}
+.range .track{position:absolute;left:0;right:0;top:12px;height:4px;border-radius:999px;background:var(--surface-2)}
+.range .iqr{position:absolute;top:10px;height:8px;border-radius:999px;background:color-mix(in srgb,var(--primary) 22%,var(--surface-2))}
+.range .avgtick{position:absolute;top:6px;width:2px;height:16px;background:var(--ref);border-radius:2px;transform:translateX(-1px)}
+.range .dot{position:absolute;top:7px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:2px solid var(--surface);box-shadow:0 0 0 1px var(--primary);transform:translateX(-7px);transition:left .8s cubic-bezier(.2,.8,.2,1)}
+.range-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.range .band{position:absolute;top:9px;height:10px;border-radius:999px;background:color-mix(in srgb,var(--primary) 32%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 50%,transparent)}
+.pcard .var{font-size:12.5px;color:var(--text-2);margin-top:8px;line-height:1.4}
+.pcard .var b{color:var(--text);font-weight:600}
+.vrange{margin-top:18px;padding:14px 16px 10px;border-radius:14px;background:var(--surface-2)}
+.vr-head{font-size:14px;color:var(--text-2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.vr-head b{color:var(--text);font-weight:700}
+.vr-bar{position:relative;height:34px;margin-top:6px}
+.vr-bar .trk{position:absolute;left:0;right:0;top:15px;height:4px;border-radius:999px;background:var(--border)}
+.vr-bar .bnd{position:absolute;top:11px;height:12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 30%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 45%,transparent)}
+.vr-bar .est{position:absolute;top:9px;width:16px;height:16px;border-radius:50%;background:var(--primary);border:3px solid var(--surface-2);box-shadow:0 0 0 1px var(--primary);transform:translateX(-8px)}
+.vr-bar .avg{position:absolute;top:5px;width:10px;height:24px;transform:translateX(-5px);cursor:help}
+.vr-bar .avg::before{content:"";position:absolute;left:4px;top:2px;width:2px;height:20px;border-radius:2px;background:var(--ref)}
+.vr-lbl{position:relative;height:16px;font-size:11.5px;color:var(--muted)}
+.vr-lbl span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.legend-mini{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px}
+.legend-mini i{display:inline-block;vertical-align:middle;margin-right:5px}
+
+/* ---------- Controls ---------- */
+.seg{display:inline-flex;padding:3px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:9px;font:inherit;font-size:13px;font-weight:500;color:var(--text-2);cursor:pointer;transition:background .2s,color .2s}
+.seg button:hover{color:var(--text)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+select.sel{font:inherit;font-size:13.5px;padding:8px 32px 8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2378817b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;color:var(--text);appearance:none;cursor:pointer}
+.ctrl-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ctrl-row label{font-size:13px;color:var(--muted)}
+
+/* ---------- Comparativa ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.panel{padding:22px}
+.panel h3{font-size:16px;font-weight:600}
+.panel .desc{color:var(--muted);font-size:13px;margin-top:4px}
+.dumb{margin-top:18px;display:flex;flex-direction:column;gap:6px}
+.drow{display:grid;grid-template-columns:140px 1fr 64px;align-items:center;gap:12px;padding:8px 6px;border-radius:10px;transition:background .15s;cursor:default}
+.drow:hover{background:var(--surface-2)}
+.drow .dn{font-size:13.5px;font-weight:500}
+.drow .dn small{display:block;font-size:11px;color:var(--muted);font-weight:500}
+.drow .dp{text-align:right;font-weight:600;font-size:13.5px}
+.dtrack{position:relative;height:22px}
+.dtrack .base{position:absolute;left:0;right:0;top:10px;height:2px;background:var(--grid)}
+.dtrack .seg-l{position:absolute;top:9px;height:4px;border-radius:2px}
+.dtrack .m-avg{position:absolute;top:4px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--neutral);transform:translateX(-7px)}
+.dtrack .m-est{position:absolute;top:3px;width:16px;height:16px;border-radius:50%;border:2px solid var(--surface);transform:translateX(-8px)}
+.daxis{display:grid;grid-template-columns:140px 1fr 64px;gap:12px;padding:0 6px;font-size:11px;color:var(--muted)}
+.daxis .ticks{position:relative;height:16px}
+.daxis .ticks span{position:absolute;transform:translateX(-50%)}
+@media (max-width:520px){
+  .drow,.daxis{grid-template-columns:96px 1fr 52px;gap:8px}
+  .drow .dn{font-size:12.5px}
+}
+.up-t{color:var(--up)} .down-t{color:var(--down)} .flat-t{color:var(--text-2)}
+.rank{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.rank .r{padding:12px 14px;border-radius:12px;font-size:12.5px;color:var(--text-2)}
+.rank .r strong{display:block;font-size:15px;color:var(--text);margin-top:2px}
+.rank .r.best{background:var(--up-soft)} .rank .r.worst{background:var(--down-soft)}
+
+/* ---------- Charts ---------- */
+.chart{position:relative;margin-top:14px;width:100%}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart text{font-family:inherit;fill:var(--muted);font-size:11px}
+.chart .gl{stroke:var(--grid);stroke-width:1}
+.chart .axis-l{stroke:var(--border)}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--text-2)}
+.legend button{display:inline-flex;align-items:center;gap:6px;border:0;background:none;font:inherit;color:inherit;padding:3px 6px;border-radius:7px;cursor:pointer;transition:opacity .2s,background .2s}
+.legend button:hover{background:var(--surface-2)}
+.legend button.off{opacity:.35}
+.sw{width:12px;height:3px;border-radius:2px;display:inline-block}
+.sw.dot{width:9px;height:9px;border-radius:50%}
+.sw.dash{background:repeating-linear-gradient(90deg,var(--ref) 0 4px,transparent 4px 7px)!important;height:2px;width:18px}
+.sw.bandsw{height:10px;width:14px;border-radius:3px;background:var(--band)}
+.empty{padding:36px 16px;text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:12px;margin-top:14px}
+.evo-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+@media (max-width:900px){.evo-grid{grid-template-columns:1fr}}
+.callout{padding:22px;display:flex;flex-direction:column;gap:14px}
+.callout .k{font-size:12px;color:var(--muted)}
+.callout .v{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.callout .row{padding-bottom:14px;border-bottom:1px solid var(--border)}
+.callout .row:last-child{border:0;padding:0}
+.callout p{font-size:13.5px;color:var(--text-2)}
+.table-toggle{margin-top:12px;font-size:12.5px}
+.table-toggle summary{cursor:pointer;color:var(--muted);list-style:none;display:inline-flex;gap:6px;align-items:center}
+.table-toggle summary::-webkit-details-marker{display:none}
+.table-toggle summary:hover{color:var(--text)}
+.dtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+.dtable th,.dtable td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--border)}
+.dtable th:first-child,.dtable td:first-child{text-align:left}
+.dtable th{font-weight:600;color:var(--muted);font-size:12px}
+.tscroll{overflow-x:auto}
+
+/* ---------- Historial ---------- */
+.acc{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+details.camp{overflow:hidden}
+details.camp summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;grid-template-columns:90px 1fr auto 20px;gap:14px;align-items:center;transition:background .2s}
+details.camp summary::-webkit-details-marker{display:none}
+details.camp summary:hover{background:var(--surface-2)}
+details.camp .cid{font-weight:700;font-size:16px}
+details.camp .cs{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+details.camp .cs b{color:var(--text);font-size:14.5px;font-weight:600;margin-left:4px}
+details.camp .chev{transition:transform .25s;color:var(--muted)}
+details.camp[open] .chev{transform:rotate(180deg)}
+.camp-body{padding:4px 18px 20px;display:grid;grid-template-columns:1fr 1.2fr;gap:20px;animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (max-width:760px){
+  .camp-body{grid-template-columns:1fr}
+  details.camp summary{grid-template-columns:1fr auto 20px;row-gap:6px}
+  details.camp .cs{grid-column:1/-1;grid-row:2;gap:12px}
+}
+.spark-wrap h4,.camp-body h4{font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 8px}
+.tag{display:inline-flex;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600}
+.tag.good{background:var(--up-soft);color:var(--up)}
+.tag.mid{background:var(--accent-soft);color:var(--accent)}
+.tag.bad{background:var(--down-soft);color:var(--down)}
+.tag.na{background:var(--surface-2);color:var(--muted)}
+
+/* ---------- Guía ---------- */
+.guide{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:700px){.guide{grid-template-columns:1fr}}
+.gcard{padding:22px;transition:transform .2s,border-color .2s}
+.gcard:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 30%,var(--border))}
+.gcard .gi{width:42px;height:42px;border-radius:12px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;margin-bottom:14px}
+.gcard .gi svg{width:21px;height:21px}
+.gcard h3{font-size:16px;margin-bottom:8px}
+.gcard p,.gcard li{color:var(--text-2);font-size:14px}
+.gcard ul{margin:8px 0 0;padding-left:18px}
+.gcard li{margin:4px 0}
+.gcard.feature{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr 1.1fr;gap:22px;align-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--surface) 70%)}
+.gcard.feature .gi{margin:0;background:var(--surface);width:52px;height:52px}
+@media (max-width:860px){.gcard.feature{grid-template-columns:1fr}}
+.metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
+.metric{padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.metric .mk{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center}
+.metric .mv{font-size:24px;font-weight:700;letter-spacing:-.03em;margin-top:4px}
+.metric .ms{font-size:12px;color:var(--text-2);margin-top:2px}
+.scope{margin-top:18px}
+.scope ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;max-width:720px}
+.scope li{margin:3px 0}
+.glabel{font-size:13px;font-weight:600;color:var(--text-2);margin:28px 0 0}
+
+/* ---------- Footer ---------- */
+footer{margin-top:64px;border-top:1px solid var(--border);padding:28px 0 40px;color:var(--muted);font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--text-2);text-decoration:none;border-bottom:1px solid var(--border)}
+footer a:hover{color:var(--primary);border-color:var(--primary)}
+
+/* ---------- Tooltip ---------- */
+#tip{position:fixed;z-index:100;pointer-events:none;max-width:290px;padding:11px 13px;border-radius:12px;background:var(--tip-bg);color:var(--text-2);border:1px solid var(--border);font-size:13px;line-height:1.5;box-shadow:0 14px 34px rgba(0,0,0,.16),0 2px 6px rgba(0,0,0,.08);opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s}
+#tip.show{opacity:1;transform:none}
+#tip .tt{font-weight:600;color:var(--text);margin-bottom:5px;font-size:13px}
+#tip .tx b{color:var(--text);font-weight:600}
+#tip .tr{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:2px 0}
+#tip .tr span{display:inline-flex;align-items:center;gap:7px}
+#tip .tr b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+#tip .sep{height:1px;background:var(--border);margin:6px 0}
+#tip i{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+#tip::after{content:"";position:absolute;left:var(--ax,50%);top:-6px;width:10px;height:10px;background:var(--tip-bg);border-left:1px solid var(--border);border-top:1px solid var(--border);transform:translateX(-50%) rotate(45deg);display:none}
+#tip.up::after{display:block}
+#tip.down::after{display:block;top:auto;bottom:-6px;transform:translateX(-50%) rotate(225deg)}
+
+.err{margin:80px auto;max-width:520px;padding:28px;text-align:center}
+.err code{background:var(--surface-2);padding:2px 6px;border-radius:6px;font-size:13px}
+.skeleton{height:220px;border-radius:var(--radius);background:linear-gradient(90deg,var(--surface-2),var(--surface),var(--surface-2));background-size:200% 100%;animation:sh 1.4s infinite;margin-top:32px}
+@keyframes sh{to{background-position:-200% 0}}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="mapa.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <img class="brand-logo" src="logo.png" alt="" width="34" height="34">
+      <span>Estimación de rinde de soja<small>Noroeste bonaerense</small></span>
+    </a>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#inicio" class="active">Campaña actual</a>
+      <a href="#evolucion">Evolución</a>
+      <a href="#historial">Campañas anteriores</a>
+      <a href="#guia">Sobre la estimación</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+      <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="wrap intro" aria-label="Presentación">
+  <div>
+    <div class="eyebrow">Noroeste bonaerense · 5 partidos</div>
+    <h1>Conocé cómo puede venir la campaña de soja, <em>desde noviembre</em>.</h1>
+    <p class="lead">Cada mes, una estimación del rinde de soja para los cinco partidos del noroeste bonaerense y para toda la zona. Una referencia temprana para anticipar necesidades de acopio, logística y comercialización.</p>
+    <p class="scope-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.900-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Estimación regional:</b> es el rinde promedio de cada partido, no el de un lote individual.</span></p>
+    <div class="cta">
+      <a class="btn primary" href="#inicio">Ver estimaciones
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      <a class="btn ghost" href="#guia">Conocer el proyecto</a>
+    </div>
+  </div>
+  <div class="intro-side">
+    <figure class="plant-fig">
+      <div class="plant-stage" id="plantStage">
+        <img class="fallback" src="logo.png" alt="Logo del proyecto">
+      </div>
+      <figcaption>
+        <strong>Soja <i>(Glycine max)</i></strong>
+        <span>Cultivo de verano. En el noroeste bonaerense, la siembra suele darse entre octubre y diciembre y la cosecha entre marzo y mayo. Las condiciones climáticas de cada campaña influyen en el rendimiento final.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<main id="app" class="wrap">
+  <div class="skeleton"></div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div style="font-weight:600;color:var(--text);margin-bottom:4px">Estimación de rinde de soja · Noroeste bonaerense</div>
+      <div>Desarrollado por <span id="fAutor">Agustín Musanti</span> · <a id="fRepo" href="https://github.com/AgustinMusanti/prediccion-rinde-soja" target="_blank" rel="noopener">Código en GitHub</a></div>
+      <div id="fUpd" style="margin-top:4px"></div>
+    </div>
+    <div style="max-width:420px">
+      <div style="font-weight:600;color:var(--text-2);margin-bottom:4px">Fuentes de datos</div>
+      Rendimientos: <a href="https://datosestimaciones.magyp.gob.ar/" target="_blank" rel="noopener">MAGyP</a> ·
+      Clima: <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">NASA POWER</a> ·
+      Vegetación: <a href="https://modis.gsfc.nasa.gov/" target="_blank" rel="noopener">MODIS (NASA)</a> ·
+      Mapa: <a href="https://www.ign.gob.ar/" target="_blank" rel="noopener">IGN</a> y <a href="http://www.bahra.gob.ar/" target="_blank" rel="noopener">BAHRA</a>.
+    </div>
+  </div>
+</footer>
+
+<div id="tip" role="tooltip"></div>
+
+<script src="mapa.js"></script>
+<script>
+(() => {
+"use strict";
+
+/* ================= Utilidades ================= */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const nf1 = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const f1 = v => v == null || isNaN(v) ? "–" : nf1.format(v);
+const pct = (v, base) => (v / base - 1) * 100;
+const fpct = p => (p > 0 ? "+" : p < 0 ? "−" : "±") + nf1.format(Math.abs(p)) + "%";
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fdate = iso => { if (!iso) return "–"; const [y, m, d] = iso.split("-").map(Number); return new Date(y, m - 1, d).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" }); };
+const SERIES = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)", "var(--s5)"];
+const VENTANAS = [
+  { v: "oct_nov", short: "Nov", label: "Fin de noviembre", meses: 5 },
+  { v: "oct_dic", short: "Dic", label: "Fin de diciembre", meses: 4 },
+  { v: "oct_ene", short: "Ene", label: "Fin de enero", meses: 3 },
+  { v: "oct_feb", short: "Feb", label: "Fin de febrero", meses: 2 },
+  { v: "oct_mar", short: "Mar", label: "Fin de marzo", meses: 1 }
+];
+const FLAT = 2; // ±2% se considera "en línea con el promedio"
+const dirClass = p => p > FLAT ? "up" : p < -FLAT ? "down" : "flat";
+const arrow = p => p > FLAT
+  ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>'
+  : p < -FLAT
+  ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10M17 8v9H8"/></svg>'
+  : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12h14"/></svg>';
+const badge = (p, suffix = "vs. promedio") => `<span class="badge ${dirClass(p)}">${arrow(p)}<span class="num">${fpct(p)}</span>${suffix ? " " + suffix : ""}</span>`;
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+
+/* ================= Tema ================= */
+const root = document.documentElement;
+const savedTheme = store.get("rs-theme");
+if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
+$("#themeBtn").addEventListener("click", () => {
+  const isDark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = isDark ? "light" : "dark";
+  store.set("rs-theme", root.dataset.theme);
+});
+
+/* ================= Tooltip ================= */
+const tip = $("#tip");
+// Tooltip que sigue al puntero (gráficos)
+function showTip(html, x, y) {
+  tip.innerHTML = html; tip.className = "show";
+  const r = tip.getBoundingClientRect();
+  let left = x + 14, top = y + 14;
+  if (left + r.width > innerWidth - 8) left = x - r.width - 14;
+  if (left < 8) left = 8;
+  if (top + r.height > innerHeight - 8) top = y - r.height - 14;
+  tip.style.left = left + "px"; tip.style.top = top + "px";
+}
+// Tooltip anclado a un elemento, con flecha
+function showTipFor(el) {
+  const title = el.dataset.tipTitle, text = el.dataset.tip;
+  tip.innerHTML = (title ? `<div class="tt">${esc(title)}</div>` : "") + `<div class="tx">${esc(text)}</div>`;
+  tip.className = "show";
+  const r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight, cx = r.left + r.width / 2;
+  const left = Math.max(8, Math.min(innerWidth - w - 8, cx - w / 2));
+  let top = r.bottom + 10, dir = "up";
+  if (top + h > innerHeight - 8) { top = r.top - h - 10; dir = "down"; }
+  tip.classList.add(dir); tip.style.setProperty("--ax", Math.max(14, Math.min(w - 14, cx - left)) + "px");
+  tip.style.left = left + "px"; tip.style.top = top + "px";
+}
+const hideTip = () => tip.classList.remove("show");
+addEventListener("scroll", hideTip, { passive: true });
+document.addEventListener("pointerover", e => { const t = e.target.closest("[data-tip]"); if (t) showTipFor(t); });
+document.addEventListener("pointerout", e => { const t = e.target.closest("[data-tip]"); if (t && !t.contains(e.relatedTarget)) hideTip(); });
+document.addEventListener("focusin", e => { const t = e.target.closest("[data-tip]"); if (t) showTipFor(t); });
+document.addEventListener("focusout", hideTip);
+document.addEventListener("pointerdown", e => { if (!e.target.closest("[data-tip], .chart")) hideTip(); });
+const info = (text, title = "") => `<button type="button" class="info" data-tip="${esc(text)}"${title ? ` data-tip-title="${esc(title)}"` : ""} aria-label="${esc((title ? title + ": " : "") + text)}">i</button>`;
+
+/* ================= Carga de datos ================= */
+const qp = new URLSearchParams(location.search).get("data");
+const DATA_URL = qp && /^[\w-]+\.json$/.test(qp) ? qp : "data.json";
+fetch(DATA_URL, { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(init)
+  .catch(err => {
+    $("#app").innerHTML = `<div class="card err"><h2 style="font-size:20px;margin-bottom:10px">No se pudieron cargar los datos</h2>
+      <p style="color:var(--text-2)">No se encontró <code>${esc(DATA_URL)}</code> o tiene un error de formato.</p>
+      <p style="color:var(--muted);font-size:13px;margin-top:12px">Si abriste el archivo con doble clic, levantá un servidor local:<br><code>python -m http.server</code> dentro de la carpeta <code>dashboard-v3</code>.</p></div>`;
+    console.error(err);
+  });
+
+/* ================= App ================= */
+function init(D) {
+  const M = D.meta, P = M.partidos, ZH = M.promedio_historico_zona, PH = M.promedios_historicos;
+  const RG = M.rangos_historicos || {};
+  const camps = D.campanas.slice();
+  const current = camps.find(c => c.estado === "en_curso") || camps[camps.length - 1];
+  const withCuts = camps.filter(c => c.cortes && c.cortes.length);
+  const lastWithCuts = withCuts[withCuts.length - 1];
+  const focus = current.cortes.length ? current : lastWithCuts; // campaña que alimenta Partidos/Evolución por defecto
+  const lastCut = c => c.cortes[c.cortes.length - 1];
+  const bestCut = c => c.cortes.find(k => k.ventana === "oct_nov") || c.cortes[0];
+  const realZ = c => c.resultado_real == null ? null : (typeof c.resultado_real === "number" ? c.resultado_real : c.resultado_real.zona);
+  const realP = (c, p) => c.resultado_real && typeof c.resultado_real === "object" && c.resultado_real.partidos ? c.resultado_real.partidos[p] : null;
+  const V = D.validacion;
+  const maeNum = parseFloat(String(V.mae_mejor).replace(",", ".")) || 2.4;
+  const RANGE_TIP = "La estimación es el valor más probable. Según cómo funcionó el modelo en campañas anteriores, el rinde final quedó dentro de este rango en 8 de cada 10 casos.";
+  const NOV_EJ = (() => { // ejemplo real: la campaña publicada más reciente con datos de noviembre y enero
+    const c = withCuts.slice().reverse().find(c => c.origen !== "validacion" && c.estado !== "en_curso" && c.cortes.some(k => k.ventana === "oct_nov") && c.cortes.some(k => k.ventana === "oct_ene"));
+    if (!c) return "";
+    const a = c.cortes.find(k => k.ventana === "oct_nov").zona.estimacion, b = c.cortes.find(k => k.ventana === "oct_ene").zona.estimacion;
+    return Math.abs(b - a) >= 0.5 ? ` (por ejemplo, en ${c.id} pasó de ${f1(a)} a ${f1(b)} qq/ha entre noviembre y enero)` : "";
+  })();
+  const NOV_NOTE = `Noviembre es, en promedio, la señal más precisa, pero no es definitiva: en algunas campañas la primera estimación arrancó más baja o más alta y se fue acomodando en diciembre y enero${NOV_EJ}. Por eso conviene seguir cada actualización.`;
+  const N_CAMP = Object.keys(M.serie_historica_zona || {}).length || 25;
+  const ANIOS = Object.keys(M.serie_historica_zona || {}).map(Number).sort((a, b) => a - b);
+  const PARTIDO_TIP = "Es el rendimiento promedio de todos los lotes de soja del partido. Dentro de cada partido conviven lotes por encima y por debajo de ese valor, según ambiente, manejo y fecha de siembra.";
+
+  if (M.autor) $("#fAutor").textContent = M.autor;
+  if (M.repo) $("#fRepo").href = M.repo;
+  $("#fUpd").textContent = "Última actualización: " + fdate(M.ultima_actualizacion);
+
+  const app = $("#app");
+  app.innerHTML = heroHTML() + evolucionHTML() + historialHTML() + guiaHTML();
+
+  /* ---------- Rango esperable (lenguaje simple) ---------- */
+  function zoneRangeHTML(e, iv) {
+    const lo = Math.floor(Math.min(iv[0], ZH) - 2), hi = Math.ceil(Math.max(iv[1], ZH) + 2), pos = v => (v - lo) / (hi - lo) * 100;
+    return `<div class="vrange">
+      <div class="vr-head">Lo más probable: entre <b class="num">${f1(iv[0])}</b> y <b class="num">${f1(iv[1])} qq/ha</b> ${info(RANGE_TIP, "¿Por qué un rango?")}</div>
+      <div class="vr-bar" aria-hidden="true"><div class="trk"></div><div class="bnd" style="left:${pos(iv[0])}%;width:${pos(iv[1]) - pos(iv[0])}%"></div>
+        <div class="avg" style="left:${pos(ZH)}%" data-tip="Promedio histórico de la zona: ${f1(ZH)} qq/ha"></div><div class="est" style="left:${pos(e)}%"></div></div>
+      <div class="vr-lbl num"><span style="left:${pos(iv[0])}%">${f1(iv[0])}</span><span style="left:${pos(e)}%;color:var(--text);font-weight:600">${f1(e)}</span><span style="left:${pos(iv[1])}%">${f1(iv[1])}</span></div>
+    </div>`;
+  }
+
+  /* ---------- 1. HERO ---------- */
+  function heroHTML() {
+    const n = current.cortes.length;
+    const status = current.estado === "en_curso"
+      ? (n ? `<span class="status live"><span class="dot"></span>En seguimiento · ${n} de 5 actualizaciones</span>`
+           : `<span class="status wait"><span class="dot"></span>Esperando la primera estimación</span>`)
+      : `<span class="status done"><span class="dot"></span>Campaña cerrada</span>`;
+    const demo = M.demo ? `<span class="demo-pill" data-tip="Este archivo contiene valores de ejemplo para probar el dashboard.">Datos de ejemplo</span>` : "";
+    // La zona se muestra siempre con la última estimación disponible:
+    // la de la campaña en curso o, si todavía no tiene, la de la campaña anterior.
+    const hc = n ? current : lastWithCuts, enCurso = hc === current;
+    let main = "", banner = "";
+    if (hc) {
+      const k = lastCut(hc), e = k.zona.estimacion, p = pct(e, ZH), iv = k.zona.intervalo, r = realZ(hc);
+      main = `
+        <h1>Rinde promedio de la zona · Campaña <strong>${esc(hc.id)}</strong> ${info("Promedio de los 5 partidos. Cada partido es, a su vez, el promedio de todos sus lotes de soja.", "¿Qué se estima?")}</h1>
+        <div class="big"><span class="val num" data-count="${e}">${f1(e)}</span><span class="unit" data-tip="Quintales por hectárea (1 quintal = 100 kg)." tabindex="0" style="cursor:help">qq/ha</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${badge(p, "vs. promedio histórico")}</div>
+        <p class="hero-sub">Promedio histórico de la zona: <b class="num">${f1(ZH)} qq/ha</b> (${N_CAMP} campañas).</p>
+        ${iv ? zoneRangeHTML(e, iv) : ""}
+        ${enCurso && n === 1 ? `<p class="hero-sub" style="margin-top:12px">Es la <b>primera estimación</b> de la campaña y se irá ajustando con cada actualización mensual. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p>` : ""}
+        <div class="hero-meta">
+          <div>Datos hasta<strong>${esc(k.label.toLowerCase())}</strong></div>
+          ${enCurso
+            ? `<div>Anticipación<strong>${k.meses_antes} ${k.meses_antes === 1 ? "mes" : "meses"} antes de la cosecha</strong></div>`
+            : `<div>Resultado oficial<strong>${r != null ? f1(r) + " qq/ha" : "todavía no publicado"}</strong></div>`}
+          <div>Actualizado<strong>${fdate(M.ultima_actualizacion)}</strong></div>
+        </div>`;
+    }
+    if (!n && current.estado === "en_curso") banner = `<div class="wait-banner" role="status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span><b>Primera estimación de la campaña ${esc(current.id)}:</b> primera quincena de diciembre, con datos a fin de noviembre.${hc ? ` Mientras tanto, se muestra la última estimación de la campaña <b>${esc(hc.id)}</b>.` : ""}</span></div>`;
+    const done = new Set(current.cortes.map(c => c.ventana));
+    const steps = VENTANAS.map(w => `<div class="step ${done.has(w.v) ? "done" : ""} ${w.v === "oct_nov" ? "best" : ""}"
+      data-tip-title="${esc(w.label)}${done.has(w.v) ? " · disponible" : " · pendiente"}"
+      data-tip="Estimación con datos hasta ${esc(w.label.toLowerCase())}, ${w.meses} ${w.meses === 1 ? "mes" : "meses"} antes de la cosecha.${w.v === "oct_nov" ? " En promedio, es la señal más precisa." : ""}">
+      <span class="bar"></span><span>${w.short}${w.v === "oct_nov" ? ' <span class="star" aria-label="suele ser la más precisa">★</span>' : ""}</span></div>`).join("");
+    return `<section class="block hero" id="inicio">
+      <div class="status-row">${banner || status}${demo}</div>
+      <div class="mz-grid">
+        <div class="card mz-map" id="mzMap"></div>
+        <div class="card mz-panel" id="mzPanel"><div class="hero-main" id="mzZona">${main}</div></div>
+      </div>
+      <div class="hero-strip">
+        <div class="card hero-side">
+          <div><h3 style="margin-bottom:12px">Actualizaciones de la campaña ${esc(current.id)}</h3><div class="stepper">${steps}</div>
+            <p class="step-note">★ La estimación de noviembre suele ser la más precisa, aunque puede ajustarse en los meses siguientes. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>
+          <div>
+            <h3 style="margin-bottom:10px">Precisión validada</h3>
+            <div class="trust">
+              <div class="t"><span>Error típico ${info(`En campañas anteriores, la estimación de noviembre se alejó en promedio ${V.mae_mejor} del rinde real.`, "Error típico")}</span><strong class="num">±${f1(maeNum)} qq/ha</strong></div>
+              <div class="t"><span>Acierta la tendencia ${info(`En el ${V.acierto_direccional} de los casos anticipó correctamente si el rinde iba a estar por encima o por debajo de lo normal.`, "Acierta la tendencia")}</span><strong>${esc(V.acierto_direccional)}</strong></div>
+              <div class="t"><span>Menos error que el promedio histórico ${info(`Se equivoca un ${V.mejora_vs_baseline} menos que usar el promedio histórico como pronóstico.`, "Mejora vs. promedio histórico")}</span><strong>${esc(V.mejora_vs_baseline)}</strong></div>
+              <div class="t"><span>Campañas probadas ${info(`Se evaluó en ${V.campanas_test} campañas × 5 partidos = ${V.predicciones_total} estimaciones, siempre sin usar información del futuro.`, "Campañas probadas")}</span><strong>${V.campanas_test}</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function partidoCardsHTML() {
+    const c = focus; if (!c) return "";
+    const k = lastCut(c);
+    const label = (c === current ? "Rinde promedio por partido" : `Rinde promedio por partido · última estimación disponible (${esc(c.id)})`) + " " + info(PARTIDO_TIP, "Rinde promedio del partido");
+    const cards = P.map(p => {
+      const e = k.partidos[p], h = PH[p], d = pct(e, h);
+      const rg = RG[p] || { min: Math.min(e, h) * .7, max: Math.max(e, h) * 1.2 };
+      const lo = rg.min, hi = rg.max, pos = v => Math.max(0, Math.min(100, (v - lo) / (hi - lo) * 100));
+      const pr = k.partidos_rango && k.partidos_rango[p];
+      const band = pr ? `<div class="band" style="left:${pos(pr[0])}%;width:${pos(pr[1]) - pos(pr[0])}%"></div>` : "";
+      return `<div class="card pcard">
+        <div class="name">${esc(p)} <span class="badge ${dirClass(d)}" style="font-size:11.5px;padding:3px 8px">${arrow(d)}<span class="num">${fpct(d)}</span></span></div>
+        <div class="est num">${f1(e)}<small>qq/ha</small></div>
+        ${pr ? `<div class="var num">Puede variar entre<br><b>${f1(pr[0])}</b> y <b>${f1(pr[1])}</b></div>` : ""}
+        <div class="avg num">Promedio histórico: ${f1(h)}</div>
+        <div class="range" aria-hidden="true"><div class="track"></div>${band}<div class="avgtick" style="left:${pos(h)}%"></div><div class="dot" data-left="${pos(e)}" style="left:${pos(h)}%"></div></div>
+        <div class="range-lbl num"><span>Mín. histórico ${f1(lo)}</span><span>Máx. ${f1(hi)}</span></div>
+      </div>`;
+    }).join("");
+    return `<h3 class="glabel">${label}</h3>
+      <div class="pgrid">${cards}</div>
+      <div class="legend-mini"><span><i class="sw dot" style="background:var(--primary)"></i>Estimación</span><span><i style="width:2px;height:12px;background:var(--ref);border-radius:2px"></i>Promedio histórico</span><span><i style="width:16px;height:8px;border-radius:4px;background:color-mix(in srgb,var(--primary) 26%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 35%,transparent)"></i>Rango esperable ${info(RANGE_TIP, "¿Por qué un rango?")}</span><span>Barra: peor y mejor campaña desde 2000/01</span></div>`;
+  }
+
+  /* ---------- 2. PARTIDOS ---------- */
+  function campSelect(id) {
+    const opts = withCuts.slice().reverse().map(c => `<option value="${esc(c.id)}" ${c === focus ? "selected" : ""}>${esc(c.id)}${c.estado === "en_curso" ? " (en curso)" : ""}</option>`).join("");
+    return `<div class="ctrl-row"><label for="${id}">Campaña</label><select class="sel" id="${id}">${opts}</select></div>`;
+  }
+  function partidosHTML() {
+    if (!focus) return "";
+    return `<section class="block reveal" id="partidos">
+      <div class="sec-head"><div><div class="eyebrow">Comparativa</div><h2>¿Cómo viene cada partido?</h2>
+        <p>Cada partido comparado contra su propio promedio histórico: así se ve cuál viene mejor y cuál peor de lo habitual.</p></div>
+        ${campSelect("selP")}</div>
+      <div class="two">
+        <div class="card panel">
+          <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start">
+            <div><h3>Estimación vs. promedio histórico</h3><p class="desc" id="dumbDesc"></p></div>
+            <div class="seg" id="cutSeg" role="group" aria-label="Mes de la estimación"></div>
+          </div>
+          <div class="dumb" id="dumb"></div>
+          <div class="legend-mini"><span><i class="sw dot" style="background:var(--surface);border:2px solid var(--neutral);width:11px;height:11px"></i>Promedio histórico</span><span><i class="sw dot" style="background:var(--up)"></i>Arriba de su promedio</span><span><i class="sw dot" style="background:var(--down)"></i>Debajo de su promedio</span></div>
+          <div class="rank" id="rank"></div>
+        </div>
+        <div class="card panel">
+          <h3>Evolución por partido</h3><p class="desc">Cómo cambió la estimación de cada partido mes a mes.</p>
+          <div id="pEvo"></div>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  /* ---------- 3. EVOLUCIÓN ---------- */
+  function evolucionHTML() {
+    if (!focus) return "";
+    return `<section class="block reveal" id="evolucion">
+      <div class="sec-head"><div><div class="eyebrow">Mes a mes</div><h2>Evolución de la estimación</h2>
+        <p>El modelo se vuelve a correr al cierre de cada mes con los datos acumulados. Elegí una campaña para ver cómo fue cambiando la estimación.</p></div>
+        ${campSelect("selE")}</div>
+      <p class="scope-note" id="evoScope"></p>
+      <div class="evo-grid">
+        <div class="card panel"><h3 id="evoTitle">Estimación zonal</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p>
+          <div id="zEvo"></div>
+          <details class="table-toggle"><summary>Ver tabla de datos</summary><div class="tscroll" id="zTable"></div></details>
+        </div>
+        <div class="card callout" id="evoCallout"></div>
+      </div>
+      <div class="card panel" style="margin-top:16px"><h3 id="pEvoTitle">Evolución por partido</h3><p class="desc">Cómo cambió la estimación de cada partido mes a mes · qq/ha</p><div id="pEvo"></div></div>
+    </section>`;
+  }
+
+  /* ---------- 4. HISTORIAL ---------- */
+  function historialHTML() {
+    const list = camps.filter(c => c.cortes.length && !(c === current && c.estado === "en_curso")).slice().reverse();
+    const hist = camps.filter(c => c.cortes.length && realZ(c) != null);
+    const items = list.map(c => {
+      const b = bestCut(c), l = lastCut(c), r = realZ(c);
+      const diff = r != null ? b.zona.estimacion - r : null;
+      let tag = '<span class="tag na">Resultado pendiente</span>';
+      if (diff != null) {
+        const a = Math.abs(diff);
+        tag = a <= maeNum ? '<span class="tag good">Muy cerca</span>' : a <= 2 * maeNum ? '<span class="tag mid">Cerca</span>' : '<span class="tag bad">Mayor desvío</span>';
+      }
+      const rows = P.map(p => {
+        const e = b.partidos[p], rp = realP(c, p);
+        return `<tr><td>${esc(p)}</td><td class="num">${f1(e)}</td><td class="num">${f1(rp)}</td><td class="num">${rp != null ? (e - rp > 0 ? "+" : "") + f1(e - rp) : "–"}</td></tr>`;
+      }).join("");
+      return `<details class="card camp" data-id="${esc(c.id)}">
+        <summary>
+          <span class="cid">${esc(c.id)}</span>
+          <span class="cs"><span>Estimación nov.<b class="num">${f1(b.zona.estimacion)}</b></span><span>Real<b class="num">${f1(r)}</b></span><span>Diferencia<b class="num">${diff != null ? (diff > 0 ? "+" : "") + f1(diff) : "–"}</b></span></span>
+          ${tag}
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="camp-body">
+          <div class="spark-wrap"><h4>Estimación zonal mes a mes</h4><div class="spark chart" data-id="${esc(c.id)}"></div>
+            <p style="font-size:12.5px;color:var(--muted);margin-top:6px">Última actualización (${esc(l.label.toLowerCase())}): <b class="num" style="color:var(--text)">${f1(l.zona.estimacion)} qq/ha</b></p>
+            <button type="button" class="lnk" data-evo="${esc(c.id)}">Ver mes a mes por partido ↑</button></div>
+          <div><h4>Rinde promedio por partido · estimación de noviembre (qq/ha)</h4><div class="tscroll"><table class="dtable"><thead><tr><th>Partido</th><th>Estimado</th><th>Real</th><th>Dif.</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+        </div>
+      </details>`;
+    }).join("");
+    return `<section class="block reveal" id="historial">
+      <div class="sec-head"><div><div class="eyebrow">Historial</div><h2>Campañas anteriores</h2>
+        <p>Qué anticipó el modelo a fin de noviembre y qué pasó finalmente. Las campañas anteriores se estimaron como si fuera ese momento, sin mirar datos posteriores.</p></div></div>
+      ${hist.length > 1 ? `<div class="card panel"><h3>Estimado en noviembre vs. resultado real</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p><div id="hChart" class="chart"></div></div>` : ""}
+      <div class="acc">${items}</div>
+    </section>`;
+  }
+
+  /* ---------- 5. GUÍA ---------- */
+  function guiaHTML() {
+    const I = {
+      target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
+      sat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 7 4-4 4 4-4 4zM3 17l4-4 4 4-4 4zM9 9l6 6M14 18a4 4 0 0 0 4-4"/><path d="M14 22a8 8 0 0 0 8-8"/></svg>',
+      tree: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="6" cy="13" r="2"/><circle cx="18" cy="13" r="2"/><circle cx="3.5" cy="20" r="1.5"/><circle cx="9" cy="20" r="1.5"/><path d="M11 6.5 7 11.5M13 6.5l4 5M5.2 14.8 4 18.6M6.8 14.8 8.4 18.6"/></svg>',
+      cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></svg>',
+      chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg>',
+      bulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg>'
+    };
+    // Gráfico de ventanas: error por ventana (si viene en data.json → validacion.mae_por_ventana)
+    return `<section class="block reveal" id="guia">
+      <div class="sec-head"><div><div class="eyebrow">El proyecto</div><h2>Sobre la estimación</h2>
+        <p>De dónde sale la información, qué tan confiable es y cuál es su alcance, explicado sin tecnicismos.</p></div></div>
+      <div class="guide">
+        <div class="card gcard"><div class="gi">${I.target}</div><h3>Qué es y para qué sirve</h3>
+          <p>Una <b>señal temprana</b> del rinde de soja en General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto. Pensada para acopios, cooperativas y corredores que necesitan anticipar volúmenes, y para productores e ingenieros agrónomos que quieren sumar una referencia objetiva a sus análisis y decisiones de campaña. Se actualiza cada mes.</p></div>
+        <div class="card gcard"><div class="gi">${I.sat}</div><h3>De dónde vienen los datos</h3>
+          <p>Todo es <b>público y gratuito</b>:</p>
+          <ul><li><b>Satélite MODIS (NASA)</b>: cuán verde y vigoroso está el cultivo (índice de vegetación).</li>
+          <li><b>NASA POWER</b>: lluvia, temperatura, radiación y humedad diarias.</li>
+          <li><b>MAGyP</b>: rindes oficiales por partido desde 2000/01, para aprender y validar.</li>
+          <li><b>IGN y BAHRA</b>: límites de los partidos y localidades del mapa.</li></ul></div>
+        <div class="card gcard"><div class="gi">${I.tree}</div><h3>Cómo estima</h3>
+          <p>Usa un modelo que combina muchos "árboles de decisión" (<i>Random Forest</i>): cada uno aprende reglas del tipo "si llovió poco en noviembre y el cultivo está menos verde, el rinde baja". La estimación final es el promedio de todos.</p>
+          <p style="margin-top:8px">Se entrenó con <b>${N_CAMP} campañas</b> (${ANIOS.length ? `${ANIOS[0]}/${String(ANIOS[0] + 1).slice(2)}–${ANIOS[ANIOS.length - 1]}/${String(ANIOS[ANIOS.length - 1] + 1).slice(2)}` : ""}) con los rindes oficiales promedio de cada partido.</p></div>
+        <div class="card gcard"><div class="gi">${I.cal}</div><h3>Validación rigurosa</h3>
+          <p>La precisión se midió simulando el uso real: en cada campaña de prueba el modelo solo conoció los años anteriores, <b>nunca datos del futuro</b> (validación temporal). Son ${V.predicciones_total} estimaciones en ${V.campanas_test} campañas, incluida la sequía histórica de 2022/23.</p></div>
+        <div class="card gcard feature">
+          <div class="gi">${I.bulb}</div>
+          <div><div class="eyebrow" style="margin-bottom:4px">Hallazgo clave</div><h3>Noviembre da la mejor estimación</h3>
+            <p>Lo intuitivo sería esperar más datos para estimar mejor. Pero la estimación con datos a <b>fin de noviembre</b>, 5 meses antes de la cosecha, es en promedio la más precisa. Agregar diciembre, enero o febrero no mejora la estimación: la empeora levemente.</p></div>
+          <p style="font-size:13.5px">¿Por qué? Con pocas campañas para aprender, cada mes extra agrega muchas variables nuevas y el modelo empieza a "memorizar" casos puntuales en vez de patrones generales. Las condiciones de implantación y arranque del cultivo ya contienen buena parte de la señal.</p>
+        </div>
+      </div>
+      <h3 class="glabel">Resultados de las pruebas con campañas anteriores</h3>
+      <div class="metrics">
+        <div class="metric"><div class="mk">Error típico ${info("Diferencia promedio, en qq/ha, entre lo estimado y el rinde real (error absoluto medio o MAE). Cuanto más bajo, mejor.")}</div><div class="mv num">${esc(V.mae_mejor)}</div><div class="ms">con la estimación de noviembre</div></div>
+        <div class="metric"><div class="mk">Diferencias de rinde explicadas ${info("R²: qué parte de las diferencias de rinde entre años y partidos logra explicar el modelo. 1 sería perfecto, 0 equivale a no explicar nada.")}</div><div class="mv num">${nf1.format(V.r2_mejor * 100).replace(",0", "")}%</div><div class="ms">R² = ${String(V.r2_mejor).replace(".", ",")}</div></div>
+        <div class="metric"><div class="mk">Acierta la tendencia ${info("Porcentaje de veces que anticipó correctamente si el rinde iba a estar por encima o por debajo del promedio. La probabilidad de lograrlo por azar es menor al 1%.")}</div><div class="mv">${esc(V.acierto_direccional)}</div><div class="ms">no es casualidad (p = ${String(V.p_valor).replace(".", ",")})</div></div>
+        <div class="metric"><div class="mk">Menos error que el promedio histórico ${info("Cuánto menos se equivoca el modelo comparado con pronosticar siempre el promedio histórico.")}</div><div class="mv">${esc(V.mejora_vs_baseline)}</div><div class="ms">en las campañas de prueba</div></div>
+        <div class="metric"><div class="mk">Estimaciones evaluadas ${info("Campañas de prueba × partidos, todas generadas sin usar datos del futuro.")}</div><div class="mv">${V.predicciones_total}</div><div class="ms">${V.campanas_test} campañas × 5 partidos</div></div>
+      </div>
+      <details class="table-toggle scope"><summary>Alcance del modelo
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <ul>
+          <li>Estima el rinde promedio de cada partido (el mismo dato que publica MAGyP): una referencia regional que cada productor puede comparar con sus propios lotes.</li>
+          <li>Usa el índice de vegetación de toda la superficie agrícola de cada partido.</li>
+          <li>Se reentrena cada campaña con los nuevos rindes oficiales, ampliando su base de aprendizaje.</li>
+          <li>Eventos posteriores a una actualización (granizo, heladas tardías) se incorporan en la siguiente.</li>
+        </ul>
+      </details>
+    </section>`;
+  }
+
+  /* ================= Interactividad / render dinámico ================= */
+  const state = { camp: focus, cut: focus ? lastCut(focus).ventana : null, hidden: new Set() };
+  const byId = id => camps.find(c => c.id === id);
+
+  function renderDumbbell() {
+    if (!$("#dumb")) return; // la comparativa de la v1 se reemplazó por el mapa
+    const c = state.camp, k = c.cortes.find(x => x.ventana === state.cut) || lastCut(c);
+    $("#dumbDesc").textContent = `${k.label} · campaña ${c.id} · qq/ha`;
+    $("#cutSeg").innerHTML = c.cortes.length > 1 ? c.cortes.map(x => `<button type="button" aria-pressed="${x.ventana === k.ventana}" data-v="${x.ventana}">${VENTANAS.find(w => w.v === x.ventana)?.short || x.label}</button>`).join("") : "";
+    const rows = P.map(p => ({ p, e: k.partidos[p], h: PH[p], d: pct(k.partidos[p], PH[p]) })).sort((a, b) => b.d - a.d);
+    const vals = rows.flatMap(r => [r.e, r.h]);
+    let lo = Math.floor((Math.min(...vals) - 1.5) / 2) * 2, hi = Math.ceil((Math.max(...vals) + 1.5) / 2) * 2;
+    const pos = v => (v - lo) / (hi - lo) * 100;
+    const step = (hi - lo) > 12 ? 4 : 2, ticks = [];
+    for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) ticks.push(t);
+    $("#dumb").innerHTML = rows.map(r => {
+      const col = r.d > FLAT ? "var(--up)" : r.d < -FLAT ? "var(--down)" : "var(--neutral)";
+      const a = Math.min(pos(r.e), pos(r.h)), w = Math.abs(pos(r.e) - pos(r.h));
+      const pr = k.partidos_rango && k.partidos_rango[r.p];
+      return `<div class="drow" data-tip-title="${esc(r.p)}" data-tip="Estimación: ${f1(r.e)} qq/ha${pr ? ` (puede variar entre ${f1(pr[0])} y ${f1(pr[1])})` : ""}. Promedio histórico: ${f1(r.h)} qq/ha. Diferencia: ${fpct(r.d)}.">
+        <div class="dn">${esc(r.p)}<small class="num">${f1(r.e)} vs ${f1(r.h)}</small></div>
+        <div class="dtrack"><div class="base"></div><div class="seg-l" style="left:${a}%;width:${w}%;background:${col};opacity:.45"></div>
+          <div class="m-avg" style="left:${pos(r.h)}%"></div><div class="m-est" style="left:${pos(r.e)}%;background:${col};box-shadow:0 0 0 1px ${col}"></div></div>
+        <div class="dp num ${dirClass(r.d)}-t">${fpct(r.d)}</div></div>`;
+    }).join("") + `<div class="daxis"><span></span><div class="ticks">${ticks.map(t => `<span style="left:${pos(t)}%">${t}</span>`).join("")}</div><span></span></div>`;
+    const best = rows[0], worst = rows[rows.length - 1];
+    $("#rank").innerHTML = `<div class="r ${best.d > FLAT ? "best" : ""}" style="${best.d > FLAT ? "" : "background:var(--surface-2)"}">${best.d > FLAT ? "Viene mejor vs. su promedio" : "Más arriba de su promedio"}<strong>${esc(best.p)} <span class="num ${dirClass(best.d)}-t">${fpct(best.d)}</span></strong></div>
+      <div class="r ${worst.d < -FLAT ? "worst" : ""}" style="${worst.d < -FLAT ? "" : "background:var(--surface-2)"}">${worst.d < -FLAT ? "Viene peor vs. su promedio" : "Más cerca de su promedio"}<strong>${esc(worst.p)} <span class="num ${dirClass(worst.d)}-t">${fpct(worst.d)}</span></strong></div>`;
+  }
+
+  function renderPartidoEvo() {
+    const c = state.camp, el = $("#pEvo");
+    const pt = $("#pEvoTitle"); if (pt) pt.textContent = "Evolución por partido · " + c.id;
+    const sc = $("#evoScope");
+    if (sc) sc.innerHTML = c === focus
+      ? "El selector cambia los dos gráficos de esta sección. El mapa de arriba muestra siempre la última estimación disponible."
+      : `Estás viendo la campaña <b>${esc(c.id)}</b> en esta sección. El mapa de arriba sigue mostrando la última estimación disponible. <button type="button" class="lnk" data-evo="${esc(focus.id)}">Volver a ${esc(focus.id)}</button>`;
+    if (c.cortes.length < 2) {
+      el.innerHTML = `<div class="empty">La evolución por partido aparece desde la segunda actualización (datos a fin de diciembre).</div>`;
+      return;
+    }
+    el.innerHTML = `<div class="chart" id="pEvoChart"></div><div class="legend" id="pEvoLeg"></div>`;
+    const series = P.map((p, i) => ({ name: p, color: SERIES[i], values: VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.partidos[p] : null; }), hidden: state.hidden.has(p) }));
+    lineChart($("#pEvoChart"), { labels: VENTANAS.map(w => w.short), series, height: 240 });
+    $("#pEvoLeg").innerHTML = series.map(s => `<button type="button" class="${s.hidden ? "off" : ""}" data-p="${esc(s.name)}" aria-pressed="${!s.hidden}"><span class="sw" style="background:${s.color}"></span>${esc(s.name)}</button>`).join("");
+  }
+
+  function renderZonal() {
+    const c = state.camp;
+    $("#evoTitle").textContent = `Estimación zonal · ${c.id}`;
+    const vals = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.zona.estimacion : null; });
+    const band = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k && k.zona.intervalo ? k.zona.intervalo : null; });
+    const r = realZ(c);
+    const series = [{ name: "Estimación", color: "var(--primary)", values: vals, width: 2.5 }];
+    $("#zEvo").innerHTML = `<div class="chart" id="zChart"></div><div class="legend">
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimación</span>
+      ${band.some(Boolean) ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw bandsw"></span>Rango esperable ${info(RANGE_TIP, "¿Por qué un rango?")}</span>` : ""}
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico (${f1(ZH)})</span>
+      ${r != null ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--text)"></span>Resultado real (${f1(r)})</span>` : ""}</div>`;
+    lineChart($("#zChart"), { labels: VENTANAS.map(w => w.label.replace("Fin de ", "")), shortLabels: VENTANAS.map(w => w.short), series, band, refs: [{ v: ZH, label: "Promedio", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 280, pendingLabel: true, directLabels: true });
+    // Tabla
+    $("#zTable").innerHTML = `<table class="dtable"><thead><tr><th>Datos hasta</th><th>Estimación</th><th>Puede variar entre</th><th>vs. prom.</th></tr></thead><tbody>${
+      c.cortes.map(k => `<tr><td>${esc(k.label)}</td><td class="num">${f1(k.zona.estimacion)}</td><td class="num">${k.zona.intervalo ? f1(k.zona.intervalo[0]) + " y " + f1(k.zona.intervalo[1]) : "–"}</td><td class="num">${fpct(pct(k.zona.estimacion, ZH))}</td></tr>`).join("")}</tbody></table>`;
+    // Callout
+    const first = c.cortes[0], last = lastCut(c), delta = last.zona.estimacion - first.zona.estimacion;
+    const n = c.cortes.length;
+    $("#evoCallout").innerHTML = `
+      <div class="row"><div class="k">Primera señal (${esc(first.label.toLowerCase())})</div><div class="v num">${f1(first.zona.estimacion)} qq/ha</div></div>
+      ${n > 1 ? `<div class="row"><div class="k">Última actualización (${esc(last.label.toLowerCase())})</div><div class="v num">${f1(last.zona.estimacion)} qq/ha <span class="badge ${Math.abs(delta) < .3 ? "flat" : delta > 0 ? "up" : "down"}" style="font-size:12px;vertical-align:middle">${delta > 0 ? "+" : delta < 0 ? "−" : "±"}${f1(Math.abs(delta))} desde nov.</span></div></div>` : ""}
+      ${r != null ? `<div class="row"><div class="k">Resultado real</div><div class="v num">${f1(r)} qq/ha</div><p>La señal de noviembre se desvió <b class="num">${f1(Math.abs(first.zona.estimacion - r))} qq/ha</b> del resultado final.</p></div>` : ""}
+      <div class="row"><p>${n < 5 ? `Quedan <b>${5 - n}</b> ${5 - n === 1 ? "actualización" : "actualizaciones"} por delante. ` : ""}Cada mes el modelo se vuelve a correr con los nuevos datos de clima y del cultivo, así que <b>es normal que la estimación se mueva</b>. Noviembre es, en promedio, la señal más precisa, pero las actualizaciones siguientes muestran cómo responde la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>`;
+  }
+
+  function renderHistChart() {
+    const el = $("#hChart"); if (!el) return;
+    const hc = camps.filter(c => c.cortes.length && realZ(c) != null);
+    lineChart(el, {
+      labels: hc.map(c => c.id), shortLabels: hc.map(c => c.id.slice(2)),
+      series: [
+        { name: "Estimado en nov.", short: "Est.", color: "var(--primary)", values: hc.map(c => bestCut(c).zona.estimacion), width: 2.5 },
+        { name: "Real", short: "Real", color: "var(--accent)", values: hc.map(realZ), width: 2.5 }
+      ],
+      refs: [{ v: ZH, label: "Promedio", cls: "ref" }], refLabels: false, height: 300, directLabels: true
+    });
+    el.insertAdjacentHTML("beforeend", `<div class="legend">
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimado a fin de noviembre</span>
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--accent)"></span>Resultado real (MAGyP)</span>
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico</span></div>`);
+  }
+
+  function renderSpark(el, c) {
+    const vals = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.zona.estimacion : null; });
+    const r = realZ(c);
+    lineChart(el, { labels: VENTANAS.map(w => w.short), series: [{ name: "Estimación", color: "var(--primary)", values: vals }], refs: [{ v: ZH, label: "Prom.", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 150, compact: true });
+  }
+
+  function renderAll() {
+    if (!state.camp) return;
+    renderDumbbell(); renderPartidoEvo(); renderZonal(); renderHistChart();
+    $$("details.camp[open] .spark").forEach(s => renderSpark(s, byId(s.dataset.id)));
+  }
+
+  // Eventos
+  app.addEventListener("change", e => {
+    if (e.target.id === "selP" || e.target.id === "selE") {
+      state.camp = byId(e.target.value);
+      state.cut = lastCut(state.camp).ventana;
+      $$("#selP,#selE").forEach(s => s.value = state.camp.id);
+      renderDumbbell(); renderPartidoEvo(); renderZonal();
+    }
+  });
+  app.addEventListener("click", e => {
+    const ev = e.target.closest("[data-evo]");
+    if (ev) { // desde el historial (o la nota): abrir esa campaña en "Evolución"
+      const sel = $("#selE"); sel.value = ev.dataset.evo; sel.dispatchEvent(new Event("change", { bubbles: true }));
+      if (!ev.closest("#evolucion")) $("#evolucion").scrollIntoView();
+      return;
+    }
+    const b = e.target.closest("#cutSeg button");
+    if (b) { state.cut = b.dataset.v; renderDumbbell(); return; }
+    const lb = e.target.closest("#pEvoLeg button");
+    if (lb) {
+      const p = lb.dataset.p;
+      if (state.hidden.has(p)) state.hidden.delete(p); else if (state.hidden.size < P.length - 1) state.hidden.add(p);
+      renderPartidoEvo();
+    }
+  });
+  $$("details.camp").forEach(d => d.addEventListener("toggle", () => { if (d.open) renderSpark($(".spark", d), byId(d.dataset.id)); }));
+
+  renderAll();
+  if (window.RSMapa) RSMapa.init({ M, P, PH, ZH, V, camps, current, focus, lastCut, bestCut, realP, VENTANAS, FLAT, RANGE_TIP, PARTIDO_TIP,
+    f1, fpct, pct, esc, badge, dirClass, arrow, info, lineChart, showTip, hideTip });
+
+  // Animación: puntos de las cards desde el promedio a la estimación + contador
+  requestAnimationFrame(() => setTimeout(() => $$(".range .dot").forEach(d => { d.style.left = d.dataset.left + "%"; d.parentElement.classList.add("on"); }), 250));
+  const big = $("[data-count]");
+  if (big && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const target = +big.dataset.count, t0 = performance.now(), dur = 900;
+    const tick = t => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); big.textContent = f1(target * (0.85 + 0.15 * e)); if (k < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }
+
+  // Re-render en resize
+  let rt, lastW = innerWidth;
+  addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if (innerWidth !== lastW) { lastW = innerWidth; renderAll(); if (window.RSMapa) RSMapa.redraw(); } }, 150); });
+
+  // Reveal + nav activa
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .08 });
+  $$(".reveal").forEach(s => io.observe(s));
+  const links = $$("nav.tabs a");
+  const spy = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) {
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+      const act = links.find(a => a.classList.contains("active"));
+      if (act && innerWidth < 760) act.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    }
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  $$("section.block").forEach(s => spy.observe(s));
+
+  // El contenido se genera después de cargar: respetar el #ancla de la URL
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(() => t.scrollIntoView(), 50); }
+}
+
+/* ================= Gráfico de líneas (SVG puro) ================= */
+function lineChart(el, o) {
+  const W = Math.max(260, el.clientWidth || 300), H = o.height || 240;
+  const narrow = W < 480;
+  const labels = narrow && o.shortLabels ? o.shortLabels : o.labels;
+  const m = { t: 14, r: o.directLabels && !narrow ? 88 : o.compact ? 34 : 22, b: o.compact ? 22 : 28, l: o.compact ? 28 : 34 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b, n = labels.length;
+  const vis = o.series.filter(s => !s.hidden);
+  let all = vis.flatMap(s => s.values).filter(v => v != null);
+  (o.band || []).forEach(b => b && all.push(b[0], b[1]));
+  (o.refs || []).forEach(r => all.push(r.v));
+  let lo = Math.min(...all), hi = Math.max(...all), pad = Math.max(1, (hi - lo) * .12);
+  lo -= pad; hi += pad;
+  const span = hi - lo, step = span > 24 ? 10 : span > 10 ? 4 : span > 5 ? 2 : 1;
+  lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+  const xp = o.compact ? 6 : 22; // aire a los costados para que las etiquetas del eje X no choquen con el eje Y
+  const x = i => m.l + xp + (n === 1 ? (iw - 2 * xp) / 2 : i * (iw - 2 * xp) / (n - 1));
+  const y = v => m.t + ih - (v - lo) / (hi - lo) * ih;
+  const nf = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Gráfico de líneas">`;
+  // grilla
+  for (let t = lo; t <= hi + 1e-9; t += step) {
+    s += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l - 6}" y="${y(t) + 3.5}" text-anchor="end">${t}</text>`;
+  }
+  const lw = Math.max(...labels.map(l => String(l).length)) * 6.5 + 10, every = Math.max(1, Math.ceil(n * lw / (iw + lw)));
+  labels.forEach((lb, i) => { if (i % every === 0 || (i === n - 1 && every === 1)) s += `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${lb}</text>`; });
+  // banda
+  if (o.band && o.band.some(Boolean)) {
+    const idx = o.band.map((b, i) => b ? i : -1).filter(i => i >= 0);
+    if (idx.length > 1) {
+      const top = idx.map(i => `${x(i)},${y(o.band[i][1])}`).join(" "), bot = idx.slice().reverse().map(i => `${x(i)},${y(o.band[i][0])}`).join(" ");
+      s += `<polygon points="${top} ${bot}" fill="var(--band)"/>`;
+    } else {
+      const i = idx[0]; s += `<rect x="${x(i) - 10}" y="${y(o.band[i][1])}" width="20" height="${y(o.band[i][0]) - y(o.band[i][1])}" rx="6" fill="var(--band)"/>`;
+    }
+  }
+  // referencias
+  const endLabels = [];
+  (o.refs || []).forEach(r => {
+    const col = r.cls === "real" ? "var(--text)" : "var(--ref)";
+    s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(r.v)}" y2="${y(r.v)}" stroke="${col}" stroke-width="1.5" stroke-dasharray="${r.cls === "real" ? "2 3" : "5 4"}" opacity=".85"/>`;
+    if (o.refLabels !== false && (!narrow || o.compact)) endLabels.push({ y: y(r.v), text: r.label, col });
+  });
+  // pendientes
+  if (o.pendingLabel) {
+    vis[0].values.forEach((v, i) => { if (v == null) s += `<circle cx="${x(i)}" cy="${m.t + ih}" r="3" fill="var(--border)"/>`; });
+  }
+  // series
+  vis.forEach(se => {
+    const pts = se.values.map((v, i) => v == null ? null : [x(i), y(v)]);
+    const segs = []; let cur = [];
+    pts.forEach(p => { if (p) cur.push(p); else if (cur.length) { segs.push(cur); cur = []; } });
+    if (cur.length) segs.push(cur);
+    segs.forEach(sg => { if (sg.length > 1) s += `<polyline points="${sg.map(p => p.join(",")).join(" ")}" fill="none" stroke="${se.color}" stroke-width="${se.width || 2}" stroke-linejoin="round" stroke-linecap="round"/>`; });
+    pts.forEach(p => { if (p) s += `<circle cx="${p[0]}" cy="${p[1]}" r="${o.compact ? 3 : 4}" fill="${se.color}" stroke="var(--surface)" stroke-width="2"/>`; });
+    if (o.directLabels && !narrow && vis.length <= 4) {
+      const li = se.values.map((v, i) => v != null ? i : -1).filter(i => i >= 0).pop();
+      if (li === n - 1) endLabels.push({ y: y(se.values[li]), text: (se.short ? se.short + " " : "") + nf.format(se.values[li]), col: "var(--text)" });
+      else if (li != null) s += `<text x="${x(li) + 9}" y="${y(se.values[li]) + 4}" style="fill:var(--text);font-weight:600">${nf.format(se.values[li])}</text>`;
+    }
+  });
+  // Etiquetas al final del eje: se separan verticalmente para que nunca se pisen
+  endLabels.sort((a, b) => a.y - b.y);
+  for (let i = 1; i < endLabels.length; i++) if (endLabels[i].y - endLabels[i - 1].y < 14) endLabels[i].y = endLabels[i - 1].y + 14;
+  endLabels.forEach(l => { s += `<text x="${W - m.r + 8}" y="${l.y + 3.5}" style="fill:${l.col};font-weight:600">${l.text}</text>`; });
+  s += `<line class="xh" x1="0" x2="0" y1="${m.t}" y2="${m.t + ih}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" opacity="0"/>`;
+  s += `<rect class="hit" x="${m.l - 10}" y="0" width="${iw + 20}" height="${H}" fill="transparent"/>`;
+  s += `</svg>`;
+  el.innerHTML = s;
+  const svg = el.firstChild, xh = svg.querySelector(".xh"), hit = svg.querySelector(".hit");
+  const tipEl = document.getElementById("tip");
+  const move = e => {
+    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * (W / r.width);
+    const i = n === 1 ? 0 : Math.max(0, Math.min(n - 1, Math.round((px - m.l - xp) / ((iw - 2 * xp) / (n - 1)))));
+    xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("opacity", ".7");
+    let h = `<div class="tt">${o.labels[i]}</div>`;
+    const rows = vis.map(se => ({ se, v: se.values[i] })).sort((a, b) => (b.v ?? -1) - (a.v ?? -1));
+    rows.forEach(({ se, v }) => { h += `<div class="tr"><span><i style="background:${se.color}"></i>${se.name}</span><b>${v == null ? "pendiente" : nf.format(v)}</b></div>`; });
+    if (o.band && o.band[i]) h += `<div class="tr"><span>Puede variar entre</span><b>${nf.format(o.band[i][0])} y ${nf.format(o.band[i][1])}</b></div>`;
+    if (o.refs && o.refs.length) h += `<div class="sep"></div>`;
+    (o.refs || []).forEach(rf => { h += `<div class="tr"><span>${rf.cls === "real" ? "Resultado real" : "Promedio histórico"}</span><b>${nf.format(rf.v)}</b></div>`; });
+    tipEl.innerHTML = h; tipEl.className = "show";
+    const tr = tipEl.getBoundingClientRect();
+    let left = e.clientX + 14, top = e.clientY - tr.height - 12;
+    if (left + tr.width > innerWidth - 8) left = e.clientX - tr.width - 14;
+    if (left < 8) left = 8; if (top < 8) top = e.clientY + 16;
+    tipEl.style.left = left + "px"; tipEl.style.top = top + "px";
+  };
+  hit.addEventListener("pointermove", move);
+  hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { xh.setAttribute("opacity", "0"); tipEl.classList.remove("show"); });
+}
+})();
+</script>
+
+<!-- ================= Planta de soja 3D ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script>
+window.addEventListener("load", () => {
+  "use strict";
+  const stage = document.getElementById("plantStage");
+  if (!stage || !window.THREE) return; // sin WebGL/CDN queda el logo como respaldo
+  const T = THREE;
+  let renderer;
+  try { renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" }); }
+  catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  stage.appendChild(renderer.domElement);
+  renderer.domElement.setAttribute("aria-hidden", "true");
+
+  const scene = new T.Scene();
+  const camera = new T.PerspectiveCamera(32, 1, 0.1, 50);
+  camera.position.set(0, 3.9, 7.9);
+  camera.lookAt(0, 1.55, 0);
+
+  // Luz: cielo + sol cálido + relleno frío + contraluz dorado (como el logo)
+  scene.add(new T.HemisphereLight(0xeef6ff, 0x2a3518, 0.55));
+  const sun = new T.DirectionalLight(0xfff0d2, 0.85); sun.position.set(3, 6, 4); scene.add(sun);
+  const fill = new T.DirectionalLight(0xcfe3ff, 0.3); fill.position.set(-4, 2, 3); scene.add(fill);
+  const rim = new T.DirectionalLight(0xe0b450, 0.55); rim.position.set(-3, 3, -4); scene.add(rim);
+
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const col = h => new T.Color(h);
+  const plant = new T.Group(); scene.add(plant);
+  const UP = new T.Vector3(0, 1, 0);
+
+  // --- Suelo: montículo de tierra con terrones ---
+  const soilGeo = new T.CircleGeometry(1.05, 48, 0, Math.PI * 2);
+  soilGeo.rotateX(-Math.PI / 2);
+  { const p = soilGeo.attributes.position, c = [];
+    for (let i = 0; i < p.count; i++) {
+      const x = p.getX(i), z = p.getZ(i), r = Math.hypot(x, z) / 1.05;
+      p.setY(i, Math.pow(Math.max(0, 1 - r * r), 1.4) * 0.22 + (r < .98 ? rnd(-0.012, 0.012) : 0));
+      const k = rnd(.85, 1.1) * (0.75 + 0.25 * (1 - r)); c.push(0.29 * k, 0.2 * k, 0.14 * k);
+    }
+    soilGeo.setAttribute("color", new T.Float32BufferAttribute(c, 3)); soilGeo.computeVertexNormals(); }
+  const soilMat = new T.MeshStandardMaterial({ vertexColors: true, roughness: 1 });
+  const soil = new T.Mesh(soilGeo, soilMat); soil.position.y = -0.04; scene.add(soil);
+  for (let i = 0; i < 26; i++) {
+    const g = new T.DodecahedronGeometry(rnd(0.025, 0.06), 0);
+    const m = new T.Mesh(g, new T.MeshStandardMaterial({ color: col(0x3f2c1f).multiplyScalar(rnd(.8, 1.2)), roughness: 1, flatShading: true }));
+    const a = rnd(0, Math.PI * 2), r = rnd(0.2, 0.98);
+    m.position.set(Math.cos(a) * r, Math.pow(1 - r * r, 1.4) * 0.22 - 0.03, Math.sin(a) * r); m.rotation.set(rnd(0, 3), rnd(0, 3), 0); scene.add(m);
+  }
+
+  // --- Tubo afinado (tallo, ramas, pecíolos) ---
+  function taperTube(curve, seg, r0, r1, radial) {
+    const g = new T.TubeGeometry(curve, seg, 1, radial, false), p = g.attributes.position, v = new T.Vector3();
+    for (let i = 0; i <= seg; i++) {
+      const c = curve.getPointAt(i / seg), r = r0 + (r1 - r0) * (i / seg);
+      for (let j = 0; j <= radial; j++) { const k = i * (radial + 1) + j; v.fromBufferAttribute(p, k).sub(c).multiplyScalar(r).add(c); p.setXYZ(k, v.x, v.y, v.z); }
+    }
+    g.computeVertexNormals(); return g;
+  }
+  const stemMat = new T.MeshStandardMaterial({ color: 0x6f8f3a, roughness: .65 });
+  const stemCurve = new T.CatmullRomCurve3([
+    new T.Vector3(0, 0, 0), new T.Vector3(0.04, 0.8, 0.02), new T.Vector3(-0.03, 1.6, -0.02),
+    new T.Vector3(0.03, 2.4, 0.02), new T.Vector3(0, 3.05, 0)]);
+  plant.add(new T.Mesh(taperTube(stemCurve, 48, 0.06, 0.018, 8), stemMat));
+
+  // --- Foliolo: ovado-ancho, nervadura central clara, borde más oscuro, arqueado ---
+  const LEAF_PALETTES = [
+    { base: 0x24561c, mid: 0x3b7429, tip: 0x4a8231, rib: 0x86ad55 },
+    { base: 0x204e19, mid: 0x356a25, tip: 0x44792d, rib: 0x7ea34f },
+    { base: 0x2a5d20, mid: 0x437d2e, tip: 0x538c37, rib: 0x90b65d }];
+  function leafletGeo(L, W, pal) {
+    const NU = 10, NV = 16, pos = [], colr = [], idx = [];
+    const cb = col(pal.base), cm = col(pal.mid), ct = col(pal.tip), cr = col(pal.rib), tmp = new T.Color();
+    for (let j = 0; j <= NV; j++) {
+      const v = j / NV;
+      const w = W * Math.pow(Math.sin(Math.PI * Math.pow(v, 1.05)), 0.7) * (1 - 0.22 * v); // más ancha en el tercio inferior
+      for (let i = 0; i <= NU; i++) {
+        const u = i / NU * 2 - 1, x = u * w, y = v * L;
+        const z = x * x * 0.9 + v * v * L * 0.16 - Math.sin(v * Math.PI) * L * 0.05 + Math.sin(v * 11 + u * 3) * 0.006 * Math.abs(u);
+        pos.push(x, y, z);
+        tmp.copy(v < .5 ? cb.clone().lerp(cm, v * 2) : cm.clone().lerp(ct, (v - .5) * 2));
+        tmp.multiplyScalar(1 - 0.18 * Math.pow(Math.abs(u), 2));          // borde más oscuro
+        if (Math.abs(u) < 0.12) tmp.lerp(cr, 0.55 * (1 - v * 0.6));        // nervadura
+        else if (Math.abs(Math.sin((v * 5 - Math.abs(u) * 1.6) * Math.PI)) < 0.12 && Math.abs(u) < .8) tmp.lerp(cr, 0.18); // nervios secundarios
+        colr.push(tmp.r, tmp.g, tmp.b);
+      }
+    }
+    for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) {
+      const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, d = c + 1; idx.push(a, c, b, b, c, d);
+    }
+    const g = new T.BufferGeometry();
+    g.setAttribute("position", new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute("color", new T.Float32BufferAttribute(colr, 3));
+    g.setIndex(idx); g.computeVertexNormals();
+    g.rotateX(Math.PI / 2); // apunta a +Z (para lookAt), cara superior hacia arriba
+    return g;
+  }
+  const leafMat = new T.MeshStandardMaterial({ vertexColors: true, roughness: .55, metalness: 0, side: T.DoubleSide });
+  const leafGeos = LEAF_PALETTES.map(p => ({ T: leafletGeo(0.62, 0.42, p), L: leafletGeo(0.54, 0.36, p) }));
+  const petMat = new T.MeshStandardMaterial({ color: 0x77983f, roughness: .7 });
+  const leaves = [];
+  function trifoliate(size, delay) {
+    const pivot = new T.Group(), G = leafGeos[Math.floor(Math.random() * leafGeos.length)];
+    const pl = 0.1 * size; // peciolulo del foliolo central
+    const st = new T.Mesh(new T.CylinderGeometry(0.008, 0.01, pl, 5), petMat); st.rotation.x = Math.PI / 2; st.position.z = pl / 2; pivot.add(st);
+    const t = new T.Mesh(G.T, leafMat); t.position.z = pl; t.scale.setScalar(size); t.rotation.z = rnd(-.1, .1); pivot.add(t);
+    [-1, 1].forEach(sd => { const l = new T.Mesh(G.L, leafMat); l.scale.setScalar(size); l.rotation.set(rnd(-.05, .15), sd * rnd(1.0, 1.25), sd * 0.25); pivot.add(l); });
+    pivot.userData = { phase: Math.random() * 6.28, amp: rnd(.04, .09), delay };
+    pivot.scale.setScalar(0.001); leaves.push(pivot);
+    return pivot;
+  }
+  // hoja al final de un pecíolo que sale de "base" en dirección "dir"
+  function leafOnPetiole(parent, base, dir, L, size, delay, lift = 0.35) {
+    const end = base.clone().addScaledVector(dir, L).add(new T.Vector3(0, L * lift, 0));
+    const mid = base.clone().addScaledVector(dir, L * .45).add(new T.Vector3(0, L * (lift + .25), 0));
+    const pc = new T.QuadraticBezierCurve3(base, mid, end);
+    parent.add(new T.Mesh(taperTube(pc, 12, 0.017, 0.01, 5), petMat));
+    const anchor = new T.Group(); anchor.position.copy(end);
+    anchor.lookAt(end.clone().add(dir.clone().add(new T.Vector3(0, -0.2, 0))));
+    anchor.add(trifoliate(size, delay)); parent.add(anchor);
+  }
+
+  // --- Vaina: 2–3 granos marcados, achatada, levemente curva, con punta ---
+  function podGeo(Lp, R, seeds, cA, cB) {
+    const NV = 22, NU = 10, pos = [], colr = [], idx = [], ca = col(cA), cbb = col(cB), tmp = new T.Color();
+    for (let j = 0; j <= NV; j++) {
+      const v = j / NV;
+      const env = Math.pow(Math.sin(Math.PI * Math.min(1, v * 1.04)), 0.45);
+      const bump = 0.62 + 0.38 * Math.pow(Math.abs(Math.sin(Math.PI * seeds * v)), 0.7);
+      const r = R * env * bump, bend = Math.sin(v * Math.PI) * Lp * 0.08;
+      for (let i = 0; i <= NU; i++) {
+        const a = i / NU * Math.PI * 2;
+        pos.push(Math.cos(a) * r + bend, -v * Lp, Math.sin(a) * r * 0.62);
+        tmp.copy(ca).lerp(cbb, 0.5 + 0.5 * Math.cos(a)).multiplyScalar(0.85 + 0.25 * bump - 0.1);
+        colr.push(tmp.r, tmp.g, tmp.b);
+      }
+    }
+    for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, d = c + 1; idx.push(a, b, c, b, d, c); }
+    const g = new T.BufferGeometry();
+    g.setAttribute("position", new T.Float32BufferAttribute(pos, 3)); g.setAttribute("color", new T.Float32BufferAttribute(colr, 3));
+    g.setIndex(idx); g.computeVertexNormals(); return g;
+  }
+  const POD_GEOS = [
+    podGeo(0.42, 0.056, 3, 0x8ea443, 0x748a33), podGeo(0.38, 0.054, 3, 0x9cad4b, 0x80963a),
+    podGeo(0.32, 0.052, 2, 0x86a03f, 0x6d8530), podGeo(0.4, 0.056, 3, 0xb39a3e, 0x947c2e)]; // mayormente verdes, alguna dorada
+  const podMat = new T.MeshStandardMaterial({ vertexColors: true, roughness: .5 });
+  const pods = [];
+  function podCluster(parent, base, ang, n, delay) {
+    for (let k = 0; k < n; k++) {
+      const pod = new T.Mesh(POD_GEOS[Math.floor(Math.random() * POD_GEOS.length)], podMat);
+      const a = ang + (k - (n - 1) / 2) * 0.7 + rnd(-.15, .15);
+      const d = new T.Vector3(Math.cos(a) * 0.55, -0.8, Math.sin(a) * 0.55).normalize();
+      pod.position.copy(base).add(new T.Vector3(Math.cos(a) * 0.04, rnd(-.03, .03), Math.sin(a) * 0.04));
+      pod.quaternion.setFromUnitVectors(new T.Vector3(0, -1, 0), d);
+      pod.rotateY(rnd(0, Math.PI));
+      pod.userData = { delay: delay + k * 0.06 };
+      pod.scale.setScalar(0.001); parent.add(pod); pods.push(pod);
+    }
+  }
+
+  // --- Flor: pequeña y lila, con estandarte y dos alas ---
+  const flMat = new T.MeshStandardMaterial({ color: 0xb596dc, roughness: .6 });
+  const flMat2 = new T.MeshStandardMaterial({ color: 0xf3ecf8, roughness: .6 });
+  const petalGeo = new T.SphereGeometry(0.036, 10, 8);
+  function flower(parent, base, ang, delay) {
+    const g = new T.Group();
+    const st = new T.Mesh(petalGeo, flMat); st.scale.set(1, 1.25, 0.45); st.position.set(0, 0.03, 0); g.add(st);
+    [-1, 1].forEach(sd => { const w = new T.Mesh(petalGeo, flMat2); w.scale.set(0.6, 0.7, 0.5); w.position.set(sd * 0.022, -0.005, 0.022); g.add(w); });
+    g.position.copy(base).add(new T.Vector3(Math.cos(ang) * 0.075, 0.05, Math.sin(ang) * 0.075));
+    g.rotation.y = -ang + Math.PI / 2;
+    g.userData = { delay }; g.scale.setScalar(0.001); parent.add(g); pods.push(g);
+  }
+
+  // --- Arquitectura: hojas alternas en espiral, ramas laterales abajo, vainas en las axilas ---
+  const nodes = [0.14, 0.24, 0.34, 0.44, 0.53, 0.62, 0.7, 0.78, 0.86, 0.93];
+  nodes.forEach((tn, i) => {
+    const base = stemCurve.getPointAt(tn);
+    const ang = i * 2.4 + 0.3;
+    const dir = new T.Vector3(Math.cos(ang), 0, Math.sin(ang));
+    const size = 1.15 - tn * 0.55;
+    leafOnPetiole(plant, base, dir, 0.55 + 0.45 * (1 - tn), size, 0.2 + i * 0.09);
+    // ramas laterales en los nudos inferiores, con su propia hoja y vainas
+    if (i >= 1 && i <= 4) {
+      const bdir = new T.Vector3(Math.cos(ang + 2.6), 0, Math.sin(ang + 2.6));
+      const bend = base.clone().addScaledVector(bdir, 0.42).add(new T.Vector3(0, 0.55, 0));
+      const bc = new T.QuadraticBezierCurve3(base, base.clone().addScaledVector(bdir, 0.3).add(new T.Vector3(0, 0.15, 0)), bend);
+      plant.add(new T.Mesh(taperTube(bc, 14, 0.03, 0.014, 6), stemMat));
+      leafOnPetiole(plant, bend, bdir.clone().applyAxisAngle(UP, 0.5), 0.42, size * 0.85, 0.5 + i * 0.1, 0.3);
+      leafOnPetiole(plant, bc.getPoint(0.55), bdir.clone().applyAxisAngle(UP, -1.4), 0.35, size * 0.75, 0.6 + i * 0.1, 0.3);
+      podCluster(plant, bc.getPoint(0.5), ang + 2.6, 2, 1.3 + i * 0.08);
+    }
+    // vainas en la axila del nudo (más cargadas en el tercio medio)
+    if (i >= 1 && i <= 8) podCluster(plant, base, ang + Math.PI, i >= 3 && i <= 6 ? 4 : 3, 1.1 + i * 0.07);
+    // flores en los nudos superiores (la soja florece de abajo hacia arriba)
+    if (i >= 6) { flower(plant, base, ang + 1.3, 1.7 + i * 0.05); flower(plant, base, ang - 1.5, 1.8 + i * 0.05); }
+  });
+  // brote apical
+  const tipBase = stemCurve.getPointAt(1);
+  const ta = new T.Group(); ta.position.copy(tipBase);
+  ta.lookAt(tipBase.clone().add(new T.Vector3(0.25, 1, 0.15))); ta.add(trifoliate(0.5, 1.2)); plant.add(ta);
+
+  // --- Partículas (polen / polvo dorado) ---
+  const N = 90, pp = new Float32Array(N * 3), vel = [];
+  for (let i = 0; i < N; i++) { pp[i * 3] = rnd(-2, 2); pp[i * 3 + 1] = rnd(0, 3.6); pp[i * 3 + 2] = rnd(-1.6, 1.6); vel.push(rnd(.04, .14)); }
+  const pg = new T.BufferGeometry(); pg.setAttribute("position", new T.BufferAttribute(pp, 3));
+  const dots = new T.Points(pg, new T.PointsMaterial({ color: 0xe0b85a, size: 0.035, transparent: true, opacity: .55, depthWrite: false }));
+  scene.add(dots);
+
+  // --- Tamaño ---
+  function resize() {
+    const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(stage); resize();
+
+  // --- Interacción: arrastrar para girar (con inercia) ---
+  let rotY = 0.6, velY = 0, dragging = false, lastX = 0, lastMove = 0;
+  const cv = renderer.domElement;
+  cv.addEventListener("pointerdown", e => { dragging = true; lastX = e.clientX; velY = 0; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener("pointermove", e => { if (!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; velY = dx * 0.008; rotY += velY; lastMove = performance.now(); });
+  const end = () => { dragging = false; };
+  cv.addEventListener("pointerup", end); cv.addEventListener("pointercancel", end);
+
+  // --- Bucle (pausa fuera de pantalla / pestaña oculta) ---
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true, running = false, t0 = performance.now(), prev = t0;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; kick(); }).observe(stage);
+  document.addEventListener("visibilitychange", kick);
+  const ease = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+  const back = x => { x = Math.min(1, Math.max(0, x)); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+
+  function frame(now) {
+    const t = (now - t0) / 1000, dt = Math.min(0.05, (now - prev) / 1000); prev = now;
+    const g = reduce ? 10 : t; // con movimiento reducido: planta completa y quieta
+    plant.scale.set(1, ease(g / 1.4) * 0.999 + 0.001, 1);
+    leaves.forEach(l => { const u = l.userData; l.scale.setScalar(Math.max(0.001, back((g - u.delay) / 0.7)));
+      if (!reduce) { l.rotation.x = Math.sin(t * 1.4 + u.phase) * u.amp; l.rotation.z = Math.cos(t * 1.1 + u.phase) * u.amp * 0.6; } });
+    pods.forEach(p => p.scale.setScalar(Math.max(0.001, back((g - p.userData.delay) / 0.6))));
+    if (!reduce) {
+      plant.rotation.z = Math.sin(t * 0.7) * 0.025; plant.rotation.x = Math.cos(t * 0.55) * 0.015;
+      if (!dragging) { velY *= 0.94; rotY += velY + (now - lastMove > 1500 ? dt * 0.18 : 0); }
+      const a = dots.geometry.attributes.position;
+      for (let i = 0; i < N; i++) { let y = a.getY(i) + vel[i] * dt; if (y > 3.8) y = 0; a.setY(i, y); a.setX(i, a.getX(i) + Math.sin(t + i) * 0.0015); }
+      a.needsUpdate = true;
+    }
+    plant.rotation.y = rotY;
+    renderer.render(scene, camera);
+    if (visible && !document.hidden && (!reduce || dragging || Math.abs(velY) > 1e-4)) requestAnimationFrame(frame); else running = false;
+  }
+  function kick() { if (!running && visible && !document.hidden) { running = true; prev = performance.now(); requestAnimationFrame(frame); } }
+  if (reduce) cv.addEventListener("pointermove", kick);
+  stage.classList.add("ready");
+  kick();
+});
+</script>
+</body>
+</html>
