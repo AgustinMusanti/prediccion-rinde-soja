@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,12 @@
 <meta property="og:description" content="Conocé cómo puede venir la campaña de soja desde noviembre: estimación mensual por partido para el noroeste bonaerense.">
 <link rel="icon" type="image/png" href="favicon.png">
 <meta property="og:image" content="logo.png">
+<meta property="og:image:alt" content="Logo del proyecto de estimación de rinde de soja">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Estimación de rinde de soja">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2f6b3f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,10 +22,10 @@
 :root{
   color-scheme: light;
   --bg:#f6f6f2; --surface:#ffffff; --surface-2:#f0f0ea; --border:#e2e1d8; --grid:#ebeae3;
-  --text:#14201a; --text-2:#4a5650; --muted:#78817b;
+  --text:#14201a; --text-2:#4a5650; --muted:#636d67;
   --primary:#2f6b3f; --primary-strong:#24552f; --primary-soft:#e4eee5;
-  --accent:#a8702c; --accent-soft:#f5ead9; --gold:#c99a2e; --on-primary:#ffffff; --tip-bg:#ffffff;
-  --up:#2e7d4f; --up-soft:#e2f0e6; --down:#b4532a; --down-soft:#f7e6dc; --neutral:#8a8f88;
+  --accent:#8a5a1c; --accent-soft:#f5ead9; --gold:#c99a2e; --on-primary:#ffffff; --tip-bg:#ffffff;
+  --up:#256b42; --up-soft:#e2f0e6; --down:#9c4420; --down-soft:#f7e6dc; --neutral:#8a8f88;
   --band:rgba(47,107,63,.13); --ref:#a8702c;
   --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
   --shadow:0 1px 2px rgba(20,32,26,.05),0 4px 16px rgba(20,32,26,.05);
@@ -29,7 +35,7 @@
   :root:not([data-theme="light"]){
     color-scheme: dark;
     --bg:#171d1a; --surface:#1f2723; --surface-2:#28312c; --border:#37423c; --grid:#2e3832;
-    --text:#e4e9e5; --text-2:#b9c3bd; --muted:#929d96;
+    --text:#e4e9e5; --text-2:#b9c3bd; --muted:#9aa59e;
     --primary:#7cc393; --primary-strong:#98d6ab; --primary-soft:#273b2f;
     --accent:#dba865; --accent-soft:#3b3122; --gold:#d9a94a; --on-primary:#121a15; --tip-bg:#2b352f;
     --up:#6cc490; --up-soft:#223a2b; --down:#e39068; --down-soft:#422a20; --neutral:#869089;
@@ -41,7 +47,7 @@
 :root[data-theme="dark"]{
   color-scheme: dark;
   --bg:#171d1a; --surface:#1f2723; --surface-2:#28312c; --border:#37423c; --grid:#2e3832;
-  --text:#e4e9e5; --text-2:#b9c3bd; --muted:#929d96;
+  --text:#e4e9e5; --text-2:#b9c3bd; --muted:#9aa59e;
   --primary:#7cc393; --primary-strong:#98d6ab; --primary-soft:#273b2f;
   --accent:#dba865; --accent-soft:#3b3122; --gold:#d9a94a; --on-primary:#121a15; --tip-bg:#2b352f;
   --up:#6cc490; --up-soft:#223a2b; --down:#e39068; --down-soft:#422a20; --neutral:#869089;
@@ -358,6 +364,10 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="mapa.css">
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -439,7 +449,9 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const nf1 = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const f1 = v => v == null || isNaN(v) ? "–" : nf1.format(v);
 const pct = (v, base) => (v / base - 1) * 100;
-const fpct = p => (p > 0 ? "+" : p < 0 ? "−" : "±") + nf1.format(Math.abs(p)) + "%";
+const fpct = p => (p > 0 ? "+" : p < 0 ? "−" : "±") + nf1.format(Math.abs(p)) + "\u00a0%";
+const pc = t => String(t).replace(/\s*%/g, "\u00a0%"); // "69%" → "69 %"
+const sg = v => (v > 0 ? "+" : v < 0 ? "−" : "") + f1(Math.abs(v)); // diferencia con signo
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fdate = iso => { if (!iso) return "–"; const [y, m, d] = iso.split("-").map(Number); return new Date(y, m - 1, d).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" }); };
 const SERIES = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)", "var(--s5)"];
@@ -532,8 +544,10 @@ function init(D) {
   const bestCut = c => c.cortes.find(k => k.ventana === "oct_nov") || c.cortes[0];
   const realZ = c => c.resultado_real == null ? null : (typeof c.resultado_real === "number" ? c.resultado_real : c.resultado_real.zona);
   const realP = (c, p) => c.resultado_real && typeof c.resultado_real === "object" && c.resultado_real.partidos ? c.resultado_real.partidos[p] : null;
-  const V = D.validacion;
+  const V = Object.assign({}, D.validacion); // copia para mostrar: mismo formato en toda la página
   const maeNum = parseFloat(String(V.mae_mejor).replace(",", ".")) || 2.4;
+  V.mae_mejor = f1(maeNum) + " qq/ha"; // rinde y errores: siempre 1 decimal
+  V.acierto_direccional = pc(V.acierto_direccional); V.mejora_vs_baseline = pc(V.mejora_vs_baseline);
   const RANGE_TIP = "La estimación es el valor más probable. Según cómo funcionó el modelo en campañas anteriores, el rinde final quedó dentro de este rango en 8 de cada 10 casos.";
   const NOV_EJ = (() => { // ejemplo real: la campaña publicada más reciente con datos de noviembre y enero
     const c = withCuts.slice().reverse().find(c => c.origen !== "validacion" && c.estado !== "en_curso" && c.cortes.some(k => k.ventana === "oct_nov") && c.cortes.some(k => k.ventana === "oct_ene"));
@@ -541,7 +555,7 @@ function init(D) {
     const a = c.cortes.find(k => k.ventana === "oct_nov").zona.estimacion, b = c.cortes.find(k => k.ventana === "oct_ene").zona.estimacion;
     return Math.abs(b - a) >= 0.5 ? ` (por ejemplo, en ${c.id} pasó de ${f1(a)} a ${f1(b)} qq/ha entre noviembre y enero)` : "";
   })();
-  const NOV_NOTE = `Noviembre es, en promedio, la señal más precisa, pero no es definitiva: en algunas campañas la primera estimación arrancó más baja o más alta y se fue acomodando en diciembre y enero${NOV_EJ}. Por eso conviene seguir cada actualización.`;
+  const NOV_NOTE = `Noviembre es, en promedio, la estimación más precisa, pero no es definitiva: en algunas campañas la primera estimación arrancó más baja o más alta y se fue acomodando en diciembre y enero${NOV_EJ}. Por eso conviene seguir cada actualización.`;
   const N_CAMP = Object.keys(M.serie_historica_zona || {}).length || 25;
   const ANIOS = Object.keys(M.serie_historica_zona || {}).map(Number).sort((a, b) => a - b);
   const PARTIDO_TIP = "Es el rendimiento promedio de todos los lotes de soja del partido. Dentro de cada partido conviven lotes por encima y por debajo de ese valor, según ambiente, manejo y fecha de siembra.";
@@ -557,10 +571,10 @@ function init(D) {
   function zoneRangeHTML(e, iv) {
     const lo = Math.floor(Math.min(iv[0], ZH) - 2), hi = Math.ceil(Math.max(iv[1], ZH) + 2), pos = v => (v - lo) / (hi - lo) * 100;
     return `<div class="vrange">
-      <div class="vr-head">Lo más probable: entre <b class="num">${f1(iv[0])}</b> y <b class="num">${f1(iv[1])} qq/ha</b> ${info(RANGE_TIP, "¿Por qué un rango?")}</div>
+      <div class="vr-head">Rango esperable: <b class="num">${f1(iv[0])} a ${f1(iv[1])} qq/ha</b> ${info(RANGE_TIP, "¿Por qué un rango?")}</div>
       <div class="vr-bar" aria-hidden="true"><div class="trk"></div><div class="bnd" style="left:${pos(iv[0])}%;width:${pos(iv[1]) - pos(iv[0])}%"></div>
         <div class="avg" style="left:${pos(ZH)}%" data-tip="Promedio histórico de la zona: ${f1(ZH)} qq/ha"></div><div class="est" style="left:${pos(e)}%"></div></div>
-      <div class="vr-lbl num"><span style="left:${pos(iv[0])}%">${f1(iv[0])}</span><span style="left:${pos(e)}%;color:var(--text);font-weight:600">${f1(e)}</span><span style="left:${pos(iv[1])}%">${f1(iv[1])}</span></div>
+      <div class="legend-mini vr-leg"><span><i class="sw dot" style="background:var(--primary)"></i>Estimación</span><span><i class="lg-band"></i>Rango esperable</span><span><i style="width:2px;height:12px;background:var(--ref);border-radius:2px"></i>Promedio histórico</span></div>
     </div>`;
   }
 
@@ -579,7 +593,7 @@ function init(D) {
     if (hc) {
       const k = lastCut(hc), e = k.zona.estimacion, p = pct(e, ZH), iv = k.zona.intervalo, r = realZ(hc);
       main = `
-        <h1>Rinde promedio de la zona · Campaña <strong>${esc(hc.id)}</strong> ${info("Promedio de los 5 partidos. Cada partido es, a su vez, el promedio de todos sus lotes de soja.", "¿Qué se estima?")}</h1>
+        <h2 class="zh">Rinde promedio de la zona · Campaña <strong>${esc(hc.id)}</strong> ${info("Promedio de los 5 partidos. Cada partido es, a su vez, el promedio de todos sus lotes de soja.", "¿Qué se estima?")}</h2>
         <div class="big"><span class="val num" data-count="${e}">${f1(e)}</span><span class="unit" data-tip="Quintales por hectárea (1 quintal = 100 kg)." tabindex="0" style="cursor:help">qq/ha</span></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${badge(p, "vs. promedio histórico")}</div>
         <p class="hero-sub">Promedio histórico de la zona: <b class="num">${f1(ZH)} qq/ha</b> (${N_CAMP} campañas).</p>
@@ -589,7 +603,7 @@ function init(D) {
           <div>Datos hasta<strong>${esc(k.label.toLowerCase())}</strong></div>
           ${enCurso
             ? `<div>Anticipación<strong>${k.meses_antes} ${k.meses_antes === 1 ? "mes" : "meses"} antes de la cosecha</strong></div>`
-            : `<div>Resultado oficial<strong>${r != null ? f1(r) + " qq/ha" : "todavía no publicado"}</strong></div>`}
+            : `<div>Resultado real<strong>${r != null ? f1(r) + " qq/ha" : "todavía no publicado"}</strong></div>`}
           <div>Actualizado<strong>${fdate(M.ultima_actualizacion)}</strong></div>
         </div>`;
     }
@@ -599,7 +613,7 @@ function init(D) {
     const done = new Set(current.cortes.map(c => c.ventana));
     const steps = VENTANAS.map(w => `<div class="step ${done.has(w.v) ? "done" : ""} ${w.v === "oct_nov" ? "best" : ""}"
       data-tip-title="${esc(w.label)}${done.has(w.v) ? " · disponible" : " · pendiente"}"
-      data-tip="Estimación con datos hasta ${esc(w.label.toLowerCase())}, ${w.meses} ${w.meses === 1 ? "mes" : "meses"} antes de la cosecha.${w.v === "oct_nov" ? " En promedio, es la señal más precisa." : ""}">
+      data-tip="Estimación con datos hasta ${esc(w.label.toLowerCase())}, ${w.meses} ${w.meses === 1 ? "mes" : "meses"} antes de la cosecha.${w.v === "oct_nov" ? " En promedio, es la estimación más precisa." : ""}">
       <span class="bar"></span><span>${w.short}${w.v === "oct_nov" ? ' <span class="star" aria-label="suele ser la más precisa">★</span>' : ""}</span></div>`).join("");
     return `<section class="block hero" id="inicio">
       <div class="status-row">${banner || status}${demo}</div>
@@ -711,12 +725,12 @@ function init(D) {
       }
       const rows = P.map(p => {
         const e = b.partidos[p], rp = realP(c, p);
-        return `<tr><td>${esc(p)}</td><td class="num">${f1(e)}</td><td class="num">${f1(rp)}</td><td class="num">${rp != null ? (e - rp > 0 ? "+" : "") + f1(e - rp) : "–"}</td></tr>`;
+        return `<tr><td>${esc(p)}</td><td class="num">${f1(e)}</td><td class="num">${f1(rp)}</td><td class="num">${rp != null ? sg(e - rp) : "–"}</td></tr>`;
       }).join("");
       return `<details class="card camp" data-id="${esc(c.id)}">
         <summary>
           <span class="cid">${esc(c.id)}</span>
-          <span class="cs"><span>Estimación nov.<b class="num">${f1(b.zona.estimacion)}</b></span><span>Real<b class="num">${f1(r)}</b></span><span>Diferencia<b class="num">${diff != null ? (diff > 0 ? "+" : "") + f1(diff) : "–"}</b></span></span>
+          <span class="cs"><span>Estimación de noviembre<b class="num">${f1(b.zona.estimacion)} qq/ha</b></span><span>Resultado real<b class="num">${r != null ? f1(r) + " qq/ha" : "pendiente"}</b></span><span>Diferencia<b class="num">${diff != null ? sg(diff) + " qq/ha" : "–"}</b></span></span>
           ${tag}
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
@@ -724,14 +738,14 @@ function init(D) {
           <div class="spark-wrap"><h4>Estimación zonal mes a mes</h4><div class="spark chart" data-id="${esc(c.id)}"></div>
             <p style="font-size:12.5px;color:var(--muted);margin-top:6px">Última actualización (${esc(l.label.toLowerCase())}): <b class="num" style="color:var(--text)">${f1(l.zona.estimacion)} qq/ha</b></p>
             <button type="button" class="lnk" data-evo="${esc(c.id)}">Ver mes a mes por partido ↑</button></div>
-          <div><h4>Rinde promedio por partido · estimación de noviembre (qq/ha)</h4><div class="tscroll"><table class="dtable"><thead><tr><th>Partido</th><th>Estimado</th><th>Real</th><th>Dif.</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+          <div><h4>Rinde promedio por partido · estimación de noviembre y resultado real</h4><div class="tscroll"><table class="dtable"><thead><tr><th>Partido</th><th>Estimación (qq/ha)</th><th>Real (qq/ha)</th><th>Diferencia (qq/ha)</th></tr></thead><tbody>${rows}</tbody></table></div></div>
         </div>
       </details>`;
     }).join("");
     return `<section class="block reveal" id="historial">
       <div class="sec-head"><div><div class="eyebrow">Historial</div><h2>Campañas anteriores</h2>
         <p>Qué anticipó el modelo a fin de noviembre y qué pasó finalmente. Las campañas anteriores se estimaron como si fuera ese momento, sin mirar datos posteriores.</p></div></div>
-      ${hist.length > 1 ? `<div class="card panel"><h3>Estimado en noviembre vs. resultado real</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p><div id="hChart" class="chart"></div></div>` : ""}
+      ${hist.length > 1 ? `<div class="card panel"><h3>Estimación de noviembre vs. resultado real</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p><div id="hChart" class="chart"></div></div>` : ""}
       <div class="acc">${items}</div>
     </section>`;
   }
@@ -752,7 +766,7 @@ function init(D) {
         <p>De dónde sale la información, qué tan confiable es y cuál es su alcance, explicado sin tecnicismos.</p></div></div>
       <div class="guide">
         <div class="card gcard"><div class="gi">${I.target}</div><h3>Qué es y para qué sirve</h3>
-          <p>Una <b>señal temprana</b> del rinde de soja en General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto. Pensada para acopios, cooperativas y corredores que necesitan anticipar volúmenes, y para productores e ingenieros agrónomos que quieren sumar una referencia objetiva a sus análisis y decisiones de campaña. Se actualiza cada mes.</p></div>
+          <p>Una <b>referencia temprana</b> del rinde de soja en General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto. Pensada para acopios, cooperativas y corredores que necesitan anticipar volúmenes, y para productores e ingenieros agrónomos que quieren sumar una referencia objetiva a sus análisis y decisiones de campaña. Se actualiza cada mes.</p></div>
         <div class="card gcard"><div class="gi">${I.sat}</div><h3>De dónde vienen los datos</h3>
           <p>Todo es <b>público y gratuito</b>:</p>
           <ul><li><b>Satélite MODIS (NASA)</b>: cuán verde y vigoroso está el cultivo (índice de vegetación).</li>
@@ -768,13 +782,13 @@ function init(D) {
           <div class="gi">${I.bulb}</div>
           <div><div class="eyebrow" style="margin-bottom:4px">Hallazgo clave</div><h3>Noviembre da la mejor estimación</h3>
             <p>Lo intuitivo sería esperar más datos para estimar mejor. Pero la estimación con datos a <b>fin de noviembre</b>, 5 meses antes de la cosecha, es en promedio la más precisa. Agregar diciembre, enero o febrero no mejora la estimación: la empeora levemente.</p></div>
-          <p style="font-size:13.5px">¿Por qué? Con pocas campañas para aprender, cada mes extra agrega muchas variables nuevas y el modelo empieza a "memorizar" casos puntuales en vez de patrones generales. Las condiciones de implantación y arranque del cultivo ya contienen buena parte de la señal.</p>
+          <p style="font-size:13.5px">¿Por qué? Con pocas campañas para aprender, cada mes extra agrega muchas variables nuevas y el modelo empieza a "memorizar" casos puntuales en vez de patrones generales. Las condiciones de implantación y arranque del cultivo ya contienen buena parte de la información.</p>
         </div>
       </div>
       <h3 class="glabel">Resultados de las pruebas con campañas anteriores</h3>
       <div class="metrics">
         <div class="metric"><div class="mk">Error típico ${info("Diferencia promedio, en qq/ha, entre lo estimado y el rinde real (error absoluto medio o MAE). Cuanto más bajo, mejor.")}</div><div class="mv num">${esc(V.mae_mejor)}</div><div class="ms">con la estimación de noviembre</div></div>
-        <div class="metric"><div class="mk">Diferencias de rinde explicadas ${info("R²: qué parte de las diferencias de rinde entre años y partidos logra explicar el modelo. 1 sería perfecto, 0 equivale a no explicar nada.")}</div><div class="mv num">${nf1.format(V.r2_mejor * 100).replace(",0", "")}%</div><div class="ms">R² = ${String(V.r2_mejor).replace(".", ",")}</div></div>
+        <div class="metric"><div class="mk">Diferencias de rinde explicadas ${info("R²: qué parte de las diferencias de rinde entre años y partidos logra explicar el modelo. 1 sería perfecto, 0 equivale a no explicar nada.")}</div><div class="mv num">${nf1.format(V.r2_mejor * 100).replace(",0", "")}\u00a0%</div><div class="ms">R² = ${String(V.r2_mejor).replace(".", ",")}</div></div>
         <div class="metric"><div class="mk">Acierta la tendencia ${info("Porcentaje de veces que anticipó correctamente si el rinde iba a estar por encima o por debajo del promedio. La probabilidad de lograrlo por azar es menor al 1%.")}</div><div class="mv">${esc(V.acierto_direccional)}</div><div class="ms">no es casualidad (p = ${String(V.p_valor).replace(".", ",")})</div></div>
         <div class="metric"><div class="mk">Menos error que el promedio histórico ${info("Cuánto menos se equivoca el modelo comparado con pronosticar siempre el promedio histórico.")}</div><div class="mv">${esc(V.mejora_vs_baseline)}</div><div class="ms">en las campañas de prueba</div></div>
         <div class="metric"><div class="mk">Estimaciones evaluadas ${info("Campañas de prueba × partidos, todas generadas sin usar datos del futuro.")}</div><div class="mv">${V.predicciones_total}</div><div class="ms">${V.campanas_test} campañas × 5 partidos</div></div>
@@ -834,7 +848,7 @@ function init(D) {
     }
     el.innerHTML = `<div class="chart" id="pEvoChart"></div><div class="legend" id="pEvoLeg"></div>`;
     const series = P.map((p, i) => ({ name: p, color: SERIES[i], values: VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.partidos[p] : null; }), hidden: state.hidden.has(p) }));
-    lineChart($("#pEvoChart"), { labels: VENTANAS.map(w => w.short), series, height: 240 });
+    lineChart($("#pEvoChart"), { labels: VENTANAS.map(w => w.short), series, height: 240, aria: `Evolución mensual de la estimación de cada partido, campaña ${c.id}, en quintales por hectárea` });
     $("#pEvoLeg").innerHTML = series.map(s => `<button type="button" class="${s.hidden ? "off" : ""}" data-p="${esc(s.name)}" aria-pressed="${!s.hidden}"><span class="sw" style="background:${s.color}"></span>${esc(s.name)}</button>`).join("");
   }
 
@@ -848,20 +862,20 @@ function init(D) {
     $("#zEvo").innerHTML = `<div class="chart" id="zChart"></div><div class="legend">
       <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimación</span>
       ${band.some(Boolean) ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw bandsw"></span>Rango esperable ${info(RANGE_TIP, "¿Por qué un rango?")}</span>` : ""}
-      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico (${f1(ZH)})</span>
-      ${r != null ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--text)"></span>Resultado real (${f1(r)})</span>` : ""}</div>`;
-    lineChart($("#zChart"), { labels: VENTANAS.map(w => w.label.replace("Fin de ", "")), shortLabels: VENTANAS.map(w => w.short), series, band, refs: [{ v: ZH, label: "Promedio", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 280, pendingLabel: true, directLabels: true });
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico (${f1(ZH)} qq/ha)</span>
+      ${r != null ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--text)"></span>Resultado real (${f1(r)} qq/ha)</span>` : ""}</div>`;
+    lineChart($("#zChart"), { labels: VENTANAS.map(w => w.label.replace("Fin de ", "")), shortLabels: VENTANAS.map(w => w.short), series, band, refs: [{ v: ZH, label: "Promedio", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 280, pendingLabel: true, directLabels: true, aria: `Evolución mensual de la estimación de la zona, campaña ${c.id}, en quintales por hectárea` });
     // Tabla
-    $("#zTable").innerHTML = `<table class="dtable"><thead><tr><th>Datos hasta</th><th>Estimación</th><th>Puede variar entre</th><th>vs. prom.</th></tr></thead><tbody>${
-      c.cortes.map(k => `<tr><td>${esc(k.label)}</td><td class="num">${f1(k.zona.estimacion)}</td><td class="num">${k.zona.intervalo ? f1(k.zona.intervalo[0]) + " y " + f1(k.zona.intervalo[1]) : "–"}</td><td class="num">${fpct(pct(k.zona.estimacion, ZH))}</td></tr>`).join("")}</tbody></table>`;
+    $("#zTable").innerHTML = `<table class="dtable"><thead><tr><th>Datos hasta</th><th>Estimación (qq/ha)</th><th>Rango esperable (qq/ha)</th><th>vs. promedio histórico</th></tr></thead><tbody>${
+      c.cortes.map(k => `<tr><td>${esc(k.label)}</td><td class="num">${f1(k.zona.estimacion)}</td><td class="num">${k.zona.intervalo ? f1(k.zona.intervalo[0]) + " a " + f1(k.zona.intervalo[1]) : "–"}</td><td class="num">${fpct(pct(k.zona.estimacion, ZH))}</td></tr>`).join("")}</tbody></table>`;
     // Callout
     const first = c.cortes[0], last = lastCut(c), delta = last.zona.estimacion - first.zona.estimacion;
     const n = c.cortes.length;
     $("#evoCallout").innerHTML = `
-      <div class="row"><div class="k">Primera señal (${esc(first.label.toLowerCase())})</div><div class="v num">${f1(first.zona.estimacion)} qq/ha</div></div>
-      ${n > 1 ? `<div class="row"><div class="k">Última actualización (${esc(last.label.toLowerCase())})</div><div class="v num">${f1(last.zona.estimacion)} qq/ha <span class="badge ${Math.abs(delta) < .3 ? "flat" : delta > 0 ? "up" : "down"}" style="font-size:12px;vertical-align:middle">${delta > 0 ? "+" : delta < 0 ? "−" : "±"}${f1(Math.abs(delta))} desde nov.</span></div></div>` : ""}
-      ${r != null ? `<div class="row"><div class="k">Resultado real</div><div class="v num">${f1(r)} qq/ha</div><p>La señal de noviembre se desvió <b class="num">${f1(Math.abs(first.zona.estimacion - r))} qq/ha</b> del resultado final.</p></div>` : ""}
-      <div class="row"><p>${n < 5 ? `Quedan <b>${5 - n}</b> ${5 - n === 1 ? "actualización" : "actualizaciones"} por delante. ` : ""}Cada mes el modelo se vuelve a correr con los nuevos datos de clima y del cultivo, así que <b>es normal que la estimación se mueva</b>. Noviembre es, en promedio, la señal más precisa, pero las actualizaciones siguientes muestran cómo responde la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>`;
+      <div class="row"><div class="k">Primera estimación (${esc(first.label.toLowerCase())})</div><div class="v num">${f1(first.zona.estimacion)} qq/ha</div></div>
+      ${n > 1 ? `<div class="row"><div class="k">Última actualización (${esc(last.label.toLowerCase())})</div><div class="v num">${f1(last.zona.estimacion)} qq/ha <span class="badge ${Math.abs(delta) < .3 ? "flat" : delta > 0 ? "up" : "down"}" style="font-size:12px;vertical-align:middle">${delta > 0 ? "+" : delta < 0 ? "−" : "±"}${f1(Math.abs(delta))} qq/ha desde noviembre</span></div></div>` : ""}
+      ${r != null ? `<div class="row"><div class="k">Resultado real</div><div class="v num">${f1(r)} qq/ha</div><p>La estimación de noviembre se desvió <b class="num">${f1(Math.abs(first.zona.estimacion - r))} qq/ha</b> del resultado final.</p></div>` : ""}
+      <div class="row"><p>${n < 5 ? `Quedan <b>${5 - n}</b> ${5 - n === 1 ? "actualización" : "actualizaciones"} por delante. ` : ""}Cada mes el modelo se vuelve a correr con los nuevos datos de clima y del cultivo, así que <b>es normal que la estimación se mueva</b>. Noviembre es, en promedio, la estimación más precisa, pero las actualizaciones siguientes muestran cómo responde la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>`;
   }
 
   function renderHistChart() {
@@ -870,21 +884,24 @@ function init(D) {
     lineChart(el, {
       labels: hc.map(c => c.id), shortLabels: hc.map(c => c.id.slice(2)),
       series: [
-        { name: "Estimado en nov.", short: "Est.", color: "var(--primary)", values: hc.map(c => bestCut(c).zona.estimacion), width: 2.5 },
-        { name: "Real", short: "Real", color: "var(--accent)", values: hc.map(realZ), width: 2.5 }
+        { name: "Estimación de noviembre", short: "Estimación", color: "var(--primary)", values: hc.map(c => bestCut(c).zona.estimacion), width: 2.5 },
+        { name: "Resultado real", short: "Real", dash: "7 4", color: "var(--accent)", values: hc.map(realZ), width: 2.5 }
       ],
-      refs: [{ v: ZH, label: "Promedio", cls: "ref" }], refLabels: false, height: 300, directLabels: true
+      refs: [{ v: ZH, label: "Promedio", cls: "ref" }], refLabels: false, height: 300, directLabels: true, aria: "Estimación de noviembre y resultado real de la zona en cada campaña, en quintales por hectárea"
     });
     el.insertAdjacentHTML("beforeend", `<div class="legend">
-      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimado a fin de noviembre</span>
-      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--accent)"></span>Resultado real (MAGyP)</span>
-      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico</span></div>`);
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimación de fin de noviembre</span>
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dashed" style="color:var(--accent)"></span>Resultado real (MAGyP)</span>
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico (${f1(ZH)} qq/ha)</span></div>`);
   }
 
   function renderSpark(el, c) {
     const vals = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.zona.estimacion : null; });
     const r = realZ(c);
-    lineChart(el, { labels: VENTANAS.map(w => w.short), series: [{ name: "Estimación", color: "var(--primary)", values: vals }], refs: [{ v: ZH, label: "Prom.", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 150, compact: true });
+    lineChart(el, { labels: VENTANAS.map(w => w.short), series: [{ name: "Estimación", color: "var(--primary)", values: vals }], refs: [{ v: ZH, label: "Prom.", cls: "ref" }].concat(r != null ? [{ v: r, label: "Real", cls: "real" }] : []), height: 150, compact: true, aria: `Estimación mensual de la zona, campaña ${c.id}, en quintales por hectárea` });
+    el.insertAdjacentHTML("beforeend", `<div class="legend" style="font-size:12px"><span style="display:inline-flex;gap:6px;align-items:center"><span class="sw" style="background:var(--primary)"></span>Estimación</span>
+      <span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dash"></span>Promedio histórico (${f1(ZH)} qq/ha)</span>
+      ${r != null ? `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw dotted"></span>Resultado real (${f1(r)} qq/ha)</span>` : ""}</div>`);
   }
 
   function renderAll() {
@@ -959,7 +976,7 @@ function lineChart(el, o) {
   const W = Math.max(260, el.clientWidth || 300), H = o.height || 240;
   const narrow = W < 480;
   const labels = narrow && o.shortLabels ? o.shortLabels : o.labels;
-  const m = { t: 14, r: o.directLabels && !narrow ? 88 : o.compact ? 34 : 22, b: o.compact ? 22 : 28, l: o.compact ? 28 : 34 };
+  const m = { t: 24, r: o.directLabels && !narrow ? 184 : o.compact ? 12 : 22, b: o.compact ? 22 : 28, l: o.compact ? 28 : 34 };
   const iw = W - m.l - m.r, ih = H - m.t - m.b, n = labels.length;
   const vis = o.series.filter(s => !s.hidden);
   let all = vis.flatMap(s => s.values).filter(v => v != null);
@@ -973,7 +990,8 @@ function lineChart(el, o) {
   const x = i => m.l + xp + (n === 1 ? (iw - 2 * xp) / 2 : i * (iw - 2 * xp) / (n - 1));
   const y = v => m.t + ih - (v - lo) / (hi - lo) * ih;
   const nf = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Gráfico de líneas">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${o.aria || "Gráfico de líneas, valores en quintales por hectárea"}">`;
+  s += `<text x="0" y="11" style="font-weight:600">qq/ha</text>`; // unidad del eje vertical
   // grilla
   for (let t = lo; t <= hi + 1e-9; t += step) {
     s += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l - 6}" y="${y(t) + 3.5}" text-anchor="end">${t}</text>`;
@@ -995,7 +1013,7 @@ function lineChart(el, o) {
   (o.refs || []).forEach(r => {
     const col = r.cls === "real" ? "var(--text)" : "var(--ref)";
     s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(r.v)}" y2="${y(r.v)}" stroke="${col}" stroke-width="1.5" stroke-dasharray="${r.cls === "real" ? "2 3" : "5 4"}" opacity=".85"/>`;
-    if (o.refLabels !== false && (!narrow || o.compact)) endLabels.push({ y: y(r.v), text: r.label, col });
+    if (o.refLabels !== false && o.directLabels && !narrow) endLabels.push({ y: y(r.v), text: (r.cls === "real" ? "Resultado real: " : "Promedio histórico: ") + nf.format(r.v) + " qq/ha", col });
   });
   // pendientes
   if (o.pendingLabel) {
@@ -1007,12 +1025,12 @@ function lineChart(el, o) {
     const segs = []; let cur = [];
     pts.forEach(p => { if (p) cur.push(p); else if (cur.length) { segs.push(cur); cur = []; } });
     if (cur.length) segs.push(cur);
-    segs.forEach(sg => { if (sg.length > 1) s += `<polyline points="${sg.map(p => p.join(",")).join(" ")}" fill="none" stroke="${se.color}" stroke-width="${se.width || 2}" stroke-linejoin="round" stroke-linecap="round"/>`; });
+    segs.forEach(sg => { if (sg.length > 1) s += `<polyline points="${sg.map(p => p.join(",")).join(" ")}" fill="none" stroke="${se.color}" stroke-width="${se.width || 2}" stroke-linejoin="round" stroke-linecap="${se.dash ? "butt" : "round"}"${se.dash ? ` stroke-dasharray="${se.dash}"` : ""}/>`; });
     pts.forEach(p => { if (p) s += `<circle cx="${p[0]}" cy="${p[1]}" r="${o.compact ? 3 : 4}" fill="${se.color}" stroke="var(--surface)" stroke-width="2"/>`; });
     if (o.directLabels && !narrow && vis.length <= 4) {
       const li = se.values.map((v, i) => v != null ? i : -1).filter(i => i >= 0).pop();
-      if (li === n - 1) endLabels.push({ y: y(se.values[li]), text: (se.short ? se.short + " " : "") + nf.format(se.values[li]), col: "var(--text)" });
-      else if (li != null) s += `<text x="${x(li) + 9}" y="${y(se.values[li]) + 4}" style="fill:var(--text);font-weight:600">${nf.format(se.values[li])}</text>`;
+      if (li === n - 1) endLabels.push({ y: y(se.values[li]), text: (se.short ? se.short + ": " : "") + nf.format(se.values[li]) + " qq/ha", col: "var(--text)" });
+      else if (li != null) s += `<text x="${x(li) + 9}" y="${y(se.values[li]) + 4}" style="fill:var(--text);font-weight:600">${nf.format(se.values[li])} qq/ha</text>`;
     }
   });
   // Etiquetas al final del eje: se separan verticalmente para que nunca se pisen
@@ -1031,10 +1049,10 @@ function lineChart(el, o) {
     xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("opacity", ".7");
     let h = `<div class="tt">${o.labels[i]}</div>`;
     const rows = vis.map(se => ({ se, v: se.values[i] })).sort((a, b) => (b.v ?? -1) - (a.v ?? -1));
-    rows.forEach(({ se, v }) => { h += `<div class="tr"><span><i style="background:${se.color}"></i>${se.name}</span><b>${v == null ? "pendiente" : nf.format(v)}</b></div>`; });
-    if (o.band && o.band[i]) h += `<div class="tr"><span>Puede variar entre</span><b>${nf.format(o.band[i][0])} y ${nf.format(o.band[i][1])}</b></div>`;
+    rows.forEach(({ se, v }) => { h += `<div class="tr"><span><i style="background:${se.color}"></i>${se.name}</span><b>${v == null ? "pendiente" : nf.format(v) + " qq/ha"}</b></div>`; });
+    if (o.band && o.band[i]) h += `<div class="tr"><span>Rango esperable</span><b>${nf.format(o.band[i][0])} a ${nf.format(o.band[i][1])} qq/ha</b></div>`;
     if (o.refs && o.refs.length) h += `<div class="sep"></div>`;
-    (o.refs || []).forEach(rf => { h += `<div class="tr"><span>${rf.cls === "real" ? "Resultado real" : "Promedio histórico"}</span><b>${nf.format(rf.v)}</b></div>`; });
+    (o.refs || []).forEach(rf => { h += `<div class="tr"><span>${rf.cls === "real" ? "Resultado real" : "Promedio histórico"}</span><b>${nf.format(rf.v)} qq/ha</b></div>`; });
     tipEl.innerHTML = h; tipEl.className = "show";
     const tr = tipEl.getBoundingClientRect();
     let left = e.clientX + 14, top = e.clientY - tr.height - 12;

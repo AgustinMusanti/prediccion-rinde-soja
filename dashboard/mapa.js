@@ -70,7 +70,7 @@ const signo = d => d > C.FLAT ? "▲ " : d < -C.FLAT ? "▼ " : "";
 function buildMapShell() {
   const chips = [-12, -5, 0, 5, 12].map(d => `<i style="background:${fillFor(d)}"></i>`).join("");
   E.map.innerHTML = `
-    <div class="mz-head"><h3>¿Cómo viene cada partido?</h3>
+    <div class="mz-head"><h2>¿Cómo viene cada partido?</h2>
       <p class="desc">${K ? `Cada partido frente a su promedio histórico · ${C.esc(campTxt())}` : "El mapa se colorea con la primera estimación de la campaña."}</p></div>
     <div class="mz-stage" id="mzStage"><div class="skeleton"></div></div>
     <div class="mz-foot">
@@ -203,9 +203,9 @@ function drawMap() {
 function tipPartido(r) {
   return `<div class="tt">${C.esc(r.p)}</div>
     <div class="tr"><span>Rinde promedio estimado</span><b>${C.f1(r.e)} qq/ha</b></div>
-    ${r.r ? `<div class="tr"><span>Puede variar entre</span><b>${C.f1(r.r[0])} y ${C.f1(r.r[1])}</b></div>` : ""}
-    <div class="tr"><span>Promedio histórico</span><b>${C.f1(r.h)}</b></div>
-    <div class="tr"><span>Diferencia</span><b>${C.fpct(r.d)}</b></div>`;
+    ${r.r ? `<div class="tr"><span>Rango esperable</span><b>${C.f1(r.r[0])} a ${C.f1(r.r[1])} qq/ha</b></div>` : ""}
+    <div class="tr"><span>Promedio histórico</span><b>${C.f1(r.h)} qq/ha</b></div>
+    <div class="tr"><span>vs. promedio histórico</span><b>${C.fpct(r.d)}</b></div>`;
 }
 function hl(p, on) {
   if (shapes[p]) shapes[p].classList.toggle("hl", on);
@@ -310,7 +310,7 @@ function rangeHTML(r) {
   const vals = [r.e, r.h].concat(r.r || []);
   const lo = Math.floor(Math.min(...vals) - 2), hi = Math.ceil(Math.max(...vals) + 2), pos = v => (v - lo) / (hi - lo) * 100;
   return `<div class="vrange">
-    <div class="vr-head">${r.r ? `Puede variar entre <b class="num">${C.f1(r.r[0])}</b> y <b class="num">${C.f1(r.r[1])} qq/ha</b> ${C.info(C.RANGE_TIP, "¿Por qué un rango?")}<span class="vr-avg"><i></i>Promedio histórico <b class="num">${C.f1(r.h)}</b></span>` : `Promedio histórico: <b class="num">${C.f1(r.h)} qq/ha</b>`}</div>
+    <div class="vr-head">${r.r ? `Rango esperable: <b class="num">${C.f1(r.r[0])} a ${C.f1(r.r[1])} qq/ha</b> ${C.info(C.RANGE_TIP, "¿Por qué un rango?")}<span class="vr-avg"><i></i>Promedio histórico <b class="num">${C.f1(r.h)} qq/ha</b></span>` : `Promedio histórico: <b class="num">${C.f1(r.h)} qq/ha</b>`}</div>
     <div class="vr-bar" aria-hidden="true"><div class="trk"></div>${r.r ? `<div class="bnd" style="left:${pos(r.r[0])}%;width:${pos(r.r[1]) - pos(r.r[0])}%"></div>` : ""}
       <div class="avg" style="left:${pos(r.h)}%" data-tip="Promedio histórico de ${C.esc(r.p)}: ${C.f1(r.h)} qq/ha"></div><div class="est" style="left:${pos(r.e)}%"></div></div>
   </div>`;
@@ -350,15 +350,15 @@ function tabCamp(box, r) {
     <div class="chart" id="mzC"></div>
     <div class="legend"><span><span class="sw" style="background:var(--primary)"></span>Estimación</span>
       ${r.r ? '<span><span class="sw bandsw"></span>Rango esperable</span>' : ""}
-      <span><span class="sw dash"></span>Promedio del partido (${C.f1(r.h)})</span>
-      ${real != null ? `<span><span class="sw" style="background:var(--text)"></span>Resultado real (${C.f1(real)})</span>` : ""}</div>`;
+      <span><span class="sw dash"></span>Promedio histórico del partido (${C.f1(r.h)} qq/ha)</span>
+      ${real != null ? `<span><span class="sw" style="background:var(--text)"></span>Resultado real (${C.f1(real)} qq/ha)</span>` : ""}</div>`;
   const at = f => C.VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? f(k) : null; });
   C.lineChart($("#mzC"), {
     labels: C.VENTANAS.map(w => w.label.replace("Fin de ", "")), shortLabels: C.VENTANAS.map(w => w.short),
     series: [{ name: "Estimación", color: "var(--primary)", values: at(k => k.partidos[r.p]), width: 2.5 }],
     band: at(k => k.partidos_rango ? k.partidos_rango[r.p] : null),
     refs: [{ v: r.h, label: "Prom.", cls: "ref" }].concat(real != null ? [{ v: real, label: "Real", cls: "real" }] : []),
-    height: 170, compact: true, pendingLabel: true
+    height: 170, compact: true, pendingLabel: true, aria: `Evolución mensual de la estimación de ${r.p}, en quintales por hectárea`
   });
 }
 
@@ -376,12 +376,12 @@ function tabHist(box, r, det) {
   box.innerHTML = `<p class="desc">Rinde promedio del partido en cada campaña desde ${full[0]} · qq/ha</p>
     <div class="chart mz-bars" id="mzC"></div>
     <div class="mz-bw num"><span><i style="background:var(--up)"></i>Mejor: <b>${full[iB]}</b> · ${C.f1(vals[iB])} qq/ha</span><span><i style="background:var(--down)"></i>Peor: <b>${full[iW]}</b> · ${C.f1(vals[iW])} qq/ha</span></div>
-    <div class="legend"><span><span class="sw dash"></span>Promedio histórico (${C.f1(r.h)})</span>${conEst ? `<span><span class="sw bandsw" style="box-shadow:inset 0 0 0 1px var(--primary)"></span>Estimación (sin resultado oficial todavía)</span>` : ""}</div>`;
+    <div class="legend"><span><span class="sw dash"></span>Promedio histórico (${C.f1(r.h)} qq/ha)</span>${conEst ? `<span><span class="sw bandsw" style="box-shadow:inset 0 0 0 1px var(--primary)"></span>Estimación (sin resultado oficial todavía)</span>` : ""}</div>`;
   barChart($("#mzC"), {
-    labels, values: v, ref: r.h, height: 150, ghost: est,
+    labels, values: v, ref: r.h, height: 158, ghost: est, unit: "qq/ha", aria: `Rinde promedio de ${r.p} por campaña, en quintales por hectárea`,
     fill: i => i === iB ? "var(--up)" : i === iW ? "var(--down)" : "color-mix(in srgb, var(--primary) 36%, var(--surface))",
     marks: { [iB]: C.f1(vals[iB]), [iW]: C.f1(vals[iW]) },
-    tip: i => `<div class="tt">Campaña ${full[i]}</div><div class="tr"><span>${est.includes(i) ? "Estimación" : "Rinde oficial"}</span><b>${C.f1(v[i])} qq/ha</b></div><div class="tr"><span>vs. promedio histórico</span><b>${C.fpct(C.pct(v[i], r.h))}</b></div>${i === iB ? '<div class="tx">Mejor campaña de la serie</div>' : i === iW ? '<div class="tx">Peor campaña de la serie</div>' : ""}`
+    tip: i => `<div class="tt">Campaña ${full[i]}</div><div class="tr"><span>${est.includes(i) ? "Estimación" : "Resultado real"}</span><b>${C.f1(v[i])} qq/ha</b></div><div class="tr"><span>vs. promedio histórico</span><b>${C.fpct(C.pct(v[i], r.h))}</b></div>${i === iB ? '<div class="tx">Mejor campaña de la serie</div>' : i === iW ? '<div class="tx">Peor campaña de la serie</div>' : ""}`
   });
 }
 
@@ -399,7 +399,7 @@ function tabSup(box, r, det) {
     <p class="desc" style="margin-top:12px">Superficie sembrada por campaña · miles de hectáreas (MAGyP)</p>
     <div class="chart mz-bars" id="mzC"></div>`;
   barChart($("#mzC"), {
-    labels: years.map(id2), values: years.map(y => det.sup_sembrada_ha[y] / 1000), height: 120,
+    labels: years.map(id2), values: years.map(y => det.sup_sembrada_ha[y] / 1000), height: 128, unit: "miles de ha", aria: `Superficie sembrada con soja en ${r.p} por campaña, en miles de hectáreas`,
     fill: i => ult.includes(years[i]) ? "color-mix(in srgb, var(--primary) 70%, var(--surface))" : "color-mix(in srgb, var(--primary) 36%, var(--surface))",
     tip: i => `<div class="tt">Campaña ${idFull(years[i])}</div><div class="tr"><span>Superficie sembrada</span><b>${nf0.format(det.sup_sembrada_ha[years[i]])} ha</b></div>${(det.sup_cosechada_ha || {})[years[i]] != null ? `<div class="tr"><span>Superficie cosechada</span><b>${nf0.format(det.sup_cosechada_ha[years[i]])} ha</b></div>` : ""}`
   });
@@ -414,24 +414,25 @@ function tabPrec(box, r, det) {
       <div class="t"><span>Error típico en ${C.esc(r.p)} ${C.info("Diferencia promedio entre la estimación de fin de noviembre y el rinde oficial del partido, en las campañas de prueba.", "Error típico")}</span><strong class="num">${mae != null ? "±" + C.f1(mae) : "–"}<small>qq/ha</small></strong></div>
       ${v ? `<div class="t"><span>Acertó la tendencia ${C.info("Cuántas veces anticipó bien si el rinde iba a quedar por encima o por debajo de lo habitual en el partido.", "Acierto de tendencia")}</span><strong class="num">${v.aciertos_tendencia} de ${v.campanas}<small>campañas</small></strong></div>` : ""}
     </div>
-    ${hc.length > 1 ? `<p class="desc" style="margin-top:10px">Estimado a fin de noviembre vs. rinde oficial · qq/ha</p>
+    ${hc.length > 1 ? `<p class="desc" style="margin-top:10px">Estimación de noviembre vs. resultado real · qq/ha</p>
     <div class="chart" id="mzC"></div>
-    <div class="legend"><span><span class="sw" style="background:var(--primary)"></span>Estimado</span><span><span class="sw" style="background:var(--accent)"></span>Rinde oficial (MAGyP)</span></div>` : ""}`;
+    <div class="legend"><span><span class="sw" style="background:var(--primary)"></span>Estimación de noviembre</span><span><span class="sw dashed" style="color:var(--accent)"></span>Resultado real (MAGyP)</span></div>` : ""}`;
   if (hc.length > 1) C.lineChart($("#mzC"), {
     labels: hc.map(c => c.id), shortLabels: hc.map(c => c.id.slice(2)),
-    series: [{ name: "Estimado en nov.", color: "var(--primary)", values: est, width: 2.5 }, { name: "Real", color: "var(--accent)", values: real, width: 2.5 }],
-    height: 135, compact: true
+    series: [{ name: "Estimación de noviembre", color: "var(--primary)", values: est, width: 2.5 }, { name: "Resultado real", dash: "7 4", color: "var(--accent)", values: real, width: 2.5 }],
+    height: 145, compact: true, aria: `Estimación de noviembre y resultado real de ${r.p} en cada campaña, en quintales por hectárea`
   });
 }
 
 /* ---------------- Gráfico de barras (SVG puro) ---------------- */
 function barChart(el, o) {
   const W = Math.max(240, el.clientWidth || 300), H = o.height || 180;
-  const m = { t: 18, r: 4, b: 20, l: 28 }, iw = W - m.l - m.r, ih = H - m.t - m.b, n = o.values.length;
+  const m = { t: 26, r: 4, b: 20, l: 28 }, iw = W - m.l - m.r, ih = H - m.t - m.b, n = o.values.length;
   const max = Math.max(...o.values, o.ref || 0), raw = max / 3.5, pw = Math.pow(10, Math.floor(Math.log10(raw)));
   const step = [1, 2, 5, 10].map(k => k * pw).find(s => s >= raw), hi = Math.ceil(max * 1.04 / step) * step;
   const bw = iw / n, gap = Math.min(3, Math.max(1.5, bw * .22)), y = v => m.t + ih - v / hi * ih, x = i => m.l + i * bw;
-  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="Gráfico de barras por campaña">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${o.aria || "Gráfico de barras por campaña"}">`;
+  if (o.unit) s += `<text x="0" y="10" style="font-weight:600">${o.unit}</text>`; // unidad del eje vertical
   for (let t = 0; t <= hi + 1e-9; t += step) s += `<line class="gl" x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l - 5}" y="${y(t) + 3.5}" text-anchor="end">${nf0.format(t)}</text>`;
   o.values.forEach((v, i) => {
     const h = Math.max(1, y(0) - y(v)), ghost = (o.ghost || []).includes(i);

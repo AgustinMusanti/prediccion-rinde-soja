@@ -329,3 +329,60 @@ section.block{padding-top:40px}
 
 .mz-row{padding:5px 8px;row-gap:0}
 .mz-row .badge{padding:1px 8px}
+
+/* ============================================================
+   Auditoría final: desplegables, unidades, accesibilidad
+   ============================================================ */
+/* Títulos: un solo h1; estos h2 conservan el tamaño que tenían */
+.zh{font-size:15px;font-weight:600;color:var(--text-2);margin:0 0 2px;letter-spacing:0;line-height:1.3}
+.zh strong{color:var(--text)}
+.mz-head h2{font-size:16px;font-weight:600}
+
+/* Desplegables ("Ver tabla de datos", "Alcance del modelo"): se reconocen como botón */
+.table-toggle{margin-top:14px}
+.table-toggle summary{display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:8px 14px;border:1px solid color-mix(in srgb,var(--text) 22%,var(--border));border-radius:10px;background:var(--surface-2);color:var(--text);font-size:13px;font-weight:600;cursor:pointer;user-select:none;transition:background .2s,border-color .2s,transform .1s}
+.table-toggle summary svg{display:none}
+.table-toggle summary::after{content:"";flex:none;width:7px;height:7px;margin:-3px 2px 0 2px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .25s}
+.table-toggle[open] summary::after{transform:rotate(225deg);margin-top:3px}
+.table-toggle summary:hover{background:var(--primary-soft);border-color:var(--primary);color:var(--text)}
+.table-toggle summary:active{transform:scale(.98)}
+.table-toggle[open] summary{background:var(--primary-soft);border-color:color-mix(in srgb,var(--primary) 55%,var(--border))}
+.table-toggle summary:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.scope summary{font-size:13px}
+
+/* Leyendas: muestras que no dependen solo del color */
+.sw.dashed{width:20px;height:3px;background:repeating-linear-gradient(90deg,currentColor 0 6px,transparent 6px 9px)}
+.sw.dotted{width:18px;height:2px;background:repeating-linear-gradient(90deg,var(--text) 0 2px,transparent 2px 5px)}
+.lg-band{width:18px;height:9px;border-radius:5px;background:color-mix(in srgb,var(--primary) 30%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--primary) 45%,transparent)}
+.vr-leg{margin-top:4px;gap:4px 14px;font-size:11.5px}
+.vr-bar .est{background:var(--primary)}
+.dtable th{white-space:nowrap}
+
+/* Foco de teclado visible también sobre fondos de color */
+.mz-row:focus-visible,.mz-tabs button:focus-visible,.btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.btn.primary:focus-visible{outline-color:var(--text)}
+
+/* Pantallas táctiles: zonas de toque de al menos 44 px */
+.info{position:relative}
+@media (pointer:coarse){
+  nav.tabs a{min-height:44px;display:inline-flex;align-items:center}
+  .icon-btn{width:44px;height:44px}
+  .btn{min-height:44px}
+  .mz-tabs button,.seg button{min-height:44px}
+  select.sel{min-height:44px}
+  .mz-close,.mz-back{min-height:44px}
+  .table-toggle summary{min-height:44px}
+  .legend button{min-height:44px}
+  .lnk{display:inline-block;padding:12px 0}
+  .info::after{content:"";position:absolute;inset:-14px}
+  .unit{padding:8px 0}
+}
+
+/* Movimiento reducido: sin animaciones ni transiciones */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+}
+
+/* Pantallas angostas: el número de cada indicador no se parte en dos renglones */
+.mz-kpis .t strong{white-space:nowrap}
+@media (max-width:420px){.mz-kpis .t strong small{display:block;margin:0;white-space:normal}}
