@@ -328,8 +328,8 @@ details.camp[open] .chev{transform:rotate(180deg)}
 .gcard.feature{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr 1.1fr;gap:22px;align-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--surface) 70%)}
 .gcard.feature .gi{margin:0;background:var(--surface);width:52px;height:52px}
 @media (max-width:860px){.gcard.feature{grid-template-columns:1fr}}
-/* 5 tarjetas iguales: 5 en una fila; 3 + 2 en tablet; 2 + 2 + 1 en celular (sin huérfanas) */
-.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+/* 4 tarjetas iguales: 4 en una fila; 2 + 2 en tablet y celular */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
 .metric{padding:20px 16px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
 .metric .mv{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--primary-strong)}
 .metric .mv small{font-size:14px;font-weight:600;color:var(--text-2);letter-spacing:0;margin-left:4px}
@@ -338,8 +338,8 @@ details.camp[open] .chev{transform:rotate(180deg)}
 .metric .mk{padding:0 14px}
 .metric .mk .info{position:absolute;top:10px;right:10px}
 .metric .ms{font-size:12.5px;color:var(--muted);line-height:1.4}
-@media (max-width:1000px){.metrics{grid-template-columns:repeat(6,1fr)}.metric{grid-column:span 2}.metric:nth-child(n+4){grid-column:span 3}}
-@media (max-width:560px){.metrics{grid-template-columns:1fr 1fr;gap:10px}.metric,.metric:nth-child(n+4){grid-column:auto}.metric:last-child{grid-column:1/-1}.metric{padding:16px 12px}.metric .mv{font-size:26px}}
+@media (max-width:1000px){.metrics{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.metrics{gap:10px}.metric{padding:16px 12px}.metric .mv{font-size:26px}}
 .scope{margin-top:18px}
 .scope ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;max-width:720px}
 .scope li{margin:3px 0}
@@ -667,6 +667,7 @@ function init(D, C) {
   const V = Object.assign({}, D.validacion); // copia para mostrar: mismo formato en toda la página
   const maeNum = parseFloat(String(V.mae_mejor).replace(",", ".")) || 2.4;
   V.mae_mejor = f1(maeNum) + " qq/ha"; // rinde y errores: siempre 1 decimal
+  const ERR_PCT = Math.round(maeNum / ZH * 100); // error relativo al promedio de la zona (≈ 8 %)
   V.acierto_direccional = pc(V.acierto_direccional); V.mejora_vs_baseline = pc(V.mejora_vs_baseline);
   const RANGE_TIP = "La estimación es el valor central. Según cómo funcionó el modelo en campañas anteriores, el rinde final quedó dentro de este rango en 8 de cada 10 casos.";
   const NOV_EJ = (() => { // ejemplo real: la campaña publicada más reciente con datos de noviembre y enero
@@ -787,12 +788,9 @@ function init(D, C) {
             <p class="step-note">★ Noviembre fue, en las pruebas, el corte con menor error promedio. Las actualizaciones siguientes muestran cómo evoluciona la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>
           <div>
             <h3 style="margin-bottom:10px">Precisión en campañas anteriores</h3>
-            <div class="trust">
-              <div class="t"><span>Error promedio ${info(`En campañas anteriores, la estimación de noviembre se alejó en promedio ${V.mae_mejor} del rinde real, hacia arriba o hacia abajo.`, "Error promedio")}</span><strong class="num">${f1(maeNum)} qq/ha</strong></div>
-              <div class="t"><span>Acierta la dirección ${info(`En el ${V.acierto_direccional} de los casos anticipó bien si el rinde iba a quedar por encima o por debajo del promedio histórico del partido.`, "Acierta la dirección")}</span><strong>${esc(V.acierto_direccional)}</strong></div>
-              <div class="t"><span>Menos error que el promedio histórico ${info(`Tiene un ${V.mejora_vs_baseline} menos de error promedio que usar como estimación el promedio histórico de cada partido.`, "Comparación con el promedio histórico")}</span><strong>${esc(V.mejora_vs_baseline)}</strong></div>
-              <div class="t"><span>Campañas de prueba ${info(`Se probó en ${V.campanas_test} campañas × 5 partidos = ${V.predicciones_total} estimaciones, sin usar datos del futuro.`, "Campañas de prueba")}</span><strong>${V.campanas_test}</strong></div>
-            </div>
+            <p class="hero-sub" style="margin-top:0">En promedio, la estimación de noviembre se alejó <b class="num">${esc(V.mae_mejor)}</b> del rinde real — un error de <b class="num">~${ERR_PCT}\u00a0%</b> sobre el promedio de la zona.</p>
+            <p class="hero-sub" style="margin-top:8px">Tuvo <b class="num">${esc(V.mejora_vs_baseline)}</b> menos error que usar siempre el promedio histórico de cada partido.</p>
+            <a class="lnk" href="#guia" style="display:inline-block;margin-top:10px">Ver cómo se midió →</a>
           </div>
         </div>
       </div>
@@ -922,7 +920,7 @@ function init(D, C) {
     const lead = E.oni == null ? "" : Math.abs(E.oni) < 0.05
       ? `El Pacífico ecuatorial está en su temperatura normal (${esc(triTxt(E.trimestre, E.anio))}).`
       : `El Pacífico ecuatorial está <b>${f1(Math.abs(E.oni))} °C más ${E.oni > 0 ? "cálido" : "frío"}</b> que lo normal (${esc(triTxt(E.trimestre, E.anio))}).`;
-    const ONI_TIP = "Índice ONI (NOAA): diferencia entre la temperatura del mar en el Pacífico ecuatorial y su valor normal, promediada cada 3 meses. Por encima de +0,5 °C es El Niño; por debajo de −0,5 °C, La Niña.";
+    const ONI_TIP = "Se mide con el índice ONI (Oceanic Niño Index): la diferencia de temperatura en la superficie del Pacífico ecuatorial respecto de su promedio histórico. Por encima de +0,5 °C apunta a El Niño; por debajo de −0,5 °C, a La Niña.";
     const dev = enDes
       ? `<div class="enso-dev">Lleva <b>${E.trimestres_consecutivos} de los 5 trimestres seguidos</b> necesarios para confirmarse como evento ${esc(F.name)}.</div>` : "";
     const lg = (cls, txt) => `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw ${cls}"></span>${txt}</span>`;
@@ -939,8 +937,8 @@ function init(D, C) {
       </div>
       <p class="cl-note" id="clNote1"></p>
 
-      <div class="sec-head" style="margin-top:44px"><div><div class="eyebrow">Fenómeno ENSO</div><h2>El Niño y La Niña</h2>
-        <p>La temperatura del Pacífico ecuatorial influye en las lluvias de la región pampeana. Conocer la fase ENSO ayuda a anticipar el contexto de la campaña.</p></div></div>
+      <div class="sec-head" style="margin-top:44px"><div><div class="eyebrow">Fenómeno climático</div><h2>El Niño y La Niña</h2>
+        <p>El Niño y La Niña son fases de un ciclo natural del océano Pacífico que afecta el clima en gran parte del mundo. Cuando el Pacífico se calienta más de lo normal (El Niño), la región pampeana tiende a recibir más lluvias; cuando se enfría (La Niña), las lluvias tienden a ser menores y aumenta el riesgo de estrés hídrico para los cultivos — como ocurrió en la fuerte sequía de 2022/23. Conocer en qué fase estamos ayuda a anticipar el contexto climático de la campaña.</p></div></div>
       <div class="cl-two">
         <div class="card panel enso-now">
           <h3>Estado actual</h3>
@@ -952,7 +950,7 @@ function init(D, C) {
         </div>
         <div class="card panel" id="clEnso"></div>
       </div>
-      <p class="cl-note">Índice ONI de NOAA/CPC. Se clasifica como El Niño cuando la anomalía supera +0,5&nbsp;°C durante al menos 5 trimestres consecutivos.</p>
+      <p class="cl-note">Fuente: NOAA/CPC (índice ONI). La fase se confirma cuando la temperatura del Pacífico se mantiene por encima o por debajo de lo normal durante al menos 5 trimestres seguidos.</p>
 
       <div class="sec-head" style="margin-top:44px"><div><div class="eyebrow">Indicadores clave</div><h2>Condiciones del cultivo</h2>
         <p>Las condiciones de clima que el modelo tiene en cuenta para estimar el rinde, comparadas con sus valores normales.</p></div></div>
@@ -1016,7 +1014,7 @@ function init(D, C) {
       ? `La campaña <b>${esc(id)}</b> fue <b>${FS === ENSO_FASES.neutral ? "neutral" : esc(FS.name)}</b> (Pacífico ${oniTxt(ond.oni)} en oct-dic).`
       : `La fase de la campaña <b>${esc(id)}</b> se define en oct-dic. Hoy: <b>${esc(FA.name)}</b>${E.fase !== "neutral" && E.fase_confirmada === false ? " en desarrollo" : ""}.`;
     $("#clEnso").innerHTML = `<h3>Cómo fueron las campañas según la fase</h3>
-      <p class="desc">Rinde promedio de la zona y lluvia de octubre a marzo comparada con lo normal, campañas ${esc(E.periodo_rindes || "")}. La fase de cada campaña se define en octubre-diciembre, durante la siembra.</p>
+      <p class="desc">Rinde promedio de la zona en campañas pasadas (${esc(E.periodo_rindes || "")}), agrupadas según la fase climática que hubo durante la siembra (octubre-diciembre).</p>
       <p class="enso-sel">${faseCamp}</p>
       <div class="enso-rows">${ensoRows}</div>
       <p class="desc" style="margin-top:12px">Son promedios de campañas pasadas: muestran una tendencia, no una estimación para esta campaña.</p>`;
@@ -1121,15 +1119,12 @@ function init(D, C) {
       </div>
       <h3 class="glabel">Resultados de las pruebas con campañas anteriores</h3>
       <div class="metrics">
-        ${metric(f1(maeNum), "qq/ha", "Error promedio", "Error promedio",
-          `Error absoluto medio: el promedio de la diferencia, sin importar el signo, entre la estimación de fin de noviembre y el rinde oficial, en las ${nTot} estimaciones de prueba. Cuanto más bajo, mejor.`,
-          "entre la estimación de noviembre y el rinde real")}
-        ${metric(esc(V.mejora_vs_baseline), "", "Menos error que el promedio histórico", "Comparación con el promedio histórico",
+        ${metric(`~${ERR_PCT}`, "%", "Cercanía al rinde real", "Cercanía al rinde real",
+          `Error relativo: en las ${nTot} estimaciones de prueba con el corte de noviembre, la diferencia promedio entre la estimación y el rinde oficial fue de ${V.mae_mejor} sobre un promedio de la zona de ${f1(ZH)} qq/ha. Además, en ${aciertos} de ${nTot} casos anticipó correctamente si el rinde iba a quedar por encima o por debajo del promedio histórico del partido (probabilidad de lograr eso por azar: ${pTxt}, prueba binomial p = ${String(V.p_valor).replace(".", ",")}).`,
+          `en promedio se aleja ${esc(V.mae_mejor)} del rinde real`)}
+        ${metric(nf1.format(parseFloat(D.validacion.mejora_vs_baseline)).replace(",0", ""), "%", "Menos error que el promedio histórico", "Comparación con el promedio histórico",
           "Se comparó con una alternativa simple: usar como estimación el promedio histórico de cada partido, calculado solo con las campañas anteriores. El modelo tuvo ese porcentaje menos de error promedio.",
           "que usar siempre el promedio de cada partido")}
-        ${metric(esc(V.acierto_direccional), "", "Acierta la dirección", "Acierta la dirección",
-          `En ${aciertos} de ${nTot} casos anticipó bien si el rinde iba a quedar por encima o por debajo del promedio histórico del partido. Si se eligiera al azar, se esperaría acertar alrededor de la mitad; la probabilidad de acertar ${aciertos} o más solo por azar es ${pTxt} (prueba binomial, p = ${String(V.p_valor).replace(".", ",")}).`,
-          `${aciertos} de ${nTot} casos: si el rinde iba a quedar arriba o abajo de su promedio`)}
         ${metric(nf1.format(V.r2_mejor * 100).replace(",0", ""), "%", "Variación de rinde captada", "Variación de rinde captada",
           `Mide qué parte de las subidas y bajadas del rinde entre campañas y partidos reproduce la estimación. 100 % sería acertar exactamente cada rinde; 0 % equivaldría a estimar siempre el mismo valor, el promedio de los rindes de prueba (coeficiente de determinación, R² = ${String(V.r2_mejor).replace(".", ",")}).`,
           "de las diferencias de rinde entre campañas y partidos")}
