@@ -219,9 +219,17 @@ def descargar_ndvi(campana):
 # ---------------------------------------------------------------------------
 # 3. Construcción de features
 # ---------------------------------------------------------------------------
+def presion_vapor(t):
+    """Presión de vapor de saturación (kPa), FAO-56 ec. 11."""
+    return 0.6108 * np.exp(17.27 * t / (t + 237.3))
+
+
 def construir_features(campana, df_clima, df_ndvi):
     """Construye features para la campaña a predecir."""
     df_clima = df_clima.copy()
+    # v2: VPD diario (mismo cálculo que el notebook 03)
+    df_clima["vpd"] = (presion_vapor(df_clima["T2M_MAX"]) + presion_vapor(df_clima["T2M_MIN"])) / 2 \
+        - presion_vapor(df_clima["T2MDEW"])
     df_clima["mes_camp"] = df_clima["fecha"].apply(
         lambda f: mes_campana(f, campana)
     )
@@ -232,6 +240,16 @@ def construir_features(campana, df_clima, df_ndvi):
         df_ndvi["mes_camp"] = df_ndvi["fecha"].apply(
             lambda f: mes_campana(f, campana)
         )
+        # v2: anomalía de NDVI respecto del normal 2000-2015 (lo genera el notebook 03)
+        ruta_normal = DATA_PROCESSED / "ndvi_normal_2000_2015.csv"
+        if ruta_normal.exists():
+            normal = pd.read_csv(ruta_normal).set_index(["partido", "doy"])["ndvi_normal"]
+            df_ndvi["ndvi_anom"] = df_ndvi["ndvi"] - np.array(
+                [normal.get((p, d), np.nan)
+                 for p, d in zip(df_ndvi["partido"], df_ndvi["fecha"].dt.dayofyear)])
+        else:
+            print(f"  ⚠  No se encontró {ruta_normal.name}: corré el notebook 03. Sigo sin anomalía de NDVI.")
+            df_ndvi["ndvi_anom"] = np.nan
 
     # Determinar última ventana con datos
     ultimo_mes_clima = df_clima["mes_camp"].max()
@@ -269,11 +287,17 @@ def construir_features(campana, df_clima, df_ndvi):
             row[f"humedad_media_{v_nombre}"] = dv_c["RH2M"].mean()
             row[f"dias_calor_extremo_{v_nombre}"] = (dv_c["T2M_MAX"] > 35).sum()
             row[f"dias_sin_lluvia_{v_nombre}"] = (dv_c["PRECTOTCORR"] < 1).sum()
+            row[f"vpd_media_{v_nombre}"] = dv_c["vpd"].mean()  # v2
 
             # 5 features NDVI por ventana
             if len(dn) > 0:
                 dv_n = dn[(dn["mes_camp"] >= mes_ini) & (dn["mes_camp"] <= mes_fin)]
                 if len(dv_n) > 0:
+                    # v2: anomalía de NDVI (media de la ventana y último dato)
+                    anom = dv_n.sort_values("fecha")["ndvi_anom"].dropna()
+                    if len(anom) > 0:
+                        row[f"ndvi_anom_media_{v_nombre}"] = anom.mean()
+                        row[f"ndvi_anom_ultimo_{v_nombre}"] = anom.iloc[-1]
                     row[f"ndvi_mean_{v_nombre}"] = dv_n["ndvi"].mean()
                     row[f"ndvi_max_{v_nombre}"] = dv_n["ndvi"].max()
                     row[f"ndvi_min_{v_nombre}"] = dv_n["ndvi"].min()
@@ -341,13 +365,13 @@ def predecir(df_nueva, ventanas_ok, ventana_forzada=None):
     # Promedio histórico para referencia
     hist_prom = df_hist.groupby("partido")["rinde_qq_ha"].mean()
 
-    return df_nueva, ventana, hist_prom
+    return df_nueva, ventana, hist_prom, features_miss
 
 
 # ---------------------------------------------------------------------------
 # 5. Salida de resultados
 # ---------------------------------------------------------------------------
-def mostrar_resultados(campana, df_pred, ventana, hist_prom):
+def mostrar_resultados(campana, df_pred, ventana, hist_prom, features_faltantes=()):
     """Imprime y guarda los resultados."""
     print(f"\n{'='*60}")
     print(f"  PREDICCIÓN CAMPAÑA {campana}/{campana+1}")
@@ -395,6 +419,9 @@ def mostrar_resultados(campana, df_pred, ventana, hist_prom):
         "campana": f"{campana}/{campana+1}",
         "ventana": ventana,
         "fecha_ejecucion": date.today().isoformat(),
+        # Features que no se pudieron calcular y se rellenaron con 0.
+        # El exportador del dashboard se niega a publicar si esta lista no está vacía.
+        "features_faltantes": list(features_faltantes),
         "promedio_zona_qq_ha": round(prom_zona, 1),
         "partidos": resultados,
     }
@@ -454,12 +481,14 @@ def main():
     print(f"\n{'='*60}")
     print("Entrenando modelo y prediciendo")
     print(f"{'='*60}")
-    df_pred, ventana, hist_prom = predecir(
+    df_pred, ventana, hist_prom, features_miss = predecir(
         df_nueva, ventanas_ok, args.ventana
     )
 
     # 5. Resultados
-    mostrar_resultados(campana, df_pred, ventana, hist_prom)
+    mostrar_resultados(campana, df_pred, ventana, hist_prom, features_miss)
+    print("\n  Siguiente paso para publicar en el dashboard:")
+    print(f"    python src/exportar_dashboard.py --campana {campana}")
 
 
 if __name__ == "__main__":
