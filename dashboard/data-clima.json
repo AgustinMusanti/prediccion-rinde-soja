@@ -1,0 +1,2124 @@
+{
+ "meta": {
+  "ultima_actualizacion": "2026-11-10",
+  "campana_actual": "2026/27",
+  "periodo_datos": "oct",
+  "meses_con_datos": [
+   "octubre"
+  ],
+  "datos_hasta": "2026-10-31",
+  "normal_climatica": "2000-2024"
+ },
+ "precipitacion": {
+  "mensual": {
+   "octubre": {
+    "actual": 81.8,
+    "normal": 124.1
+   },
+   "noviembre": null,
+   "diciembre": null,
+   "enero": null,
+   "febrero": null,
+   "marzo": null
+  },
+  "acumulado": {
+   "actual": 81.8,
+   "normal": 124.1
+  },
+  "variacion_pct": -34.1
+ },
+ "enso": {
+  "trimestre": "JAS",
+  "anio": 2026,
+  "oni": 2.16,
+  "fase": "nino",
+  "fase_confirmada": false,
+  "trimestres_consecutivos": 4,
+  "rinde_promedio_por_fase": {
+   "nino": 34.3,
+   "nina": 27.5,
+   "neutral": 32.3
+  },
+  "campanas_por_fase": {
+   "nino": 9,
+   "nina": 10,
+   "neutral": 6
+  },
+  "rinde_promedio_general": 31.1,
+  "periodo_rindes": "2000/01–2024/25",
+  "oni_recientes": [
+   {
+    "trimestre": "DJF",
+    "anio": 2026,
+    "oni": -0.39
+   },
+   {
+    "trimestre": "JFM",
+    "anio": 2026,
+    "oni": -0.21
+   },
+   {
+    "trimestre": "FMA",
+    "anio": 2026,
+    "oni": 0.11
+   },
+   {
+    "trimestre": "MAM",
+    "anio": 2026,
+    "oni": 0.46
+   },
+   {
+    "trimestre": "AMJ",
+    "anio": 2026,
+    "oni": 0.95
+   },
+   {
+    "trimestre": "MJJ",
+    "anio": 2026,
+    "oni": 1.39
+   },
+   {
+    "trimestre": "JJA",
+    "anio": 2026,
+    "oni": 1.8
+   },
+   {
+    "trimestre": "JAS",
+    "anio": 2026,
+    "oni": 2.16
+   }
+  ],
+  "lluvia_var_pct_por_fase": {
+   "nino": 15.6,
+   "nina": -20.0,
+   "neutral": 10.0
+  }
+ },
+ "condiciones": {
+  "temperatura_media": {
+   "actual": 15.9,
+   "normal": 16.7,
+   "unidad": "°C"
+  },
+  "dias_calor_extremo": {
+   "actual": 0.0,
+   "normal": 0.2,
+   "umbral": 35.0,
+   "unidad": "días"
+  },
+  "humedad_relativa": {
+   "actual": 64.0,
+   "normal": 67.4,
+   "unidad": "%"
+  },
+  "dias_sin_lluvia": {
+   "actual": 23.0,
+   "normal": 21.4,
+   "umbral_mm": 1.0,
+   "unidad": "días"
+  }
+ },
+ "campanas": {
+  "2026/27": {
+   "estado": "en_curso",
+   "meses_con_datos": [
+    "octubre"
+   ],
+   "periodo_datos": "oct",
+   "datos_hasta": "2026-10-31",
+   "enso_ond": null,
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 81.8,
+      "normal": 124.1
+     },
+     "noviembre": null,
+     "diciembre": null,
+     "enero": null,
+     "febrero": null,
+     "marzo": null
+    },
+    "acumulado": {
+     "actual": 81.8,
+     "normal": 124.1
+    },
+    "variacion_pct": -34.1
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 15.9,
+     "normal": 16.7,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 0.0,
+     "normal": 0.2,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 64.0,
+     "normal": 67.4,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 23.0,
+     "normal": 21.4,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2025/26": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2026-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.61,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 46.7,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 149.6,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 79.6,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 79.2,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 64.8,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 133.7,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 553.6,
+     "normal": 717.8
+    },
+    "variacion_pct": -22.9
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.0,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 5.2,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 64.6,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 138.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2024/25": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2025-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.29,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 85.4,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 172.7,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 68.8,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 49.3,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 252.6,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 173.1,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 801.9,
+     "normal": 717.8
+    },
+    "variacion_pct": 11.7
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 22.4,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 18.2,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 61.8,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 117.2,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2023/24": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2024-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 1.9,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 64.7,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 85.4,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 166.8,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 65.6,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 100.0,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 131.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 613.6,
+     "normal": 717.8
+    },
+    "variacion_pct": -14.5
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 22.2,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 14.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 59.3,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 122.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2022/23": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2023-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.82,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 62.1,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 90.2,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 33.5,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 117.5,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 14.0,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 45.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 362.5,
+     "normal": 717.8
+    },
+    "variacion_pct": -49.5
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 24.1,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 60.0,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 47.1,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 146.4,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2021/22": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2022-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.91,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 43.9,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 104.9,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 43.4,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 130.4,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 124.7,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 106.5,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 553.9,
+     "normal": 717.8
+    },
+    "variacion_pct": -22.8
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.8,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 27.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 58.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 131.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2020/21": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2021-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -1.11,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 88.7,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 68.0,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 41.6,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 99.7,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 42.6,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 67.0,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 407.5,
+     "normal": 717.8
+    },
+    "variacion_pct": -43.2
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.5,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 17.6,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 58.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 135.4,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2019/20": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2020-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.72,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 244.9,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 45.9,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 127.1,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 127.2,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 70.8,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 280.7,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 896.6,
+     "normal": 717.8
+    },
+    "variacion_pct": 24.9
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.5,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 13.2,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 63.3,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 125.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2018/19": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2019-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 1.04,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 79.4,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 120.9,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 198.9,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 192.9,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 90.3,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 100.3,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 782.7,
+     "normal": 717.8
+    },
+    "variacion_pct": 9.0
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.1,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 0.6,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 72.7,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 125.4,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2017/18": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2018-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.61,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 119.6,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 40.1,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 69.0,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 100.6,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 57.9,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 58.6,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 445.8,
+     "normal": 717.8
+    },
+    "variacion_pct": -37.9
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.9,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 13.4,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 62.0,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 142.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2016/17": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2017-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.49,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 147.6,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 53.1,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 205.8,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 175.1,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 99.9,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 111.5,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 793.0,
+     "normal": 717.8
+    },
+    "variacion_pct": 10.5
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.9,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 3.4,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 68.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 125.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2015/16": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2016-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 2.45,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 131.5,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 157.2,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 64.8,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 79.1,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 190.4,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 14.6,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 637.7,
+     "normal": 717.8
+    },
+    "variacion_pct": -11.2
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.0,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 2.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 72.2,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 129.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2014/15": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2015-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.7,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 174.8,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 206.3,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 136.0,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 169.4,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 37.3,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 102.1,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 825.8,
+     "normal": 717.8
+    },
+    "variacion_pct": 15.0
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.5,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 0.2,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 71.8,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 130.0,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2013/14": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2014-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.12,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 64.2,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 172.7,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 57.0,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 162.9,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 203.4,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 113.1,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 773.3,
+     "normal": 717.8
+    },
+    "variacion_pct": 7.7
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.2,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 17.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 64.9,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 122.2,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2012/13": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2013-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.13,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 294.3,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 154.1,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 156.5,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 28.7,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 134.1,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 189.8,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 957.6,
+     "normal": 717.8
+    },
+    "variacion_pct": 33.4
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.2,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 3.4,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 69.5,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 126.0,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2011/12": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2012-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -1.02,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 86.5,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 136.8,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 7.3,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 92.6,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 232.9,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 132.6,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 688.6,
+     "normal": 717.8
+    },
+    "variacion_pct": -4.1
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.9,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 27.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 59.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 132.2,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2010/11": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2011-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -1.57,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 68.3,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 17.6,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 48.1,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 199.9,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 145.5,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 84.5,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 563.9,
+     "normal": 717.8
+    },
+    "variacion_pct": -21.4
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.9,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 12.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 60.6,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 136.0,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2009/10": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2010-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 1.31,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 89.7,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 170.1,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 285.7,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 167.8,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 231.0,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 83.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 1027.4,
+     "normal": 717.8
+    },
+    "variacion_pct": 43.1
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.8,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 2.0,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 68.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 111.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2008/09": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2009-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.57,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 95.6,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 69.2,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 49.6,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 40.4,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 78.9,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 42.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 376.0,
+     "normal": 717.8
+    },
+    "variacion_pct": -47.6
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 23.3,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 33.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 51.7,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 142.2,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2007/08": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2008-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -1.57,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 90.5,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 92.3,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 76.5,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 104.9,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 135.5,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 167.5,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 667.1,
+     "normal": 717.8
+    },
+    "variacion_pct": -7.1
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.2,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 13.6,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 62.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 117.4,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2006/07": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2007-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.88,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 248.9,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 97.0,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 166.6,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 112.6,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 210.5,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 248.6,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 1084.1,
+     "normal": 717.8
+    },
+    "variacion_pct": 51.0
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.0,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 2.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 68.3,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 106.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2005/06": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2006-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.57,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 43.1,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 109.6,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 37.3,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 209.4,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 98.7,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 75.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 573.3,
+     "normal": 717.8
+    },
+    "variacion_pct": -20.1
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.2,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 18.6,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 58.0,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 129.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2004/05": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2005-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.64,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 71.8,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 120.6,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 196.9,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 156.7,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 61.1,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 142.1,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 749.2,
+     "normal": 717.8
+    },
+    "variacion_pct": 4.4
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.8,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 2.4,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 64.1,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 122.6,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2003/04": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2004-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 0.29,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 79.4,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 123.1,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 70.1,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 127.6,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 26.1,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 61.9,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 488.3,
+     "normal": 717.8
+    },
+    "variacion_pct": -32.0
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 21.8,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 11.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 58.1,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 135.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2002/03": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2003-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": 1.19,
+    "fase": "nino"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 177.0,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 134.7,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 176.1,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 55.1,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 168.9,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 140.8,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 852.7,
+     "normal": 717.8
+    },
+    "variacion_pct": 18.8
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.6,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 3.4,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 71.4,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 122.8,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2001/02": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2002-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.33,
+    "fase": "neutral"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 238.2,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 138.4,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 74.6,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 94.5,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 53.8,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 322.2,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 921.7,
+     "normal": 717.8
+    },
+    "variacion_pct": 28.4
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 19.8,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 0.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 73.5,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 116.4,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  },
+  "2000/01": {
+   "estado": "completa",
+   "meses_con_datos": [
+    "octubre",
+    "noviembre",
+    "diciembre",
+    "enero",
+    "febrero",
+    "marzo"
+   ],
+   "periodo_datos": "oct-mar",
+   "datos_hasta": "2001-03-31",
+   "enso_ond": {
+    "trimestre": "OND",
+    "oni": -0.76,
+    "fase": "nina"
+   },
+   "precipitacion": {
+    "mensual": {
+     "octubre": {
+      "actual": 213.6,
+      "normal": 124.1
+     },
+     "noviembre": {
+      "actual": 145.8,
+      "normal": 113.1
+     },
+     "diciembre": {
+      "actual": 32.0,
+      "normal": 103.6
+     },
+     "enero": {
+      "actual": 236.2,
+      "normal": 123.8
+     },
+     "febrero": {
+      "actual": 224.5,
+      "normal": 123.4
+     },
+     "marzo": {
+      "actual": 249.4,
+      "normal": 129.8
+     }
+    },
+    "acumulado": {
+     "actual": 1101.6,
+     "normal": 717.8
+    },
+    "variacion_pct": 53.5
+   },
+   "condiciones": {
+    "temperatura_media": {
+     "actual": 20.3,
+     "normal": 21.2,
+     "unidad": "°C"
+    },
+    "dias_calor_extremo": {
+     "actual": 4.8,
+     "normal": 13.1,
+     "umbral": 35.0,
+     "unidad": "días"
+    },
+    "humedad_relativa": {
+     "actual": 71.9,
+     "normal": 63.9,
+     "unidad": "%"
+    },
+    "dias_sin_lluvia": {
+     "actual": 111.2,
+     "normal": 126.6,
+     "umbral_mm": 1.0,
+     "unidad": "días"
+    }
+   }
+  }
+ }
+}

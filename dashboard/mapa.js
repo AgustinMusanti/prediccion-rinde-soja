@@ -145,7 +145,7 @@ function drawMap() {
   G.partidos.forEach(p => {
     const r = byP[p.nombre];
     const g = sv("g", { class: "mz-p", tabindex: "0", role: "button", "data-p": p.nombre, "aria-pressed": "false",
-      "aria-label": r ? `${p.nombre}: rinde promedio estimado ${C.f1(r.e)} quintales por hectárea, ${C.fpct(r.d)} respecto de su promedio histórico. Enter para ver el detalle.` : p.nombre }, gp);
+      "aria-label": r ? `${p.nombre}: estimación de rinde promedio ${C.f1(r.e)} quintales por hectárea, ${C.fpct(r.d)} respecto de su promedio histórico. Enter para ver el detalle.` : p.nombre }, gp);
     p._d = ringsPath(p.anillos); p._bb = bboxOf(p.anillos); p._ring = p.anillos[0].map(proj);
     sv("path", { d: p._d, style: `fill:${r ? fillFor(r.d) : "var(--surface)"}` }, g);
     g.addEventListener("click", e => { if (S.sel !== p.nombre) select(p.nombre, { teclado: e.detail === 0 }); });
@@ -202,7 +202,7 @@ function drawMap() {
 
 function tipPartido(r) {
   return `<div class="tt">${C.esc(r.p)}</div>
-    <div class="tr"><span>Rinde promedio estimado</span><b>${C.f1(r.e)} qq/ha</b></div>
+    <div class="tr"><span>Estimación</span><b>${C.f1(r.e)} qq/ha</b></div>
     ${r.r ? `<div class="tr"><span>Rango esperable</span><b>${C.f1(r.r[0])} a ${C.f1(r.r[1])} qq/ha</b></div>` : ""}
     <div class="tr"><span>Promedio histórico</span><b>${C.f1(r.h)} qq/ha</b></div>
     <div class="tr"><span>vs. promedio histórico</span><b>${C.fpct(r.d)}</b></div>`;
@@ -283,15 +283,15 @@ function buildPanel() {
   zona.parentNode.insertBefore(ov, zona); ov.appendChild(zona);
   if (rows.length) {
     const list = rows.slice().sort((a, b) => b.d - a.d).map(r => `
-      <button type="button" class="mz-row" data-p="${C.esc(r.p)}" aria-label="${C.esc(r.p)}: estimación ${C.f1(r.e)} quintales por hectárea; promedio histórico ${C.f1(r.h)}; diferencia ${C.fpct(r.d)}. Ver detalle.">
+      <button type="button" class="mz-row" data-p="${C.esc(r.p)}" aria-label="${C.esc(r.p)}: estimación ${C.f1(r.e)} quintales por hectárea; promedio histórico ${C.f1(r.h)} quintales por hectárea; diferencia ${C.fpct(r.d)}. Ver detalle.">
         <span class="rn">${C.esc(r.p)}</span>
-        <span class="re num"><small>estimado</small>${C.f1(r.e)}<small>qq/ha</small></span>
+        <span class="re num"><small>estimación</small>${C.f1(r.e)}<small>qq/ha</small></span>
         <span class="rp num">histórico ${C.f1(r.h)} qq/ha</span>
         <span class="badge ${C.dirClass(r.d)}">${C.arrow(r.d)}<span class="num">${C.fpct(r.d)}</span></span>
         <svg class="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
       </button>`).join("");
     ov.insertAdjacentHTML("beforeend", `
-      <h3 class="mz-list-h">Rinde estimado por partido ${C.info(C.PARTIDO_TIP + " «Histórico» es el promedio del partido desde 2000/01; el porcentaje compara la estimación con ese promedio.", "Rinde promedio del partido")}</h3>
+      <h3 class="mz-list-h">Estimación por partido ${C.info(C.PARTIDO_TIP + " «Histórico» es el promedio del partido desde 2000/01; el porcentaje compara la estimación con ese promedio.", "Rinde promedio del partido")}</h3>
       <div class="mz-list">${list}</div>`);
   }
   const det = document.createElement("div"); det.id = "mzDetalle"; det.hidden = true;
@@ -329,7 +329,7 @@ function renderPanel() {
       <div><div class="eyebrow" style="margin:0">Partido · campaña ${C.esc(C.focus.id)} · ${C.esc(K.label.toLowerCase())}</div><h3 class="mz-name">${C.esc(r.p)}</h3></div>
       <button type="button" class="mz-close">${ICON_BACK}Toda la zona</button>
     </div>
-    <div class="big"><span class="val num">${C.f1(r.e)}</span><span class="unit">qq/ha</span>${C.badge(r.d, "vs. su promedio")}${C.info(`Rinde promedio estimado con datos a ${K.label.toLowerCase()}: viene ${txt} lo habitual en el partido. ${C.PARTIDO_TIP}`, "Rinde promedio del partido")}</div>
+    <div class="big"><span class="val num">${C.f1(r.e)}</span><span class="unit">qq/ha</span>${C.badge(r.d, "vs. su promedio")}${C.info(`Estimación del rinde promedio con datos a ${K.label.toLowerCase()}: viene ${txt} el promedio histórico del partido. ${C.PARTIDO_TIP}`, "Rinde promedio del partido")}</div>
     ${rangeHTML(r)}
     <div class="mz-tabs" role="tablist" aria-label="Más datos de ${C.esc(r.p)}">${tabs.map(t => `<button type="button" role="tab" data-t="${t[0]}" aria-selected="false">${t[1]}</button>`).join("")}</div>
     <div class="mz-tabpanel" role="tabpanel" id="mzTab"></div>
@@ -391,10 +391,10 @@ function tabSup(box, r, det) {
   const semb = prom(y => det.sup_sembrada_ha[y]);
   const cos = prom(y => (det.sup_cosechada_ha || {})[y] != null ? det.sup_cosechada_ha[y] : det.sup_sembrada_ha[y]);
   const ha = x => nf0.format(Math.round(x / 100) * 100), ton = q => nf0.format(Math.round(cos * q / 10 / 1000) * 1000);
-  const tipProd = `Cuenta simple: la superficie que se cosecha habitualmente (${ha(cos)} ha) por el rinde promedio estimado (${C.f1(r.e)} qq/ha, es decir ${String((r.e / 10).toFixed(2)).replace(".", ",")} t/ha). Sirve para dimensionar el volumen del partido; no reemplaza una estimación oficial de producción.`;
+  const tipProd = `Cuenta simple: la superficie que se cosecha habitualmente (${ha(cos)} ha) por la estimación de rinde promedio (${C.f1(r.e)} qq/ha, es decir ${String((r.e / 10).toFixed(2)).replace(".", ",")} t/ha). Sirve para dimensionar el volumen del partido; no reemplaza una estimación oficial de producción.`;
   box.innerHTML = `<div class="mz-kpis">
       <div class="t"><span>Superficie sembrada con soja</span><strong class="num">${ha(semb)}<small>ha</small></strong><em>promedio ${idFull(ult[0])}–${idFull(ult[ult.length - 1])}</em></div>
-      <div class="t"><span>Producción orientativa ${C.info(tipProd, "Superficie × rinde")}</span><strong class="num">≈ ${ton(r.e)}<small>t</small></strong><em>${r.r ? `entre ${ton(r.r[0])} y ${ton(r.r[1])} t` : "superficie × rinde estimado"}</em></div>
+      <div class="t"><span>Producción orientativa ${C.info(tipProd, "Superficie × rinde")}</span><strong class="num">≈ ${ton(r.e)}<small>t</small></strong><em>${r.r ? `entre ${ton(r.r[0])} y ${ton(r.r[1])} t` : "superficie × estimación de rinde"}</em></div>
     </div>
     <p class="desc" style="margin-top:12px">Superficie sembrada por campaña · miles de hectáreas (MAGyP)</p>
     <div class="chart mz-bars" id="mzC"></div>`;
@@ -411,8 +411,8 @@ function tabPrec(box, r, det) {
   const est = hc.map(c => C.bestCut(c).partidos[r.p]), real = hc.map(c => C.realP(c, r.p));
   const mae = v ? v.error_tipico : (hc.length ? est.reduce((s, e, i) => s + Math.abs(e - real[i]), 0) / hc.length : null);
   box.innerHTML = `<div class="mz-kpis">
-      <div class="t"><span>Error típico en ${C.esc(r.p)} ${C.info("Diferencia promedio entre la estimación de fin de noviembre y el rinde oficial del partido, en las campañas de prueba.", "Error típico")}</span><strong class="num">${mae != null ? "±" + C.f1(mae) : "–"}<small>qq/ha</small></strong></div>
-      ${v ? `<div class="t"><span>Acertó la tendencia ${C.info("Cuántas veces anticipó bien si el rinde iba a quedar por encima o por debajo de lo habitual en el partido.", "Acierto de tendencia")}</span><strong class="num">${v.aciertos_tendencia} de ${v.campanas}<small>campañas</small></strong></div>` : ""}
+      <div class="t"><span>Error promedio en ${C.esc(r.p)} ${C.info("Diferencia promedio, hacia arriba o hacia abajo, entre la estimación de fin de noviembre y el rinde oficial del partido, en las campañas de prueba.", "Error promedio")}</span><strong class="num">${mae != null ? C.f1(mae) : "–"}<small>qq/ha</small></strong></div>
+      ${v ? `<div class="t"><span>Acertó la dirección ${C.info("Cuántas veces anticipó bien si el rinde iba a quedar por encima o por debajo del promedio histórico del partido.", "Acierta la dirección")}</span><strong class="num">${v.aciertos_tendencia} de ${v.campanas}<small>campañas</small></strong></div>` : ""}
     </div>
     ${hc.length > 1 ? `<p class="desc" style="margin-top:10px">Estimación de noviembre vs. resultado real · qq/ha</p>
     <div class="chart" id="mzC"></div>

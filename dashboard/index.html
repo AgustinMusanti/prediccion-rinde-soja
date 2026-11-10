@@ -105,6 +105,7 @@ nav.tabs::-webkit-scrollbar{display:none}
 nav.tabs a{padding:7px 12px;border-radius:999px;color:var(--text-2);text-decoration:none;font-size:13.5px;font-weight:500;white-space:nowrap;transition:background .2s,color .2s}
 nav.tabs a:hover{background:var(--surface-2);color:var(--text)}
 nav.tabs a.active{background:var(--primary-soft);color:var(--primary-strong)}
+nav.tabs a[hidden]{display:none!important}
 .icon-btn{flex:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .15s}
 .icon-btn:hover{background:var(--surface-2);color:var(--text)}
 .icon-btn:active{transform:scale(.95)}
@@ -327,15 +328,91 @@ details.camp[open] .chev{transform:rotate(180deg)}
 .gcard.feature{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr 1.1fr;gap:22px;align-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--surface) 70%)}
 .gcard.feature .gi{margin:0;background:var(--surface);width:52px;height:52px}
 @media (max-width:860px){.gcard.feature{grid-template-columns:1fr}}
-.metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
-.metric{padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
-.metric .mk{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center}
-.metric .mv{font-size:24px;font-weight:700;letter-spacing:-.03em;margin-top:4px}
-.metric .ms{font-size:12px;color:var(--text-2);margin-top:2px}
+/* 5 tarjetas iguales: 5 en una fila; 3 + 2 en tablet; 2 + 2 + 1 en celular (sin huérfanas) */
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.metric{padding:20px 16px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.metric .mv{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--primary-strong)}
+.metric .mv small{font-size:14px;font-weight:600;color:var(--text-2);letter-spacing:0;margin-left:4px}
+.metric .mk{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.3}
+.metric{position:relative}
+.metric .mk{padding:0 14px}
+.metric .mk .info{position:absolute;top:10px;right:10px}
+.metric .ms{font-size:12.5px;color:var(--muted);line-height:1.4}
+@media (max-width:1000px){.metrics{grid-template-columns:repeat(6,1fr)}.metric{grid-column:span 2}.metric:nth-child(n+4){grid-column:span 3}}
+@media (max-width:560px){.metrics{grid-template-columns:1fr 1fr;gap:10px}.metric,.metric:nth-child(n+4){grid-column:auto}.metric:last-child{grid-column:1/-1}.metric{padding:16px 12px}.metric .mv{font-size:26px}}
 .scope{margin-top:18px}
 .scope ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;max-width:720px}
 .scope li{margin:3px 0}
 .glabel{font-size:13px;font-weight:600;color:var(--text-2);margin:28px 0 0}
+
+/* ---------- Clima ---------- */
+.cl-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:16px}
+.cl-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cl-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:860px){.cl-grid,.cl-two,.cl-cards{grid-template-columns:1fr}}
+.cl-sub+.cl-sub{margin-top:8px}
+.cl-kpi{padding:24px;display:flex;flex-direction:column;gap:10px}
+.cl-kpi .k,.cl-card .k{font-size:13px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:6px}
+.cl-kpi .big .val{font-size:clamp(40px,8vw,56px)}
+.cl-kpi .ref-v{font-size:14px;color:var(--text-2)}
+.cl-kpi .ref-v b{color:var(--text);font-weight:600}
+.cl-kpi .foot-k{margin-top:auto;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
+.cl-note{font-size:12.5px;color:var(--muted);margin-top:12px;max-width:760px}
+.sw.ghost{width:12px;height:10px;border-radius:3px;background:color-mix(in srgb,var(--ref) 16%,transparent);box-shadow:inset 0 0 0 1px var(--ref)}
+.sw.solid{width:12px;height:10px;border-radius:3px;background:var(--primary)}
+.chart .bar-n{fill:color-mix(in srgb,var(--ref) 14%,transparent);stroke:var(--ref);stroke-width:1.2;stroke-dasharray:4 3}
+.chart .bar-a{fill:var(--primary);transition:opacity .2s}
+.chart .col-hl{fill:var(--surface-2);opacity:0;transition:opacity .15s}
+.enso-phase{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 4px}
+.enso-phase .name{font-size:clamp(32px,6vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.badge.warm{background:color-mix(in srgb,var(--s2) 16%,var(--surface));color:color-mix(in srgb,var(--s2) 80%,var(--text))}
+.badge.cold{background:color-mix(in srgb,var(--s1) 16%,var(--surface));color:color-mix(in srgb,var(--s1) 80%,var(--text))}
+.badge .bd{width:8px;height:8px;border-radius:50%;background:currentColor}
+.enso-dev{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--surface-2);font-size:13.5px;color:var(--text-2)}
+.enso-dev b{color:var(--text);font-weight:600}
+.enso-rows{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.enso-row{display:grid;grid-template-columns:minmax(200px,1.2fr) 1fr 64px;gap:12px;align-items:center;padding:10px 12px;border-radius:12px}
+.enso-row.cur{background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border)}
+.enso-row .lb{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+.enso-row .lb small{display:block;font-size:11.5px;color:var(--muted);font-weight:500}
+.enso-row .trk{position:relative;height:10px;border-radius:999px;background:var(--surface-2)}
+.enso-row.cur .trk{background:var(--surface)}
+.enso-row .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px}
+.enso-row .v{text-align:right;font-weight:700;font-size:15px}
+.enso-row .v small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+@media (max-width:520px){.enso-row{grid-template-columns:1fr auto;row-gap:8px;padding:10px}.enso-row .trk{grid-column:1/-1;grid-row:2}}
+.enso-now{display:flex;flex-direction:column}
+.enso-lead{font-size:15px;color:var(--text-2);margin-top:2px}
+.enso-lead b{color:var(--text);font-weight:600}
+.enso-trend{margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+.enso-trend .k{font-size:12.5px;font-weight:600;color:var(--muted)}
+.enso-trend .chart{margin-top:6px}
+.enso-now .enso-dev{margin-top:auto}
+.enso-now .enso-trend+.enso-dev{margin-top:14px}
+.enso-sel{margin-top:12px;font-size:14px;color:var(--text-2)}
+.enso-sel b{color:var(--text);font-weight:600}
+.enso-row.all{margin-top:4px;border-top:1px dashed var(--border);border-radius:0 0 12px 12px}
+.cl-card .unit .de{font-weight:500;color:var(--muted);font-size:13px}
+.cl-card{padding:20px}
+.cl-card .row-v{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.cl-card .val{font-size:32px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.cl-card .unit{font-size:15px;font-weight:600;color:var(--text-2)}
+.cl-card .nrm{font-size:13px;color:var(--muted);margin-bottom:12px}
+.cl-card .nrm b{color:var(--text-2);font-weight:600}
+.cl-empty{padding:28px 16px;text-align:center;color:var(--muted);font-size:14px}
+
+/* ---------- Contacto ---------- */
+.contact{padding:28px;display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center;background:linear-gradient(135deg,var(--primary-soft),var(--surface) 70%)}
+.contact h2{font-size:24px;margin-bottom:8px}
+.contact p{color:var(--text-2);max-width:580px}
+.contact-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
+.contact-act button.btn{font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+.contact-act .btn svg{width:16px;height:16px}
+.contact-mail{flex-basis:100%;text-align:right;font-size:13px;color:var(--muted);min-height:1.4em}
+.contact-mail b{color:var(--text-2);font-weight:600}
+.contact-mail .ok{color:var(--up);font-weight:600;margin-left:6px}
+.contact-gh{flex-basis:100%;text-align:right;font-size:13px}
+@media (max-width:760px){.contact{grid-template-columns:1fr;padding:22px}.contact-act{justify-content:flex-start}.contact-mail,.contact-gh{text-align:left}}
 
 /* ---------- Footer ---------- */
 footer{margin-top:64px;border-top:1px solid var(--border);padding:28px 0 40px;color:var(--muted);font-size:13px}
@@ -381,7 +458,9 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
       <a href="#inicio" class="active">Campaña actual</a>
       <a href="#evolucion">Evolución</a>
       <a href="#historial">Campañas anteriores</a>
+      <a href="#clima" id="navClima" hidden>Clima</a>
       <a href="#guia">Sobre la estimación</a>
+      <a href="#contacto">Contacto</a>
     </nav>
     <button class="icon-btn" id="themeBtn" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
       <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -394,7 +473,7 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
   <div>
     <div class="eyebrow">Noroeste bonaerense · 5 partidos</div>
     <h1>Conocé cómo puede venir la campaña de soja, <em>desde noviembre</em>.</h1>
-    <p class="lead">Cada mes, una estimación del rinde de soja para los cinco partidos del noroeste bonaerense y para toda la zona. Una referencia temprana para anticipar necesidades de acopio, logística y comercialización.</p>
+    <p class="lead">Cada mes, de noviembre a marzo, una estimación del rinde de soja para los cinco partidos del noroeste bonaerense y para toda la zona. Una referencia temprana para anticipar necesidades de acopio, logística y comercialización.</p>
     <p class="scope-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.900-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Estimación regional:</b> es el rinde promedio de cada partido, no el de un lote individual.</span></p>
     <div class="cta">
       <a class="btn primary" href="#inicio">Ver estimaciones
@@ -409,7 +488,7 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
       </div>
       <figcaption>
         <strong>Soja <i>(Glycine max)</i></strong>
-        <span>Cultivo de verano. En el noroeste bonaerense, la siembra suele darse entre octubre y diciembre y la cosecha entre marzo y mayo. Las condiciones climáticas de cada campaña influyen en el rendimiento final.</span>
+        <span>Cultivo de verano. En el noroeste bonaerense, la siembra suele darse entre octubre y diciembre y la cosecha entre marzo y mayo. Las condiciones climáticas de cada campaña influyen en el rinde final.</span>
       </figcaption>
     </figure>
   </div>
@@ -418,6 +497,22 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
 <main id="app" class="wrap">
   <div class="skeleton"></div>
 </main>
+
+<section class="block" id="contacto" aria-labelledby="contactoT">
+  <div class="wrap"><div class="card contact">
+    <div>
+      <div class="eyebrow">Contacto</div>
+      <h2 id="contactoT">¿Tenés una idea o una consulta?</h2>
+      <p>Escribime si tenés sugerencias, una propuesta de colaboración, interés en analizar lotes individuales o en sumar más partidos a la cobertura.</p>
+    </div>
+    <div class="contact-act">
+      <a class="btn primary" id="mailBtn" href="#contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Escribime</a>
+      <button type="button" class="btn ghost" id="copyBtn">Copiar mail</button>
+      <p class="contact-mail"><b id="mailTxt"></b><span id="copyMsg" class="ok" role="status" aria-live="polite"></span></p>
+      <a class="contact-gh" href="https://github.com/AgustinMusanti" target="_blank" rel="noopener">Ver mi perfil de GitHub</a>
+    </div>
+  </div></div>
+</section>
 
 <footer>
   <div class="wrap foot">
@@ -428,8 +523,9 @@ footer a:hover{color:var(--primary);border-color:var(--primary)}
     </div>
     <div style="max-width:420px">
       <div style="font-weight:600;color:var(--text-2);margin-bottom:4px">Fuentes de datos</div>
-      Rendimientos: <a href="https://datosestimaciones.magyp.gob.ar/" target="_blank" rel="noopener">MAGyP</a> ·
+      Rindes: <a href="https://datosestimaciones.magyp.gob.ar/" target="_blank" rel="noopener">MAGyP</a> ·
       Clima: <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">NASA POWER</a> ·
+      ENSO: <a href="https://origin.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php" target="_blank" rel="noopener">NOAA/CPC</a> ·
       Vegetación: <a href="https://modis.gsfc.nasa.gov/" target="_blank" rel="noopener">MODIS (NASA)</a> ·
       Mapa: <a href="https://www.ign.gob.ar/" target="_blank" rel="noopener">IGN</a> y <a href="http://www.bahra.gob.ar/" target="_blank" rel="noopener">BAHRA</a>.
     </div>
@@ -518,21 +614,45 @@ document.addEventListener("focusout", hideTip);
 document.addEventListener("pointerdown", e => { if (!e.target.closest("[data-tip], .chart")) hideTip(); });
 const info = (text, title = "") => `<button type="button" class="info" data-tip="${esc(text)}"${title ? ` data-tip-title="${esc(title)}"` : ""} aria-label="${esc((title ? title + ": " : "") + text)}">i</button>`;
 
+/* ================= Contacto =================
+   El mail se arma acá (no queda escrito en el HTML) para dificultar que lo junten bots. */
+(() => {
+  const btn = $("#mailBtn"); if (!btn) return;
+  const mail = ["agustinmusanti", "gmail.com"].join("@");
+  btn.href = `mailto:${mail}?subject=${encodeURIComponent("Consulta sobre la estimación de rinde de soja")}`;
+  btn.setAttribute("aria-label", `Escribime: enviar un mail a ${mail}`);
+  $("#mailTxt").textContent = mail;
+  const msg = $("#copyMsg");
+  const ok = t => { msg.textContent = t; clearTimeout(ok.t); ok.t = setTimeout(() => { msg.textContent = ""; }, 3000); };
+  $("#copyBtn").addEventListener("click", () => {
+    const fallback = () => { // sin portapapeles: deja el mail seleccionado para copiarlo a mano
+      const r = document.createRange(); r.selectNodeContents($("#mailTxt"));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      ok("Mail seleccionado: copialo con Ctrl+C");
+    };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(mail).then(() => ok("Copiado"), fallback);
+    else fallback();
+  });
+})();
+
 /* ================= Carga de datos ================= */
 const qp = new URLSearchParams(location.search).get("data");
 const DATA_URL = qp && /^[\w-]+\.json$/.test(qp) ? qp : "data.json";
-fetch(DATA_URL, { cache: "no-cache" })
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(init)
+const CLIMA_URL = "data-clima.json";
+const getJSON = url => fetch(url, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(url + ": " + r.status); return r.json(); });
+// El clima es opcional: si falla, la página se arma igual, sin la sección ni el link "Clima"
+const climaP = getJSON(CLIMA_URL).catch(err => { console.warn("Sin datos de clima:", err); return null; });
+getJSON(DATA_URL)
+  .then(D => climaP.then(C => init(D, C)))
   .catch(err => {
     $("#app").innerHTML = `<div class="card err"><h2 style="font-size:20px;margin-bottom:10px">No se pudieron cargar los datos</h2>
       <p style="color:var(--text-2)">No se encontró <code>${esc(DATA_URL)}</code> o tiene un error de formato.</p>
-      <p style="color:var(--muted);font-size:13px;margin-top:12px">Si abriste el archivo con doble clic, levantá un servidor local:<br><code>python -m http.server</code> dentro de la carpeta <code>dashboard-v3</code>.</p></div>`;
+      <p style="color:var(--muted);font-size:13px;margin-top:12px">Si abriste el archivo con doble clic, levantá un servidor local:<br><code>python -m http.server</code> dentro de la carpeta <code>dashboard-v4</code>.</p></div>`;
     console.error(err);
   });
 
 /* ================= App ================= */
-function init(D) {
+function init(D, C) {
   const M = D.meta, P = M.partidos, ZH = M.promedio_historico_zona, PH = M.promedios_historicos;
   const RG = M.rangos_historicos || {};
   const camps = D.campanas.slice();
@@ -546,26 +666,66 @@ function init(D) {
   const realP = (c, p) => c.resultado_real && typeof c.resultado_real === "object" && c.resultado_real.partidos ? c.resultado_real.partidos[p] : null;
   const V = Object.assign({}, D.validacion); // copia para mostrar: mismo formato en toda la página
   const maeNum = parseFloat(String(V.mae_mejor).replace(",", ".")) || 2.4;
-  V.mae_mejor = f1(maeNum) + " qq/ha"; // rinde y errores: siempre 1 decimal
+  V.mae_mejor = f1(maeNum) + " qq/ha"; // rinde y errores: siempre 1 decimal
   V.acierto_direccional = pc(V.acierto_direccional); V.mejora_vs_baseline = pc(V.mejora_vs_baseline);
-  const RANGE_TIP = "La estimación es el valor más probable. Según cómo funcionó el modelo en campañas anteriores, el rinde final quedó dentro de este rango en 8 de cada 10 casos.";
+  const RANGE_TIP = "La estimación es el valor central. Según cómo funcionó el modelo en campañas anteriores, el rinde final quedó dentro de este rango en 8 de cada 10 casos.";
   const NOV_EJ = (() => { // ejemplo real: la campaña publicada más reciente con datos de noviembre y enero
     const c = withCuts.slice().reverse().find(c => c.origen !== "validacion" && c.estado !== "en_curso" && c.cortes.some(k => k.ventana === "oct_nov") && c.cortes.some(k => k.ventana === "oct_ene"));
     if (!c) return "";
     const a = c.cortes.find(k => k.ventana === "oct_nov").zona.estimacion, b = c.cortes.find(k => k.ventana === "oct_ene").zona.estimacion;
     return Math.abs(b - a) >= 0.5 ? ` (por ejemplo, en ${c.id} pasó de ${f1(a)} a ${f1(b)} qq/ha entre noviembre y enero)` : "";
   })();
-  const NOV_NOTE = `Noviembre es, en promedio, la estimación más precisa, pero no es definitiva: en algunas campañas la primera estimación arrancó más baja o más alta y se fue acomodando en diciembre y enero${NOV_EJ}. Por eso conviene seguir cada actualización.`;
+  const NOV_NOTE = `En las pruebas con campañas anteriores, la estimación de noviembre fue la de menor error promedio, pero no es definitiva: en algunas campañas arrancó más baja o más alta y se fue ajustando en diciembre y enero${NOV_EJ}. Por eso conviene seguir cada actualización.`;
   const N_CAMP = Object.keys(M.serie_historica_zona || {}).length || 25;
   const ANIOS = Object.keys(M.serie_historica_zona || {}).map(Number).sort((a, b) => a - b);
-  const PARTIDO_TIP = "Es el rendimiento promedio de todos los lotes de soja del partido. Dentro de cada partido conviven lotes por encima y por debajo de ese valor, según ambiente, manejo y fecha de siembra.";
+  const PARTIDO_TIP = "Es el rinde promedio de todos los lotes de soja del partido. Dentro de cada partido conviven lotes por encima y por debajo de ese valor, según ambiente, manejo y fecha de siembra.";
 
   if (M.autor) $("#fAutor").textContent = M.autor;
   if (M.repo) $("#fRepo").href = M.repo;
   $("#fUpd").textContent = "Última actualización: " + fdate(M.ultima_actualizacion);
 
+  /* ---------- Clima: constantes y utilidades (data-clima.json) ---------- */
+  const CL_MESES = [["octubre", "Oct", "Octubre", 10], ["noviembre", "Nov", "Noviembre", 11], ["diciembre", "Dic", "Diciembre", 12],
+    ["enero", "Ene", "Enero", 1], ["febrero", "Feb", "Febrero", 2], ["marzo", "Mar", "Marzo", 3]];
+  // Días calendario de los meses con datos de una campaña ("2026/27", ["octubre"] → 31)
+  const diasPeriodo = (id, meses) => (meses || []).reduce((n, m) => {
+    const mm = CL_MESES.find(x => x[0] === m)[3], y = +id.split("/")[0] + (mm < 10 ? 1 : 0);
+    return n + new Date(y, mm, 0).getDate();
+  }, 0);
+  const ENSO_FASES = {
+    nino: { name: "El Niño", cls: "warm", tag: "Fase cálida", color: "var(--s2)" },
+    nina: { name: "La Niña", cls: "cold", tag: "Fase fría", color: "var(--s1)" },
+    neutral: { name: "Neutral", cls: "flat", tag: "Sin evento", color: "var(--neutral)" }
+  };
+  const TRI = { DJF: "dic-ene-feb", JFM: "ene-feb-mar", FMA: "feb-mar-abr", MAM: "mar-abr-may", AMJ: "abr-may-jun", MJJ: "may-jun-jul",
+    JJA: "jun-jul-ago", JAS: "jul-ago-sep", ASO: "ago-sep-oct", SON: "sep-oct-nov", OND: "oct-nov-dic", NDJ: "nov-dic-ene" };
+  const triTxt = (t, y) => t === "NDJ" ? `nov-dic ${y} y ene ${y + 1}` : t === "DJF" ? `dic ${y - 1} y ene-feb ${y}` : `${TRI[t] || t} ${y}`;
+  const triMes = t => (TRI[t] || "").split("-")[1] || t; // mes central: JAS → "ago"
+  const oniTxt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + f1(Math.abs(v)) + " °C";
+  const climaOk = !!(C && C.meta && C.enso && C.campanas && Object.keys(C.campanas).length);
+  const fn = v => v == null ? "–" : Number.isInteger(v) ? String(v) : f1(v); // conteos: sin ",0"
+  const r1 = v => Math.round(v * 10) / 10;
+  const CL_IDS = climaOk ? Object.keys(C.campanas).sort() : []; // cronológico
+  // Campaña elegida en la sección Clima (por defecto, la en curso)
+  const cl = { camp: climaOk ? (C.campanas[C.meta.campana_actual] ? C.meta.campana_actual : CL_IDS[CL_IDS.length - 1]) : null };
+  // "oct-nov" / "octubre"
+  const perTxt = meses => {
+    const ms = (meses || []).map(m => CL_MESES.find(x => x[0] === m)).filter(Boolean);
+    if (!ms.length) return null;
+    return ms.length === 1 ? ms[0][2].toLowerCase() : `${ms[0][1].toLowerCase()}-${ms[ms.length - 1][1].toLowerCase()}`;
+  };
+  // Badge de diferencia vs. lo normal (neutro: más calor o menos humedad no es "bueno" ni "malo" por sí solo)
+  function diffBadge(a, n, unit, more, less) {
+    if (a == null || n == null) return "";
+    const d = r1(a - n);
+    if (Math.abs(d) < 0.1) return `<span class="badge flat">${arrow(0)}En línea con lo normal</span>`;
+    const p = d > 0 ? 100 : -100; // solo para elegir la flecha
+    return `<span class="badge flat">${arrow(p)}<span class="num">${fn(Math.abs(d))}${unit}</span>${d > 0 ? more : less} que lo normal</span>`;
+  }
+
   const app = $("#app");
-  app.innerHTML = heroHTML() + evolucionHTML() + historialHTML() + guiaHTML();
+  if (climaOk) $("#navClima").hidden = false;
+  app.innerHTML = heroHTML() + evolucionHTML() + historialHTML() + climaHTML() + guiaHTML();
 
   /* ---------- Rango esperable (lenguaje simple) ---------- */
   function zoneRangeHTML(e, iv) {
@@ -613,8 +773,8 @@ function init(D) {
     const done = new Set(current.cortes.map(c => c.ventana));
     const steps = VENTANAS.map(w => `<div class="step ${done.has(w.v) ? "done" : ""} ${w.v === "oct_nov" ? "best" : ""}"
       data-tip-title="${esc(w.label)}${done.has(w.v) ? " · disponible" : " · pendiente"}"
-      data-tip="Estimación con datos hasta ${esc(w.label.toLowerCase())}, ${w.meses} ${w.meses === 1 ? "mes" : "meses"} antes de la cosecha.${w.v === "oct_nov" ? " En promedio, es la estimación más precisa." : ""}">
-      <span class="bar"></span><span>${w.short}${w.v === "oct_nov" ? ' <span class="star" aria-label="suele ser la más precisa">★</span>' : ""}</span></div>`).join("");
+      data-tip="Estimación con datos hasta ${esc(w.label.toLowerCase())}, ${w.meses} ${w.meses === 1 ? "mes" : "meses"} antes de la cosecha.${w.v === "oct_nov" ? " En las pruebas, fue el corte con menor error promedio." : ""}">
+      <span class="bar"></span><span>${w.short}${w.v === "oct_nov" ? ' <span class="star" aria-label="corte con menor error promedio en las pruebas">★</span>' : ""}</span></div>`).join("");
     return `<section class="block hero" id="inicio">
       <div class="status-row">${banner || status}${demo}</div>
       <div class="mz-grid">
@@ -624,14 +784,14 @@ function init(D) {
       <div class="hero-strip">
         <div class="card hero-side">
           <div><h3 style="margin-bottom:12px">Actualizaciones de la campaña ${esc(current.id)}</h3><div class="stepper">${steps}</div>
-            <p class="step-note">★ La estimación de noviembre suele ser la más precisa, aunque puede ajustarse en los meses siguientes. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>
+            <p class="step-note">★ Noviembre fue, en las pruebas, el corte con menor error promedio. Las actualizaciones siguientes muestran cómo evoluciona la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>
           <div>
-            <h3 style="margin-bottom:10px">Precisión validada</h3>
+            <h3 style="margin-bottom:10px">Precisión en campañas anteriores</h3>
             <div class="trust">
-              <div class="t"><span>Error típico ${info(`En campañas anteriores, la estimación de noviembre se alejó en promedio ${V.mae_mejor} del rinde real.`, "Error típico")}</span><strong class="num">±${f1(maeNum)} qq/ha</strong></div>
-              <div class="t"><span>Acierta la tendencia ${info(`En el ${V.acierto_direccional} de los casos anticipó correctamente si el rinde iba a estar por encima o por debajo de lo normal.`, "Acierta la tendencia")}</span><strong>${esc(V.acierto_direccional)}</strong></div>
-              <div class="t"><span>Menos error que el promedio histórico ${info(`Se equivoca un ${V.mejora_vs_baseline} menos que usar el promedio histórico como pronóstico.`, "Mejora vs. promedio histórico")}</span><strong>${esc(V.mejora_vs_baseline)}</strong></div>
-              <div class="t"><span>Campañas probadas ${info(`Se evaluó en ${V.campanas_test} campañas × 5 partidos = ${V.predicciones_total} estimaciones, siempre sin usar información del futuro.`, "Campañas probadas")}</span><strong>${V.campanas_test}</strong></div>
+              <div class="t"><span>Error promedio ${info(`En campañas anteriores, la estimación de noviembre se alejó en promedio ${V.mae_mejor} del rinde real, hacia arriba o hacia abajo.`, "Error promedio")}</span><strong class="num">${f1(maeNum)} qq/ha</strong></div>
+              <div class="t"><span>Acierta la dirección ${info(`En el ${V.acierto_direccional} de los casos anticipó bien si el rinde iba a quedar por encima o por debajo del promedio histórico del partido.`, "Acierta la dirección")}</span><strong>${esc(V.acierto_direccional)}</strong></div>
+              <div class="t"><span>Menos error que el promedio histórico ${info(`Tiene un ${V.mejora_vs_baseline} menos de error promedio que usar como estimación el promedio histórico de cada partido.`, "Comparación con el promedio histórico")}</span><strong>${esc(V.mejora_vs_baseline)}</strong></div>
+              <div class="t"><span>Campañas de prueba ${info(`Se probó en ${V.campanas_test} campañas × 5 partidos = ${V.predicciones_total} estimaciones, sin usar datos del futuro.`, "Campañas de prueba")}</span><strong>${V.campanas_test}</strong></div>
             </div>
           </div>
         </div>
@@ -701,7 +861,7 @@ function init(D) {
         ${campSelect("selE")}</div>
       <p class="scope-note" id="evoScope"></p>
       <div class="evo-grid">
-        <div class="card panel"><h3 id="evoTitle">Estimación zonal</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p>
+        <div class="card panel"><h3 id="evoTitle">Estimación de la zona</h3><p class="desc">Rinde promedio de la zona (5 partidos) · qq/ha</p>
           <div id="zEvo"></div>
           <details class="table-toggle"><summary>Ver tabla de datos</summary><div class="tscroll" id="zTable"></div></details>
         </div>
@@ -735,7 +895,7 @@ function init(D) {
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
         </summary>
         <div class="camp-body">
-          <div class="spark-wrap"><h4>Estimación zonal mes a mes</h4><div class="spark chart" data-id="${esc(c.id)}"></div>
+          <div class="spark-wrap"><h4>Estimación de la zona mes a mes</h4><div class="spark chart" data-id="${esc(c.id)}"></div>
             <p style="font-size:12.5px;color:var(--muted);margin-top:6px">Última actualización (${esc(l.label.toLowerCase())}): <b class="num" style="color:var(--text)">${f1(l.zona.estimacion)} qq/ha</b></p>
             <button type="button" class="lnk" data-evo="${esc(c.id)}">Ver mes a mes por partido ↑</button></div>
           <div><h4>Rinde promedio por partido · estimación de noviembre y resultado real</h4><div class="tscroll"><table class="dtable"><thead><tr><th>Partido</th><th>Estimación (qq/ha)</th><th>Real (qq/ha)</th><th>Diferencia (qq/ha)</th></tr></thead><tbody>${rows}</tbody></table></div></div>
@@ -750,6 +910,169 @@ function init(D) {
     </section>`;
   }
 
+  /* ---------- 4b. CLIMA (data-clima.json, opcional) ---------- */
+  // Estructura fija; lo que depende de la campaña elegida lo llena renderClima()
+  function climaHTML() {
+    if (!climaOk) return "";
+    const nrm = esc(C.meta.normal_climatica || "");
+    const optC = CL_IDS.slice().reverse().map(id => `<option value="${esc(id)}"${id === cl.camp ? " selected" : ""}>${esc(id)}${id === C.meta.campana_actual ? " (en curso)" : ""}</option>`).join("");
+    // ENSO: estado actual (no depende de la campaña elegida)
+    const E = C.enso, F = ENSO_FASES[E.fase] || ENSO_FASES.neutral;
+    const enDes = E.fase !== "neutral" && E.fase_confirmada === false;
+    const lead = E.oni == null ? "" : Math.abs(E.oni) < 0.05
+      ? `El Pacífico ecuatorial está en su temperatura normal (${esc(triTxt(E.trimestre, E.anio))}).`
+      : `El Pacífico ecuatorial está <b>${f1(Math.abs(E.oni))} °C más ${E.oni > 0 ? "cálido" : "frío"}</b> que lo normal (${esc(triTxt(E.trimestre, E.anio))}).`;
+    const ONI_TIP = "Índice ONI (NOAA): diferencia entre la temperatura del mar en el Pacífico ecuatorial y su valor normal, promediada cada 3 meses. Por encima de +0,5 °C es El Niño; por debajo de −0,5 °C, La Niña.";
+    const dev = enDes
+      ? `<div class="enso-dev">Lleva <b>${E.trimestres_consecutivos} de los 5 trimestres seguidos</b> necesarios para confirmarse como evento ${esc(F.name)}.</div>` : "";
+    const lg = (cls, txt) => `<span style="display:inline-flex;gap:6px;align-items:center"><span class="sw ${cls}"></span>${txt}</span>`;
+    return `<section class="block reveal" id="clima">
+      <div class="sec-head"><div><div class="eyebrow">Contexto climático</div><h2>Lluvias de la campaña</h2>
+        <p>Cuánto llovió en la zona comparado con lo normal. La lluvia durante el ciclo del cultivo es uno de los factores que más influye en el rinde.</p></div>
+        <div class="ctrl-row"><label for="clCamp">Campaña</label><select class="sel" id="clCamp">${optC}</select></div></div>
+      <div class="cl-grid">
+        <div class="card cl-kpi" id="clKpi"></div>
+        <div class="card panel"><h3 id="clBarsT"></h3><p class="desc">Promedio de los 5 partidos · mm por mes</p>
+          <div class="chart" id="clBars"></div>
+          <div class="legend">${lg("solid", "Campaña elegida")}${lg("ghost", `Normal climática (${nrm})`)}</div>
+        </div>
+      </div>
+      <p class="cl-note" id="clNote1"></p>
+
+      <div class="sec-head" style="margin-top:44px"><div><div class="eyebrow">Fenómeno ENSO</div><h2>El Niño y La Niña</h2>
+        <p>La temperatura del Pacífico ecuatorial influye en las lluvias de la región pampeana. Conocer la fase ENSO ayuda a anticipar el contexto de la campaña.</p></div></div>
+      <div class="cl-two">
+        <div class="card panel enso-now">
+          <h3>Estado actual</h3>
+          <div class="enso-phase"><span class="name">${esc(F.name)}</span><span class="badge ${F.cls}"><span class="bd"></span>${enDes ? "En desarrollo" : F.tag}</span></div>
+          <p class="enso-lead">${lead} ${info(ONI_TIP, "¿Cómo se mide?")}</p>
+          <div class="enso-trend"><div class="k">Cómo viene evolucionando · últimos ${(E.oni_recientes || []).length} trimestres</div>
+            <div class="chart" id="clOni"></div></div>
+          ${dev}
+        </div>
+        <div class="card panel" id="clEnso"></div>
+      </div>
+      <p class="cl-note">Índice ONI de NOAA/CPC. Se clasifica como El Niño cuando la anomalía supera +0,5&nbsp;°C durante al menos 5 trimestres consecutivos.</p>
+
+      <div class="sec-head" style="margin-top:44px"><div><div class="eyebrow">Indicadores clave</div><h2>Condiciones del cultivo</h2>
+        <p>Las condiciones de clima que el modelo tiene en cuenta para estimar el rinde, comparadas con sus valores normales.</p></div></div>
+      <div class="cl-cards" id="clCards"></div>
+      <p class="cl-note" id="clNote3"></p>
+    </section>`;
+  }
+
+  function renderClima() {
+    if (!climaOk || !$("#clima")) return;
+    const id = cl.camp, CC = C.campanas[id];
+    const pr = CC.precipitacion, ac = pr.acumulado || {}, per = perTxt(CC.meses_con_datos), nm = CC.meses_con_datos.length;
+    const campTxt = `campaña ${esc(id)}`;
+
+    /* KPI de lluvia */
+    if (ac.actual != null && ac.normal != null) {
+      const v = pr.variacion_pct;
+      const bd = v == null ? "" : Math.abs(v) < 0.05
+        ? `<span class="badge flat">${arrow(0)}En línea con lo normal</span>`
+        : `<span class="badge ${dirClass(v)}">${arrow(v)}<span class="num">${f1(Math.abs(v))} %</span>${v > 0 ? "por encima" : "por debajo"} de lo normal</span>`;
+      $("#clKpi").innerHTML = `<div class="k">Lluvia acumulada · ${campTxt} ${info("Suma de la lluvia diaria de cada partido en los meses completos de la campaña, promediada entre los 5 partidos.", "¿Cómo se calcula?")}</div>
+        <div class="big"><span class="val num">${f1(ac.actual)}</span><span class="unit">mm</span></div>
+        <div>${bd}</div>
+        <p class="ref-v">Normal climática del mismo período: <b class="num" style="white-space:nowrap">${f1(ac.normal)} mm</b></p>
+        <div class="foot-k">Acumulado ${nm === 1 ? "de " : ""}${esc(per)} · Promedio de los 5 partidos</div>`;
+    } else {
+      $("#clKpi").innerHTML = `<div class="k">Lluvia acumulada · ${campTxt}</div><div class="cl-empty">Todavía no hay un mes completo de datos de esta campaña. El primer dato aparece al cierre de octubre.</div>`;
+    }
+
+    /* Barras mensuales */
+    $("#clBarsT").textContent = `Lluvia mes a mes · campaña ${id}`;
+    const MM = pr.mensual || {};
+    barChart($("#clBars"), {
+      labels: CL_MESES.map(m => m[2]), shortLabels: CL_MESES.map(m => m[1]),
+      values: CL_MESES.map(m => MM[m[0]] ? MM[m[0]].actual : null),
+      refs: CL_MESES.map(m => MM[m[0]] ? MM[m[0]].normal : null),
+      name: `Campaña ${id}`, refName: `Normal (${C.meta.normal_climatica || ""})`, unit: "mm", height: 260,
+      aria: `Lluvia mensual de la campaña ${id} comparada con la normal climática, en milímetros. ` +
+        CL_MESES.filter(m => MM[m[0]]).map(m => `${m[2]}: ${f1(MM[m[0]].actual)} mm (normal ${f1(MM[m[0]].normal)} mm)`).join("; ")
+    });
+    $("#clNote1").textContent = `Datos de NASA POWER, promedio de los 5 partidos. Normal climática = promedio mensual ${C.meta.normal_climatica}.${CC.datos_hasta ? ` Datos hasta el ${fdate(CC.datos_hasta)}.` : ""}`;
+
+    /* ENSO: cómo fueron las campañas pasadas según la fase; se resalta la de la campaña elegida */
+    const E = C.enso, RF = E.rinde_promedio_por_fase || {}, NF = E.campanas_por_fase || {}, LV = E.lluvia_var_pct_por_fase || {};
+    const ond = CC.enso_ond, faseSel = ond ? ond.fase : E.fase;
+    const total = Object.values(NF).reduce((a, b) => a + (b || 0), 0) || null;
+    const rows = [["nino", "Campañas Niño"], ["nina", "Campañas Niña"], ["neutral", "Campañas neutrales"]]
+      .map(([k, lb]) => [k, lb, RF[k], NF[k], LV[k]])
+      .concat([["todas", "Todas las campañas", E.rinde_promedio_general, total, null]]);
+    const maxR = Math.max(...rows.map(r => r[2] || 0)) || 1;
+    const ensoRows = rows.map(([k, lb, v, n, lv]) => {
+      const col = k === "todas" ? "var(--ref)" : ENSO_FASES[k].color;
+      const sub = [n ? `${n} campañas` : "", lv != null ? `lluvia ${fpct(lv)}` : ""].filter(Boolean).join(" · ");
+      return `<div class="enso-row${k === faseSel ? " cur" : ""}${k === "todas" ? " all" : ""}">
+        <div class="lb"><i class="sw dot" style="background:${col}"></i><span>${lb}${sub ? `<small>${sub}</small>` : ""}</span></div>
+        <div class="trk" aria-hidden="true"><div class="fill" style="width:${v != null ? (v / maxR * 100).toFixed(1) : 0}%;background:${col}"></div></div>
+        <div class="v num">${f1(v)}<small>qq/ha</small></div></div>`;
+    }).join("");
+    const FS = ENSO_FASES[faseSel] || ENSO_FASES.neutral, FA = ENSO_FASES[E.fase] || ENSO_FASES.neutral;
+    const faseCamp = ond
+      ? `La campaña <b>${esc(id)}</b> fue <b>${FS === ENSO_FASES.neutral ? "neutral" : esc(FS.name)}</b> (Pacífico ${oniTxt(ond.oni)} en oct-dic).`
+      : `La fase de la campaña <b>${esc(id)}</b> se define en oct-dic. Hoy: <b>${esc(FA.name)}</b>${E.fase !== "neutral" && E.fase_confirmada === false ? " en desarrollo" : ""}.`;
+    $("#clEnso").innerHTML = `<h3>Cómo fueron las campañas según la fase</h3>
+      <p class="desc">Rinde promedio de la zona y lluvia de octubre a marzo comparada con lo normal, campañas ${esc(E.periodo_rindes || "")}. La fase de cada campaña se define en octubre-diciembre, durante la siembra.</p>
+      <p class="enso-sel">${faseCamp}</p>
+      <div class="enso-rows">${ensoRows}</div>
+      <p class="desc" style="margin-top:12px">Son promedios de campañas pasadas: muestran una tendencia, no una estimación para esta campaña.</p>`;
+
+    /* Evolución reciente del Pacífico (barras por trimestre, umbrales ±0,5 °C) */
+    renderOni();
+
+    /* Condiciones */
+    const K = CC.condiciones;
+    const CARDS = [
+      ["temperatura_media", "Temperatura media", "°C", "La temperatura regula la velocidad de desarrollo del cultivo. Con más calor el ciclo se acelera y aumenta la demanda de agua.", (a, n) => diffBadge(a, n, " °C", "más cálido", "más frío")],
+      ["dias_calor_extremo", "Días de calor extremo", "días", `Días con temperatura máxima mayor a ${fn(K.dias_calor_extremo.umbral ?? 35)} °C. Durante la floración y el llenado de granos pueden reducir mucho el rinde.`, (a, n) => diffBadge(a, n, Math.abs(r1(a - n)) === 1 ? " día" : " días", "más", "menos")],
+      ["humedad_relativa", "Humedad relativa", "%", "Con aire más seco el cultivo pierde más agua y la demanda de lluvia es mayor. Una humedad alta y prolongada favorece las enfermedades.", (a, n) => diffBadge(a, n, " puntos", "más húmedo", "más seco")],
+      ["dias_sin_lluvia", "Días sin lluvia", "días", `Días con menos de ${fn(K.dias_sin_lluvia.umbral_mm ?? 1)} mm de lluvia. Muchos días secos agotan el agua del suelo, sobre todo en floración y llenado.`, (a, n) => diffBadge(a, n, Math.abs(r1(a - n)) === 1 ? " día" : " días", "más", "menos")]
+    ];
+    // Los días son promedios de 5 partidos: se muestran redondeados a días enteros
+    const dias = diasPeriodo(id, CC.meses_con_datos);
+    $("#clCards").innerHTML = CARDS.map(([k, name, unit, why, bd]) => {
+      const c = K[k] || {}, has = c.actual != null && c.normal != null;
+      const u = c.unidad || unit, isCount = u === "días";
+      const a = has ? (isCount ? Math.round(c.actual) : c.actual) : null, n = has ? (isCount ? Math.round(c.normal) : c.normal) : null;
+      const de = isCount && dias ? ` <span class="de">de ${dias}</span>` : "";
+      return `<div class="card cl-card">
+        <div class="k">${name} ${info(why, name)}</div>
+        <div class="row-v"><span class="val num">${has ? (isCount ? a : f1(a)) : "–"}</span><span class="unit">${esc(u)}${has ? de : ""}</span></div>
+        <div class="nrm">Normal: <b class="num">${has ? (isCount ? n : f1(n)) + " " + esc(u) : "–"}</b></div>
+        ${has ? bd(a, n) : '<span class="badge flat">Sin datos todavía</span>'}
+      </div>`;
+    }).join("");
+    $("#clNote3").textContent = `Campaña ${id}${per ? `, período ${per}` : ""} · Promedio de los 5 partidos. Normal = promedio ${C.meta.normal_climatica} del mismo período. Datos de NASA POWER.`;
+  }
+
+  function renderOni() {
+    const el = $("#clOni"), S = C.enso.oni_recientes || []; if (!el || !S.length) return;
+    const W = Math.max(240, el.clientWidth || 300), H = 150, n = S.length;
+    const m = { t: 18, r: 64, b: 22, l: 6 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+    // Escala ajustada a los datos, siempre mostrando los dos umbrales (±0,5 °C)
+    const hi = Math.max(0.8, ...S.map(s => s.oni)) * 1.12, lo = Math.min(-0.8, ...S.map(s => s.oni)) * 1.12;
+    const bw = iw / n, x = i => m.l + i * bw + bw / 2, y = v => m.t + (hi - v) / (hi - lo) * ih;
+    const col = v => v > 0.5 ? "var(--s2)" : v < -0.5 ? "var(--s1)" : "var(--neutral)";
+    let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${esc("Temperatura del Pacífico respecto de lo normal en los últimos trimestres: " + S.map(p => `${triTxt(p.trimestre, p.anio)} ${oniTxt(p.oni)}`).join("; "))}">`;
+    [[0.5, "El Niño"], [-0.5, "La Niña"]].forEach(([t, lb]) => {
+      s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}" stroke="var(--border)" stroke-dasharray="4 3"/>`;
+      s += `<text x="${W - m.r + 6}" y="${y(t) + (t > 0 ? -3 : 11)}" style="font-size:10.5px">${lb}</text>`;
+    });
+    s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" class="axis-l"/>`;
+    S.forEach((p, i) => {
+      const bwb = Math.min(26, bw * .6), y0 = y(0), y1 = y(p.oni), last = i === n - 1;
+      s += `<rect x="${x(i) - bwb / 2}" y="${Math.min(y0, y1)}" width="${bwb}" height="${Math.max(1, Math.abs(y1 - y0))}" rx="3" fill="${col(p.oni)}"${last ? "" : ' opacity=".55"'}/>`;
+      s += `<text x="${x(i)}" y="${p.oni >= 0 ? y1 - 5 : y1 + 12}" text-anchor="middle" style="font-size:10.5px${last ? ";fill:var(--text);font-weight:700" : ""}">${(p.oni > 0 ? "+" : p.oni < 0 ? "−" : "") + f1(Math.abs(p.oni))}</text>`;
+      s += `<text x="${x(i)}" y="${H - 5}" text-anchor="middle"${last ? ' style="fill:var(--text);font-weight:600"' : ""}>${esc(triMes(p.trimestre))}</text>`;
+      s += `<rect x="${x(i) - bw / 2}" y="0" width="${bw}" height="${H}" fill="transparent" data-tip-title="${esc(triTxt(p.trimestre, p.anio))}" data-tip="${esc(`Pacífico ${oniTxt(p.oni)} respecto de lo normal.`)}"/>`;
+    });
+    el.innerHTML = s + `</svg>`;
+  }
+
   /* ---------- 5. GUÍA ---------- */
   function guiaHTML() {
     const I = {
@@ -760,46 +1083,68 @@ function init(D) {
       chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg>',
       bulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg>'
     };
-    // Gráfico de ventanas: error por ventana (si viene en data.json → validacion.mae_por_ventana)
+    // Datos de la validación para los textos (todo sale de data.json)
+    const VC = camps.filter(c => c.origen === "validacion");
+    const VC_TXT = VC.length ? `${VC[0].id} a ${VC[VC.length - 1].id}` : "";
+    const ANIOS_TXT = ANIOS.length ? `${ANIOS[0]}/${String(ANIOS[0] + 1).slice(2)} a ${ANIOS[ANIOS.length - 1]}/${String(ANIOS[ANIOS.length - 1] + 1).slice(2)}` : "";
+    const nTot = +V.predicciones_total, pAc = parseFloat(D.validacion.acierto_direccional);
+    const aciertos = Math.round(pAc / 100 * nTot); // 69 % de 45 → 31
+    const pTxt = V.p_valor < 0.01 ? "menor al 1 %" : `de ${f1(V.p_valor * 100)} %`;
+    const metric = (val, unit, label, tipTitle, tipText, ctx) => `<div class="metric">
+        <div class="mv num">${val}${unit ? `<small>${unit}</small>` : ""}</div>
+        <div class="mk">${label} ${info(tipText, tipTitle)}</div>
+        <div class="ms">${ctx}</div></div>`;
     return `<section class="block reveal" id="guia">
       <div class="sec-head"><div><div class="eyebrow">El proyecto</div><h2>Sobre la estimación</h2>
-        <p>De dónde sale la información, qué tan confiable es y cuál es su alcance, explicado sin tecnicismos.</p></div></div>
+        <p>De dónde sale la información, cómo se calcula, qué tan precisa fue en campañas anteriores y cuál es su alcance.</p></div></div>
       <div class="guide">
         <div class="card gcard"><div class="gi">${I.target}</div><h3>Qué es y para qué sirve</h3>
-          <p>Una <b>referencia temprana</b> del rinde de soja en General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto. Pensada para acopios, cooperativas y corredores que necesitan anticipar volúmenes, y para productores e ingenieros agrónomos que quieren sumar una referencia objetiva a sus análisis y decisiones de campaña. Se actualiza cada mes.</p></div>
+          <p>Es una <b>referencia temprana</b> del rinde promedio de soja en General Arenales, Junín, Leandro N. Alem, Lincoln y General Pinto. Sirve a acopios, cooperativas y corredores para anticipar volúmenes, y a productores e ingenieros agrónomos como una referencia más para sus análisis y decisiones de campaña. Se actualiza una vez por mes, con datos a fin de cada mes de noviembre a marzo.</p></div>
         <div class="card gcard"><div class="gi">${I.sat}</div><h3>De dónde vienen los datos</h3>
-          <p>Todo es <b>público y gratuito</b>:</p>
-          <ul><li><b>Satélite MODIS (NASA)</b>: cuán verde y vigoroso está el cultivo (índice de vegetación).</li>
-          <li><b>NASA POWER</b>: lluvia, temperatura, radiación y humedad diarias.</li>
-          <li><b>MAGyP</b>: rindes oficiales por partido desde 2000/01, para aprender y validar.</li>
+          <p>Todas las fuentes son <b>públicas y gratuitas</b>:</p>
+          <ul><li><b>Satélite MODIS (NASA)</b>: qué tan verde y vigoroso está el cultivo (índice de vegetación).</li>
+          <li><b>NASA POWER</b>: lluvia, temperatura, radiación solar y humedad, día por día.</li>
+          <li><b>MAGyP</b>: rindes oficiales por partido desde 2000/01, con los que el modelo aprende y se pone a prueba.</li>
           <li><b>IGN y BAHRA</b>: límites de los partidos y localidades del mapa.</li></ul></div>
         <div class="card gcard"><div class="gi">${I.tree}</div><h3>Cómo estima</h3>
-          <p>Usa un modelo que combina muchos "árboles de decisión" (<i>Random Forest</i>): cada uno aprende reglas del tipo "si llovió poco en noviembre y el cultivo está menos verde, el rinde baja". La estimación final es el promedio de todos.</p>
-          <p style="margin-top:8px">Se entrenó con <b>${N_CAMP} campañas</b> (${ANIOS.length ? `${ANIOS[0]}/${String(ANIOS[0] + 1).slice(2)}–${ANIOS[ANIOS.length - 1]}/${String(ANIOS[ANIOS.length - 1] + 1).slice(2)}` : ""}) con los rindes oficiales promedio de cada partido.</p></div>
-        <div class="card gcard"><div class="gi">${I.cal}</div><h3>Validación rigurosa</h3>
-          <p>La precisión se midió simulando el uso real: en cada campaña de prueba el modelo solo conoció los años anteriores, <b>nunca datos del futuro</b> (validación temporal). Son ${V.predicciones_total} estimaciones en ${V.campanas_test} campañas, incluida la sequía histórica de 2022/23.</p></div>
+          <p>El modelo estudió las <b>${N_CAMP} campañas</b> de ${ANIOS_TXT}: cómo se comportaron el clima y el estado del cultivo (visto desde satélite) en cada una, y qué rinde resultó en cada partido.</p>
+          <p style="margin-top:8px">Con ese historial identifica qué combinaciones de condiciones se asocian a rindes altos o bajos. Para la campaña en curso, compara sus condiciones con ese historial y estima el rinde.</p>
+          <p style="margin-top:8px">No depende de un único análisis: arma muchas versiones, cada una con una parte distinta del historial, y combina sus resultados para que ningún año atípico pese de más (método <i>Random Forest</i>).</p></div>
+        <div class="card gcard"><div class="gi">${I.cal}</div><h3>Cómo se midió la precisión</h3>
+          <p>Se simuló el uso real. Para cada campaña de prueba${VC_TXT ? ` (${VC_TXT})` : ""}, el modelo se entrenó solo con las campañas anteriores: <b>nunca vio datos del futuro</b>. Después se comparó su estimación con el rinde oficial. En total son ${nTot} estimaciones en ${V.campanas_test} campañas, incluida la fuerte sequía de 2022/23.</p></div>
         <div class="card gcard feature">
           <div class="gi">${I.bulb}</div>
-          <div><div class="eyebrow" style="margin-bottom:4px">Hallazgo clave</div><h3>Noviembre da la mejor estimación</h3>
-            <p>Lo intuitivo sería esperar más datos para estimar mejor. Pero la estimación con datos a <b>fin de noviembre</b>, 5 meses antes de la cosecha, es en promedio la más precisa. Agregar diciembre, enero o febrero no mejora la estimación: la empeora levemente.</p></div>
-          <p style="font-size:13.5px">¿Por qué? Con pocas campañas para aprender, cada mes extra agrega muchas variables nuevas y el modelo empieza a "memorizar" casos puntuales en vez de patrones generales. Las condiciones de implantación y arranque del cultivo ya contienen buena parte de la información.</p>
+          <div><div class="eyebrow" style="margin-bottom:4px">Hallazgo clave</div><h3>Una señal confiable desde noviembre</h3>
+            <p>Con datos a <b>fin de noviembre</b>, unos 5 meses antes de la cosecha, el modelo ya da una estimación confiable: en las pruebas con campañas anteriores fue el corte con menor error promedio (${esc(V.mae_mejor)}).</p></div>
+          <p style="font-size:13.5px">Las actualizaciones de diciembre a marzo son el <b>seguimiento</b> de la campaña: suman lo que pasa después (olas de calor, sequía, heladas, lluvias), muestran si la campaña se aparta de lo esperado y permiten ajustar decisiones a tiempo.</p>
         </div>
       </div>
       <h3 class="glabel">Resultados de las pruebas con campañas anteriores</h3>
       <div class="metrics">
-        <div class="metric"><div class="mk">Error típico ${info("Diferencia promedio, en qq/ha, entre lo estimado y el rinde real (error absoluto medio o MAE). Cuanto más bajo, mejor.")}</div><div class="mv num">${esc(V.mae_mejor)}</div><div class="ms">con la estimación de noviembre</div></div>
-        <div class="metric"><div class="mk">Diferencias de rinde explicadas ${info("R²: qué parte de las diferencias de rinde entre años y partidos logra explicar el modelo. 1 sería perfecto, 0 equivale a no explicar nada.")}</div><div class="mv num">${nf1.format(V.r2_mejor * 100).replace(",0", "")}\u00a0%</div><div class="ms">R² = ${String(V.r2_mejor).replace(".", ",")}</div></div>
-        <div class="metric"><div class="mk">Acierta la tendencia ${info("Porcentaje de veces que anticipó correctamente si el rinde iba a estar por encima o por debajo del promedio. La probabilidad de lograrlo por azar es menor al 1%.")}</div><div class="mv">${esc(V.acierto_direccional)}</div><div class="ms">no es casualidad (p = ${String(V.p_valor).replace(".", ",")})</div></div>
-        <div class="metric"><div class="mk">Menos error que el promedio histórico ${info("Cuánto menos se equivoca el modelo comparado con pronosticar siempre el promedio histórico.")}</div><div class="mv">${esc(V.mejora_vs_baseline)}</div><div class="ms">en las campañas de prueba</div></div>
-        <div class="metric"><div class="mk">Estimaciones evaluadas ${info("Campañas de prueba × partidos, todas generadas sin usar datos del futuro.")}</div><div class="mv">${V.predicciones_total}</div><div class="ms">${V.campanas_test} campañas × 5 partidos</div></div>
+        ${metric(f1(maeNum), "qq/ha", "Error promedio", "Error promedio",
+          `Error absoluto medio: el promedio de la diferencia, sin importar el signo, entre la estimación de fin de noviembre y el rinde oficial, en las ${nTot} estimaciones de prueba. Cuanto más bajo, mejor.`,
+          "entre la estimación de noviembre y el rinde real")}
+        ${metric(esc(V.mejora_vs_baseline), "", "Menos error que el promedio histórico", "Comparación con el promedio histórico",
+          "Se comparó con una alternativa simple: usar como estimación el promedio histórico de cada partido, calculado solo con las campañas anteriores. El modelo tuvo ese porcentaje menos de error promedio.",
+          "que usar siempre el promedio de cada partido")}
+        ${metric(esc(V.acierto_direccional), "", "Acierta la dirección", "Acierta la dirección",
+          `En ${aciertos} de ${nTot} casos anticipó bien si el rinde iba a quedar por encima o por debajo del promedio histórico del partido. Si se eligiera al azar, se esperaría acertar alrededor de la mitad; la probabilidad de acertar ${aciertos} o más solo por azar es ${pTxt} (prueba binomial, p = ${String(V.p_valor).replace(".", ",")}).`,
+          `${aciertos} de ${nTot} casos: si el rinde iba a quedar arriba o abajo de su promedio`)}
+        ${metric(nf1.format(V.r2_mejor * 100).replace(",0", ""), "%", "Variación de rinde captada", "Variación de rinde captada",
+          `Mide qué parte de las subidas y bajadas del rinde entre campañas y partidos reproduce la estimación. 100 % sería acertar exactamente cada rinde; 0 % equivaldría a estimar siempre el mismo valor, el promedio de los rindes de prueba (coeficiente de determinación, R² = ${String(V.r2_mejor).replace(".", ",")}).`,
+          "de las diferencias de rinde entre campañas y partidos")}
+        ${metric(String(nTot), "", "Estimaciones evaluadas", "Estimaciones evaluadas",
+          "Cada campaña de prueba por cada partido, todas generadas sin usar datos del futuro.",
+          `${V.campanas_test} campañas × 5 partidos${VC_TXT ? `, ${VC_TXT}` : ""}`)}
       </div>
-      <details class="table-toggle scope"><summary>Alcance del modelo
+      <details class="table-toggle scope"><summary>Alcance y limitaciones
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></summary>
         <ul>
-          <li>Estima el rinde promedio de cada partido (el mismo dato que publica MAGyP): una referencia regional que cada productor puede comparar con sus propios lotes.</li>
+          <li>Estima el rinde promedio de cada partido (el mismo dato que publica MAGyP): una referencia regional que cada productor puede comparar con sus propios lotes. No estima el rinde de un lote en particular.</li>
           <li>Usa el índice de vegetación de toda la superficie agrícola de cada partido.</li>
-          <li>Se reentrena cada campaña con los nuevos rindes oficiales, ampliando su base de aprendizaje.</li>
-          <li>Eventos posteriores a una actualización (granizo, heladas tardías) se incorporan en la siguiente.</li>
+          <li>Se vuelve a entrenar cada campaña, cuando se publican los nuevos rindes oficiales, y así amplía el historial del que aprende.</li>
+          <li>Lo que ocurra después de una actualización (por ejemplo, una helada tardía o un granizo) se refleja en la siguiente, en la medida en que se vea en los datos de clima o en el verdor del cultivo.</li>
+          <li>Es una estimación, no una certeza: en las pruebas, el rinde real se alejó en promedio ${esc(V.mae_mejor)} de la estimación de noviembre.</li>
         </ul>
       </details>
     </section>`;
@@ -854,7 +1199,7 @@ function init(D) {
 
   function renderZonal() {
     const c = state.camp;
-    $("#evoTitle").textContent = `Estimación zonal · ${c.id}`;
+    $("#evoTitle").textContent = `Estimación de la zona · ${c.id}`;
     const vals = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k ? k.zona.estimacion : null; });
     const band = VENTANAS.map(w => { const k = c.cortes.find(x => x.ventana === w.v); return k && k.zona.intervalo ? k.zona.intervalo : null; });
     const r = realZ(c);
@@ -875,7 +1220,7 @@ function init(D) {
       <div class="row"><div class="k">Primera estimación (${esc(first.label.toLowerCase())})</div><div class="v num">${f1(first.zona.estimacion)} qq/ha</div></div>
       ${n > 1 ? `<div class="row"><div class="k">Última actualización (${esc(last.label.toLowerCase())})</div><div class="v num">${f1(last.zona.estimacion)} qq/ha <span class="badge ${Math.abs(delta) < .3 ? "flat" : delta > 0 ? "up" : "down"}" style="font-size:12px;vertical-align:middle">${delta > 0 ? "+" : delta < 0 ? "−" : "±"}${f1(Math.abs(delta))} qq/ha desde noviembre</span></div></div>` : ""}
       ${r != null ? `<div class="row"><div class="k">Resultado real</div><div class="v num">${f1(r)} qq/ha</div><p>La estimación de noviembre se desvió <b class="num">${f1(Math.abs(first.zona.estimacion - r))} qq/ha</b> del resultado final.</p></div>` : ""}
-      <div class="row"><p>${n < 5 ? `Quedan <b>${5 - n}</b> ${5 - n === 1 ? "actualización" : "actualizaciones"} por delante. ` : ""}Cada mes el modelo se vuelve a correr con los nuevos datos de clima y del cultivo, así que <b>es normal que la estimación se mueva</b>. Noviembre es, en promedio, la estimación más precisa, pero las actualizaciones siguientes muestran cómo responde la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>`;
+      <div class="row"><p>${n < 5 ? `Quedan <b>${5 - n}</b> ${5 - n === 1 ? "actualización" : "actualizaciones"} por delante. ` : ""}Cada mes el modelo se vuelve a correr con los nuevos datos de clima y del cultivo, así que <b>es normal que la estimación se mueva</b>. En las pruebas, noviembre fue el corte con menor error promedio; las actualizaciones siguientes muestran cómo responde la campaña. ${info(NOV_NOTE, "¿Y si la campaña cambia?")}</p></div>`;
   }
 
   function renderHistChart() {
@@ -905,6 +1250,7 @@ function init(D) {
   }
 
   function renderAll() {
+    renderClima();
     if (!state.camp) return;
     renderDumbbell(); renderPartidoEvo(); renderZonal(); renderHistChart();
     $$("details.camp[open] .spark").forEach(s => renderSpark(s, byId(s.dataset.id)));
@@ -935,6 +1281,8 @@ function init(D) {
       renderPartidoEvo();
     }
   });
+  // Clima: selector de campaña
+  if (climaOk) app.addEventListener("change", e => { if (e.target.id === "clCamp") { cl.camp = e.target.value; hideTip(); renderClima(); } });
   $$("details.camp").forEach(d => d.addEventListener("toggle", () => { if (d.open) renderSpark($(".spark", d), byId(d.dataset.id)); }));
 
   renderAll();
@@ -1063,6 +1411,65 @@ function lineChart(el, o) {
   hit.addEventListener("pointermove", move);
   hit.addEventListener("pointerdown", move);
   hit.addEventListener("pointerleave", () => { xh.setAttribute("opacity", "0"); tipEl.classList.remove("show"); });
+}
+
+/* ================= Gráfico de barras (SVG puro) =================
+   o.values: barra principal por categoría (null = sin datos, no se dibuja)
+   o.refs:   valor de referencia por categoría (barra "fantasma" detrás)              */
+function barChart(el, o) {
+  const W = Math.max(260, el.clientWidth || 300), H = o.height || 240;
+  const narrow = W < 480;
+  const labels = narrow && o.shortLabels ? o.shortLabels : o.labels;
+  const unit = o.unit || "";
+  const m = { t: 24, r: 12, b: 28, l: 40 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b, n = labels.length;
+  const all = o.values.concat(o.refs || []).filter(v => v != null);
+  const nf = new Intl.NumberFormat("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  let hi = all.length ? Math.max(...all) * 1.12 : 100;
+  const step = hi > 400 ? 100 : hi > 160 ? 50 : hi > 80 ? 25 : hi > 40 ? 10 : 5;
+  hi = Math.max(step, Math.ceil(hi / step) * step);
+  const bw = iw / n, x = i => m.l + i * bw, y = v => m.t + ih - v / hi * ih;
+  const wRef = Math.min(54, bw * .72), wVal = Math.min(34, bw * .44);
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${esc(o.aria || "Gráfico de barras")}">`;
+  s += `<text x="0" y="11" style="font-weight:600">${esc(unit)}</text>`;
+  for (let t = 0; t <= hi + 1e-9; t += step) {
+    s += `<line class="${t === 0 ? "axis-l" : "gl"}" x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l - 6}" y="${y(t) + 3.5}" text-anchor="end">${t}</text>`;
+  }
+  labels.forEach((lb, i) => {
+    const cx = x(i) + bw / 2, v = o.values[i], r = o.refs ? o.refs[i] : null;
+    s += `<rect class="col-hl" data-i="${i}" x="${x(i) + 2}" y="${m.t}" width="${bw - 4}" height="${ih}" rx="8"/>`;
+    if (r != null) s += `<rect class="bar-n" x="${cx - wRef / 2}" y="${y(r)}" width="${wRef}" height="${Math.max(0, y(0) - y(r))}" rx="5"/>`;
+    if (v != null) {
+      s += `<rect class="bar-a" x="${cx - wVal / 2}" y="${y(v)}" width="${wVal}" height="${Math.max(0, y(0) - y(v))}" rx="4"/>`;
+      if (!narrow || n <= 6) s += `<text x="${cx}" y="${y(v) - 6}" text-anchor="middle" style="fill:var(--text);font-weight:600">${nf.format(v)}</text>`;
+    } else if (r == null) {
+      s += `<circle cx="${cx}" cy="${y(0)}" r="3" fill="var(--border)"/>`; // mes sin datos todavía
+    }
+    s += `<text x="${cx}" y="${H - 8}" text-anchor="middle"${v == null ? ' style="opacity:.6"' : ""}>${esc(lb)}</text>`;
+  });
+  s += `<rect class="hit" x="${m.l}" y="0" width="${iw}" height="${H}" fill="transparent"/></svg>`;
+  el.innerHTML = s;
+  const svg = el.firstChild, hit = svg.querySelector(".hit"), hl = [...svg.querySelectorAll(".col-hl")];
+  const move = e => {
+    const rc = svg.getBoundingClientRect(), px = (e.clientX - rc.left) * (W / rc.width);
+    const i = Math.max(0, Math.min(n - 1, Math.floor((px - m.l) / bw)));
+    hl.forEach((h, k) => h.style.opacity = k === i ? "1" : "0");
+    const v = o.values[i], r = o.refs ? o.refs[i] : null;
+    let h = `<div class="tt">${esc(o.labels[i])}</div>`;
+    if (v == null && r == null) h += `<div class="tx">Todavía sin datos completos</div>`;
+    else {
+      h += `<div class="tr"><span><i style="background:var(--primary)"></i>${esc(o.name || "Valor")}</span><b>${v == null ? "sin datos" : nf.format(v) + " " + unit}</b></div>`;
+      if (r != null) h += `<div class="tr"><span><i style="background:color-mix(in srgb,var(--ref) 30%,transparent);box-shadow:inset 0 0 0 1px var(--ref)"></i>${esc(o.refName || "Referencia")}</span><b>${nf.format(r) + " " + unit}</b></div>`;
+      if (v != null && r != null) {
+        const d = v - r;
+        h += `<div class="sep"></div><div class="tr"><span>Diferencia</span><b>${d > 0 ? "+" : d < 0 ? "−" : "±"}${nf.format(Math.abs(d))} ${unit}${r ? ` (${d > 0 ? "+" : d < 0 ? "−" : "±"}${nf.format(Math.abs(d / r * 100))} %)` : ""}</b></div>`;
+      }
+    }
+    showTip(h, e.clientX, e.clientY);
+  };
+  hit.addEventListener("pointermove", move);
+  hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { hl.forEach(h => h.style.opacity = "0"); hideTip(); });
 }
 })();
 </script>

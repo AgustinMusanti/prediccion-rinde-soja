@@ -1,3 +1,29 @@
+# Dashboard v4 · Estimación de rinde de soja (con pestaña Clima)
+
+> Copia de la versión 3 (`dashboard-v3/`, que no se modifica) con una sección nueva, **Clima** (`#clima`), entre "Campañas anteriores" y "Sobre la estimación": lluvias de la campaña vs. la normal, fase ENSO (El Niño / La Niña) y condiciones del cultivo.
+> Los datos de esa sección vienen de `data-clima.json`, separado de `data.json`. Si ese archivo falta o tiene un error, la página se arma igual, sin la sección ni el link "Clima".
+
+## Actualización mensual (v4)
+```bash
+python src/predict.py
+python src/exportar_dashboard.py --salida dashboard-v4/data.json
+python src/exportar_clima_dashboard.py          # → dashboard-v4/data-clima.json
+```
+
+`exportar_clima_dashboard.py`:
+- Toma solo **meses completos** de la campaña (oct → mar); los demás quedan en `null`.
+- La normal climática es el promedio 2000-2024 de `data/raw/nasa_power/nasa_power_zona_coop_1999_2025.csv`.
+- Si ese CSV no cubre la campaña en curso, baja los datos diarios de NASA POWER (como `predict.py`); no guarda nada en `data/raw`. Con `--sin-descarga` usa solo el CSV local.
+- ENSO: último trimestre de `data/raw/enso/oni.csv`. La fase se marca como no confirmada (`fase_confirmada: false`) mientras no lleve 5 trimestres seguidos sobre ±0,5 °C. El rinde por fase cruza el ONI de OND de cada campaña con los rindes de `data/processed/dataset_modelado_soja.csv`.
+- Escritura atómica e idempotente (si nada cambió, se conserva la fecha de actualización). `--dry-run` muestra el resultado sin escribir.
+- Exporta **todas las campañas** desde 2000/01 (clave `campanas`), promedio de los 5 partidos. La sección tiene un selector de campaña.
+- Nota: General Arenales, Junín y Leandro N. Alem caen en la misma celda de la grilla de NASA POWER (~50 km) y tienen exactamente el mismo dato climático diario. Por eso la sección muestra solo el promedio de la zona.
+- `oni.csv` no lo actualiza ningún script: hay que reemplazarlo a mano con la versión nueva de NOAA/CPC.
+
+Preview local: `python -m http.server 8003 --directory dashboard-v4`.
+
+---
+
 # Dashboard v3 · Estimación de rinde de soja (foco en producto)
 
 > Copia de la versión 2 (`dashboard-v2/`, que no se modifica) con la primera pantalla y la navegación reescritas para el usuario final: qué obtiene, para qué le sirve y por qué confiar. El mapa, los datos y el flujo son los mismos.
